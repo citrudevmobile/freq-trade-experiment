@@ -1,0 +1,23 @@
+{
+  "name": "trader_bot",
+  "version": "1.0.0",
+  "description": "trader bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://Citrubit@bitbucket.org/citrudev/trader_bot.git"
+  },
+  "keywords": [
+    "forex",
+    "bot"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://bitbucket.org/citrudev/trader_bot/issues"
+  },
+  "homepage": "https://bitbucket.org/citrudev/trader_bot#readme"
+}
