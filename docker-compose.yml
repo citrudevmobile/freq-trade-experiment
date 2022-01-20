@@ -1,0 +1,10 @@
+version: '3.7'
+
+services:
+  marketbot:
+    build: './web'
+    volumes:
+      - ./web/usr/src/app:rw
+    expose:
+      - 80
+    
