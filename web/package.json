@@ -23,6 +23,7 @@
     "express": "^4.17.2",
     "helmet": "^5.0.1",
     "http": "^0.0.1-security",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.1.7",
     "morgan": "^1.10.0",
     "react": "^17.0.2",
