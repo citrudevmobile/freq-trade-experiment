@@ -9,4 +9,5 @@ COPY . .
 # Install dependencies
 RUN npm install
 
+
 CMD npm run build

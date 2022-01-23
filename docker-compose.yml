@@ -1,10 +1,26 @@
-version: '3.7'
+version: '3.8'
 
 services:
-  marketbot:
+  web:
     build: './web'
     volumes:
       - ./web/usr/src/app:rw
     expose:
       - 80
-    
+    ports:
+      - 80:80
+  
+  mongodb:
+    image : mongo
+    container_name: mongodb
+    environment:
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - data-volume:/data/db
+    ports:
+      - 27017:27017
+    restart: unless-stopped
+
+  volumes:
+  data-volume:
