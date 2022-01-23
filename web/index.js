@@ -25,7 +25,7 @@ User.findOne({ email: process.env.ADMIN_EMAIL_ADDRESS }, function (err, admin) {
       newAdmin.password = newAdmin.generateHash(process.env.ADMIN_PASS)
       newAdmin.admin = true
       newAdmin.active = true
-      newAdmin.save((err, res) => {
+      newAdmin.save((err, admin) => {
         if (!err) {
          console.log('Created default admin user')
         } else {
