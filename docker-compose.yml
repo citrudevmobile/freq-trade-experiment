@@ -4,7 +4,7 @@ services:
   web:
     build: './web'
     volumes:
-      - ./web/usr/src/app:rw
+      - ./web:/usr/src/app:rw
     ports:
       - 80:80
   
