@@ -7,6 +7,8 @@ services:
       - ./web:/usr/src/app:rw
     ports:
       - 80:80
+    depends_on:
+      -mongodb
   
   mongodb:
     image : mongo
