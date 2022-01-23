@@ -11,12 +11,12 @@ const io = require('socket.io')(server)
 
 global.__basedir = __dirname
 
-/*
+
 mongoose.connect(process.env.MONGODB, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
-*/
+
 
 app.use(morgan('combined'))
 app.use(helmet({
