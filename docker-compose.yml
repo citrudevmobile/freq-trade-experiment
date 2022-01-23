@@ -5,8 +5,6 @@ services:
     build: './web'
     volumes:
       - ./web/usr/src/app:rw
-    expose:
-      - 80
     ports:
       - 80:80
   
@@ -18,8 +16,8 @@ services:
       - PGID=1000
     volumes:
       - data-volume:/data/db
-    ports:
-      - 27017:27017
+    expose:
+      - 27017
     restart: unless-stopped
 
   volumes:
