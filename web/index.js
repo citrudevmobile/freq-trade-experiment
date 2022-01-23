@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const express = require('express')
 const compression = require('compression')
 const helmet = require('helmet')
+const User = require('./models/user.model')
 const app = express()
 const server = require('http').Server(app)
 const io = require('socket.io')(server)
@@ -15,6 +16,31 @@ global.__basedir = __dirname
 mongoose.connect(process.env.MONGODB, {
   useNewUrlParser: true,
   useUnifiedTopology: true
+})
+
+
+User.findOne({ email: process.env.ADMIN_EMAIL_ADDRESS }, function (err, admin) {
+  if (!(!err && admin)) {
+    try {
+      const newAdmin = new User()
+      newAdmin.email = process.env.ADMIN_EMAIL_ADDRESS
+      newAdmin.username = process.env.ADMIN_USERNAME
+      newAdmin.password = newAdmin.generateHash(process.env.ADMIN_PASS)
+      newAdmin.admin = true
+      newAdmin.active = true
+      newAdmin.save((err, res) => {
+        if (!err) {
+         console.log('Created default admin user')
+        } else {
+          console.log('Failed to create default admin user: %o', err)
+        }
+      })
+    } catch (e) {
+      console.log('Failed to create default admin user: %o', e)
+    }
+  } else {
+    console.log('Admin user already exists')
+  }
 })
 
 
