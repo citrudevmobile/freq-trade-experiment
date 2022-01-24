@@ -10,6 +10,7 @@ export default function App() {
 
 
     return (
+      <>
       <div class="h-screen flex">
       <div class="flex w-1/2 bg-gradient-to-tr from-blue-800 to-purple-700 i justify-around items-center">
         <div>
@@ -39,5 +40,6 @@ export default function App() {
         </form>
       </div>
     </div>
+    </>
     )
   }
