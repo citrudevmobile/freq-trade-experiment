@@ -109,7 +109,7 @@ module.exports = {
                 expiresIn: 1800
               })
               email.sendEmail({
-                from: `Best Crypto Bot Ever <info@bestcryptobotever.net>`,
+                from: `Best-Crypto-Bot-Ever <${process.env.EMAIL_USER}>`,
                 to: user.email,
                 subject: 'Please confirm your email',
                 html: emailTemplates.verifyEmail(emailToken)
@@ -176,6 +176,27 @@ module.exports = {
               })
             }
           })
+        })
+      },
+
+      sendPasswordResetEmail: function (req, res) {
+        User.findOne({ email: req.body.email }, function (err, user) {
+          if (err) return res.status(401).json({ sent: false })
+          if (!user) return res.status(200).json({ sent: false })
+          if (user) {
+            const emailToken = jwt.sign({ id: user._id }, process.env.JWTsecret, {
+              expiresIn: 1800
+            })
+            email.sendEmail({
+              from: `Best-Crypto-Bot-Ever <${process.env.EMAIL_USER}>`,
+              to: user.email,
+              subject: 'Reset Your Password',
+              html: emailTemplates.resetPasswordEmail(emailToken)
+            }, function (err) {
+              if (err) return res.status(500).json({ sent: false })
+              res.status(200).json({ sent: true })
+            })
+          }
         })
       },
 
