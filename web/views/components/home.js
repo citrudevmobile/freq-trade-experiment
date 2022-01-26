@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import '../css/output.css'
 
 export default function Home() {
   
