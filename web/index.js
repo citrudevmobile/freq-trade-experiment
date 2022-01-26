@@ -45,7 +45,6 @@ app.use(morgan('combined'))
 app.use(helmet({
   contentSecurityPolicy: false,
 }))
-
 app.use(compression())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
