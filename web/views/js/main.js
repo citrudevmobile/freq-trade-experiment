@@ -1,4 +1,5 @@
 import { render } from "react-dom";
+import '../css/output.css'
 
 import {
   BrowserRouter,

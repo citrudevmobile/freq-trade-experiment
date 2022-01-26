@@ -4,7 +4,9 @@
   "description": "web app for trader bot",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "parcel build ./views/index.html && node index.js"
+    "build": "parcel build ./views/index.html && node index.js",
+    "dev": "parcel ./views/index.html",
+    "css": "tailwindcss -i ./views/css/main.css -o ./views/css/output.css"
   },
   "keywords": [
     "trader",
