@@ -45,7 +45,7 @@ app.use(morgan('combined'))
 app.use(helmet({
   contentSecurityPolicy: false,
 }))
-app.use(helmet.frameguard({ action: 'sameorigin' }))
+
 app.use(compression())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
