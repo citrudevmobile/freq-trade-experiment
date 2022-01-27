@@ -1,4 +1,5 @@
 const Auth = require('../libs/config-auth')
+const path = require('path')
 
 module.exports = (app, io) => {
 
