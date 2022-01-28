@@ -1,24 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 
+
 import Home from "./home";
 import Dashboard from "./dashboard";
 import Register from './register';
 
+
 const App = () => {
-    const [auth, setAuth] = useState(true);
+
+    const [auth, setAuth] = useState(null)
+
+    let authenticate = function () {
+        setAuth(false)
+    }
   
     useEffect(() => {
-    /*
-      let user = localStorage.getItem("user");
-      user && JSON.parse(user) ? setAuth(true) : setAuth(false);
-    */
-      setAuth(true)
-    }, []);
+      authenticate()
+    }, [])
   
     useEffect(() => {
-      localStorage.setItem("user", auth);
-    }, [auth]);
+      localStorage.setItem("user", auth)
+    }, [auth])
   
     return (
         <Routes>
@@ -31,14 +34,14 @@ const App = () => {
           />
           <Route
             path="/register"
-            element={<Register authenticate={() => setAuth(true)}/>}
+            element={<Register authenticate={authenticate()}/>}
           />
          </>
         )}
   
         {auth && (
           <>
-            <Route path="/dashboard" element={<Dashboard authenticate={() => setAuth(true)} />} />
+            <Route path="/dashboard" element={<Dashboard authenticate={authenticate()} />} />
           </>
         )}
 
