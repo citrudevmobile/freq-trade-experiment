@@ -6,6 +6,7 @@ const userSchema = mongoose.Schema({
   password: { type: String, required: [true, 'password required'] },
   avatar: { type: String },
   username: { type: String, trim: true, unique: true, sparse: true },
+  fullname: { type: String },
   admin: { type: Boolean, default: false },
   active: { type: Boolean, default: false },
 })

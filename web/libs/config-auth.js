@@ -42,6 +42,7 @@ module.exports = {
             newUser.email = req.body.email
             newUser.password = newUser.generateHash(req.body.password)
             newUser.username = req.body.username
+            newUser.fullname = req.body.fullname
             newUser.save((err, user) => {
               if (err) {
                 console.log(err)
