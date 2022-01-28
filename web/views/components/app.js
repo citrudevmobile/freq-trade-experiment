@@ -41,7 +41,9 @@ const App = () => {
       setAuth(false)
     }
   
-   
+    useEffect(() => {
+      authenticate()
+    }, [])
   
     useEffect(() => {
       if (auth && localStorage.token && localStorage.user) {
@@ -62,14 +64,14 @@ const App = () => {
           />
           <Route
             path="/register"
-            element={<Register authenticate={authenticate()}/>}
+            element={<Register authenticate={authenticate}/>}
           />
          </>
         )}
   
         {auth && (
           <>
-            <Route path="/dashboard" element={<Dashboard authenticate={authenticate()} logout={logout()} />} />
+            <Route path="/dashboard" element={<Dashboard authenticate={authenticate} logout={logout} />} />
           </>
         )}
 
