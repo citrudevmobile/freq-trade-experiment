@@ -78,11 +78,10 @@ module.exports = {
               .status(401)
               .json({ auth: false, message: 'Failed to authenticate token.' })
           }
+         
           User.findOne({ _id: decoded.id }, function (err, user) {
-            if (err) return res.status(500).send('Error on the server.')
-            if (!user) return res.status(401).send('user not found')
-            if (!user.validPassword(req.body.password)) { return res.status(401).send({ auth: false, token: null }) }
-
+            if (err) return res.status(500).json({ auth: false, token: null })
+            if (!user) return res.status(401).json({ auth: false, token: null })
             res.status(200).send({ auth: true, admin: user.admin, user: user._id, active: user.active })
           })
           
