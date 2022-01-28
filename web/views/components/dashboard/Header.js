@@ -6,7 +6,8 @@ import UserMenu from './UserMenu';
 
 function Header({
   sidebarOpen,
-  setSidebarOpen
+  setSidebarOpen,
+  logout
 }) {
 
   const [searchModalOpen, setSearchModalOpen] = useState(false)
@@ -55,7 +56,7 @@ function Header({
             <Help />
             {/*  Divider */}
             <hr className="w-px h-6 bg-slate-200 mx-3" />
-            <UserMenu />
+            <UserMenu logout={logout} />
 
           </div>
 
