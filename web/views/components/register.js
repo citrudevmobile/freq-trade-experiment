@@ -3,10 +3,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import axios from 'axios'
 
 
-
-
-
-export default function Home() {
+export default function Home({ authenticate }) {
 
   const [fullname, setFullname] = useState("")
   const [username, setUsername] = useState("")
@@ -27,15 +24,11 @@ export default function Home() {
         fullname: fullname
       },
     }).then(function (response) {
-  
       console.log(response.data)
       localStorage.setItem("token", response.data.token)
-      navigate("/dashboard")
-  
+      authenticate()
     }).catch (function (error) {
-  
       console.log(error)
-     
     })
   }
   

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 
 import Home from "./home";
@@ -10,9 +11,34 @@ import Register from './register';
 const App = () => {
 
     const [auth, setAuth] = useState(null)
+    let navigate = useNavigate()
 
     let authenticate = function () {
-        setAuth(false)
+        let token = localStorage.token
+        if (token) {
+          axios({
+            method: "post",
+            url: "/verify",
+            headers: { "x-access-token": localStorage.token },
+          }).then(function (response) {
+            console.log(response.data)
+            localStorage.setItem("user", response.data.user)
+            if (localStorage.user) {
+              setAuth(true)
+            }
+          }).catch (function (error) {
+            console.log(error)
+            setAuth(false)
+          })
+        } else {
+          setAuth(false)
+        }
+    }
+
+    let logout = function () {
+      localStorage.removeItem("user")
+      localStorage.removeItem("token")
+      setAuth(false)
     }
   
     useEffect(() => {
@@ -20,7 +46,11 @@ const App = () => {
     }, [])
   
     useEffect(() => {
-      localStorage.setItem("user", auth)
+      if (auth && localStorage.token && localStorage.user) {
+        navigate('/dashboard')
+      } else {
+        navigate('/')
+      }
     }, [auth])
   
     return (
@@ -41,13 +71,13 @@ const App = () => {
   
         {auth && (
           <>
-            <Route path="/dashboard" element={<Dashboard authenticate={authenticate()} />} />
+            <Route path="/dashboard" element={<Dashboard authenticate={authenticate()} logout={logout()} />} />
           </>
         )}
 
         <Route path="/register" element={<Navigate to="/register" />} />
         <Route path="/dashboard" element={<Navigate to={auth ? "/dashboard" : "/"} />} />
-        <Route path="*" element={<Navigate to={auth ? "/dashboard" : "/"} />} />
+        <Route path="*" element={<Navigate to="/" />}  />
 
       </Routes>
     );
