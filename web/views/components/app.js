@@ -29,11 +29,6 @@ const App = () => {
           }).catch (function (error) {
             console.log(error)
             setAuth(false)
-            if (auth && localStorage.token && localStorage.user) {
-              navigate('/dashboard')
-            } else {
-              navigate('/')
-            }
           })
         } else {
           setAuth(false)
@@ -46,11 +41,15 @@ const App = () => {
       setAuth(false)
     }
   
-    useEffect(() => {
-      authenticate()
-    }, [])
-  
    
+  
+    useEffect(() => {
+      if (auth && localStorage.token && localStorage.user) {
+        navigate('/dashboard')
+      } else {
+        navigate('/')
+      }
+    }, [auth])
   
     return (
         <Routes>
