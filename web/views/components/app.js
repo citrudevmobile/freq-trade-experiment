@@ -60,7 +60,7 @@ const App = () => {
          <>
          <Route
             path="/"
-            element={<Home />}
+            element={<Home authenticate={authenticate} />}
           />
           <Route
             path="/register"
