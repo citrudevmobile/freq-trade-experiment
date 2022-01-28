@@ -23,6 +23,8 @@ const App = () => {
           }).then(function (response) {
             console.log(response.data)
             localStorage.setItem("user", response.data.user)
+            localStorage.setItem("admin", response.data.admin)
+            localStorage.setItem("active", response.data.active)
             if (localStorage.user) {
               setAuth(true)
             }
@@ -38,6 +40,8 @@ const App = () => {
     let logout = function () {
       localStorage.removeItem("user")
       localStorage.removeItem("token")
+      localStorage.removeItem("admin")
+      localStorage.removeItem("active")
       setAuth(false)
     }
   

@@ -7,37 +7,25 @@ const emailTemplates = require('./emailTemplates')
 module.exports = {
 
     login: function (req, res) {
-        if (validator.validate(req.body.username)) {
-          User.findOne({ email: req.body.username }, function (err, user) {
-            if (err) return res.status(500).send('Error on the server.')
-            if (!user) return res.status(401).send('user not found')
-            if (!user.validPassword(req.body.password)) { return res.status(401).send({ auth: false, token: null }) }
-            const token = jwt.sign({ id: user._id }, process.env.JWTsecret, {
-              expiresIn: 86400
-            })
-            res.status(200).send({ auth: true, token: token, admin: user.isAdmin, user: user._id, isActive: user.isActive, signupInfo: user.signupInfo })
-          })
-        } else {
-          User.findOne({ email: req.body.email }, function (err, user) {
-            if (err) return res.status(500).send('Error on the server.')
-            if (!user) return res.status(401).send('user not found')
-            if (!user.validPassword(req.body.password)) { return res.status(401).send({ auth: false, token: null }) }
-            const token = jwt.sign({ id: user._id }, process.env.JWTsecret, {
-              expiresIn: 86400
-            })
-            res.status(200).send({ auth: true, token: token, admin: user.isAdmin, user: user._id, isActive: user.isActive, signupInfo: user.signupInfo })
-          })
-        }
-      },
+      User.findOne({ email: req.body.email }, function (err, user) {
+        if (err) return res.status(500).json({ auth: false, token: null })
+        if (!user) return res.status(401).json({ auth: false, token: null })
+        if (!user.validPassword(req.body.password)) { return res.status(401).json({ auth: false, token: null }) }
+        const token = jwt.sign({ id: user._id }, process.env.JWTsecret, {
+          expiresIn: 86400
+        })
+        res.status(200).send({ auth: true, token: token})
+      })
+    },
     
       register: function (req, res) {
         process.nextTick(function () {
           User.findOne({ email: req.body.email }, function (err, user) {
             if (err) {
               console.log(err)
-              return res.status(500).send('Error on the server.')
+              return res.status(500).json({ auth: false, token: null })
             }
-            if (user) return res.status(400).send('user exists')
+            if (user) return res.status(400).json({ auth: false, token: null })
             const newUser = new User()
             newUser.email = req.body.email
             newUser.password = newUser.generateHash(req.body.password)
@@ -48,7 +36,7 @@ module.exports = {
                 console.log(err)
                 return res
                   .status(500)
-                  .send('There was a problem registering the user.')
+                  .json({ auth: false, token: null })
               }
     
               const token = jwt.sign({ id: user._id }, process.env.JWTsecret, {
@@ -90,7 +78,14 @@ module.exports = {
               .status(401)
               .json({ auth: false, message: 'Failed to authenticate token.' })
           }
-          res.status(200).json({ auth: true, message: 'Authenticated', user: decoded.id })
+          User.findOne({ _id: decoded.id }, function (err, user) {
+            if (err) return res.status(500).send('Error on the server.')
+            if (!user) return res.status(401).send('user not found')
+            if (!user.validPassword(req.body.password)) { return res.status(401).send({ auth: false, token: null }) }
+
+            res.status(200).send({ auth: true, admin: user.admin, user: user._id, active: user.active })
+          })
+          
         })
       },
 

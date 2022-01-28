@@ -26,8 +26,6 @@ function Dashboard () {
             {/* Welcome banner */}
             <WelcomeBanner />
 
-
-
             {/* Cards */}
             <div className="grid grid-cols-12 gap-6">
 
@@ -36,10 +34,6 @@ function Dashboard () {
               
               
             </div>
-
-           
-              
-           
 
           </div>
         </main>
