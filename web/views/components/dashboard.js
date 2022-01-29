@@ -9,6 +9,10 @@ function Dashboard ({authenticate, logout}) {
 
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
+  useEffect(()=>{
+    authenticate()
+  }, [])
+
   return (
     <div className="flex h-screen overflow-hidden">
 
