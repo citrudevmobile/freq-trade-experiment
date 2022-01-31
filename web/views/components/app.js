@@ -52,7 +52,7 @@ const App = () => {
   
     useEffect(() => {
       if (auth && localStorage.token && localStorage.user) {
-        navigate(window.location.pathname)
+        navigate('/dashboard')
       } else {
         navigate('/')
       }
@@ -82,7 +82,11 @@ const App = () => {
         {auth && (
           <>
             
-            <Route path="/dashboard" element={<Dashboard authenticate={authenticate} logout={logout} />} />
+            <Route path="/dashboard" 
+            element={ localStorage.active == 'true'? 
+            <Dashboard authenticate={authenticate} logout={logout} /> : 
+            <ConfirmEmail authenticate={authenticate} logout={logout} />} 
+            />
 
 
           </>
