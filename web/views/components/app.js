@@ -27,6 +27,7 @@ const App = () => {
             localStorage.setItem("admin", response.data.admin)
             localStorage.setItem("active", response.data.active)
             if (localStorage.user) {
+              console.log('local user is there...')
               setAuth(true)
               cb()
             }
