@@ -21,8 +21,10 @@ export default function Home({ authenticate }) {
     }
   
     useEffect(()=>{
-        //authenticate()
-        //sendConfirmEmail()
+        authenticate(function () {
+
+            sendConfirmEmail()
+        })
     }, [])
 
     return (

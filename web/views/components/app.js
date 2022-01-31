@@ -14,7 +14,7 @@ const App = () => {
     const [auth, setAuth] = useState(null)
     let navigate = useNavigate()
 
-    let authenticate = function () {
+    let authenticate = function (cb) {
         let token = localStorage.token
         if (token) {
           axios({
@@ -28,18 +28,14 @@ const App = () => {
             localStorage.setItem("active", response.data.active)
             if (localStorage.user) {
               setAuth(true)
+              cb
             }
-
-            
           }).catch (function (error) {
-            console.log(error)
             setAuth(false)
           })
         } else {
           setAuth(false)
         }
-
-       
     }
 
     let logout = function () {
@@ -55,8 +51,6 @@ const App = () => {
     }, [])
   
     useEffect(() => {
-      console.log(auth)
-      //
       if (auth && localStorage.token && localStorage.user) {
         navigate('/dashboard')
       } else {
@@ -85,11 +79,10 @@ const App = () => {
   
         {auth && (
           <>
-            
+
             <Route path="/dashboard" 
             element={ localStorage.active =='true' ? <Dashboard authenticate={authenticate} logout={logout} /> :  <ConfirmEmail authenticate={authenticate} logout={logout} /> } 
             />
-
 
           </>
         )}
