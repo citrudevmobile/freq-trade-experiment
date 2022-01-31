@@ -41,6 +41,7 @@ const App = () => {
     }
 
     let logout = function () {
+      console.log('log out is called..')
       localStorage.removeItem("user")
       localStorage.removeItem("token")
       localStorage.removeItem("admin")
