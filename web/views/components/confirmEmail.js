@@ -21,10 +21,12 @@ export default function Home({ authenticate }) {
     }
   
     useEffect(()=>{
+        /*
         authenticate(function () {
             console.log('called confirm email...')
             sendConfirmEmail()
         })
+        */
     }, [])
 
     return (
