@@ -92,8 +92,8 @@ const App = () => {
           </>
         )}
        
-        <Route path="/dashboard" element={<Navigate to="/dashboard" />} />
-        <Route path="*" element={<Navigate to="/" />}  />
+        
+        <Route path="*" element={<Navigate to={auth ? "/" : "/dashboard"} />}  />
 
       </Routes>
     );
