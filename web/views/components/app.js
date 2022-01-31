@@ -28,7 +28,7 @@ const App = () => {
             localStorage.setItem("active", response.data.active)
             if (localStorage.user) {
               setAuth(true)
-              cb
+              cb()
             }
           }).catch (function (error) {
             setAuth(false)
