@@ -52,6 +52,7 @@ const App = () => {
     }, [])
   
     useEffect(() => {
+      console.log(auth)
       if (auth && localStorage.token && localStorage.user) {
         navigate('/dashboard')
       } else {
