@@ -29,6 +29,8 @@ const App = () => {
             if (localStorage.user) {
               setAuth(true)
             }
+
+            
           }).catch (function (error) {
             console.log(error)
             setAuth(false)
@@ -36,6 +38,8 @@ const App = () => {
         } else {
           setAuth(false)
         }
+
+       
     }
 
     let logout = function () {
@@ -51,6 +55,8 @@ const App = () => {
     }, [])
   
     useEffect(() => {
+      console.log(auth)
+      //
       if (auth && localStorage.token && localStorage.user) {
         navigate('/dashboard')
       } else {
@@ -73,8 +79,6 @@ const App = () => {
               path="/register"
               element={<Register authenticate={authenticate}/>}
             />
-
-           
         
          </>
         )}
@@ -83,9 +87,7 @@ const App = () => {
           <>
             
             <Route path="/dashboard" 
-            element={ localStorage.active == 'true'? 
-            <Dashboard authenticate={authenticate} logout={logout} /> : 
-            <ConfirmEmail authenticate={authenticate} logout={logout} />} 
+            element={ localStorage.active =='true' ? <Dashboard authenticate={authenticate} logout={logout} /> :  <ConfirmEmail authenticate={authenticate} logout={logout} /> } 
             />
 
 
@@ -93,7 +95,7 @@ const App = () => {
         )}
        
         
-        <Route path="*" element={<Navigate to={auth ? "/" : "/dashboard"} />}  />
+        <Route path="*" element={<Navigate to={auth ? "/dashboard" : "/"} />}  />
 
       </Routes>
     );
