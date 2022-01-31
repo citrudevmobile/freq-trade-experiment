@@ -16,6 +16,7 @@ const App = () => {
 
     let authenticate = function (cb) {
         let token = localStorage.token
+        console.log('authenticate called...')
         console.log(token)
         if (token) {
           axios({
