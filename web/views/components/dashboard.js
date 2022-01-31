@@ -12,7 +12,7 @@ function Dashboard ({authenticate, logout}) {
   let navigate = useNavigate()
 
   useEffect(() => {
-    authenticate()
+    //authenticate()
   }, [])
 
   return (
