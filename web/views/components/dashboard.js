@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 import Sidebar from './dashboard/Sidebar'
 import Header from './dashboard/Header';
 import WelcomeBanner from './dashboard/WelcomeBanner';
@@ -8,8 +9,9 @@ import DashboardCard05 from './dashboard/Dashboard05'
 function Dashboard ({authenticate, logout}) {
 
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  let navigate = useNavigate()
 
-  useEffect(()=>{
+  useEffect(() => {
     authenticate()
   }, [])
 
@@ -45,7 +47,7 @@ function Dashboard ({authenticate, logout}) {
 
       </div>
     </div>
-  );
+  )
 
   }
 

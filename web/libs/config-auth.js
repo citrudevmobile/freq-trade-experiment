@@ -89,7 +89,7 @@ module.exports = {
       },
 
       sendConfirmEmail: function (req, res) {
-        const token = req.body.token
+        const token = req.headers['x-access-token']
         jwt.verify(token, process.env.JWTsecret, function (err, decoded) {
           if (err) {
             return res

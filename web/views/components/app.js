@@ -6,6 +6,7 @@ import axios from 'axios';
 import Home from "./home";
 import Dashboard from "./dashboard";
 import Register from './register';
+import ConfirmEmail from './confirmEmail';
 
 
 const App = () => {
@@ -51,7 +52,7 @@ const App = () => {
   
     useEffect(() => {
       if (auth && localStorage.token && localStorage.user) {
-        navigate('/dashboard')
+        navigate(window.location.pathname)
       } else {
         navigate('/')
       }
@@ -62,25 +63,38 @@ const App = () => {
         
         {!auth && (
          <>
-         <Route
-            path="/"
-            element={<Home authenticate={authenticate} />}
-          />
-          <Route
-            path="/register"
-            element={<Register authenticate={authenticate}/>}
-          />
+
+            <Route
+              path="/"
+              element={<Home authenticate={authenticate} />}
+            />
+
+            <Route
+              path="/register"
+              element={<Register authenticate={authenticate}/>}
+            />
+
+           
+        
          </>
         )}
   
         {auth && (
           <>
-            <Route path="/dashboard" element={<Dashboard authenticate={authenticate} logout={logout} />} />
+            
+            <Route path="/dashboard" 
+            element={ localStorage.active ? 
+            <Dashboard authenticate={authenticate} logout={logout} /> : 
+            <ConfirmEmail authenticate={authenticate} logout={logout} />} 
+            />
+
+
           </>
         )}
 
-        <Route path="/register" element={<Navigate to="/register" />} />
-        <Route path="/dashboard" element={<Navigate to={auth ? "/dashboard" : "/"} />} />
+        
+       
+        
         <Route path="*" element={<Navigate to="/" />}  />
 
       </Routes>
