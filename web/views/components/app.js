@@ -2,13 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Route, Routes, Navigate, useNavigate } from "react-router-dom";
 import axios from 'axios';
 
-
 import Home from "./home";
 import Dashboard from "./dashboard";
 import Register from './register';
 import ConfirmEmail from './confirmEmail';
-
-
 
 const App = () => {
   const [auth, setAuth] = useState(null)
@@ -30,8 +27,6 @@ const App = () => {
             if (localStorage.user) {
               console.log(localStorage)
               setAuth(true)
-              
-              
             }
           }).catch (function (error) {
             console.log(error)

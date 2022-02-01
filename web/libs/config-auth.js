@@ -90,6 +90,7 @@ module.exports = {
 
       sendConfirmEmail: function (req, res) {
         const token = req.headers['x-access-token']
+        console.log(token)
         jwt.verify(token, process.env.JWTsecret, function (err, decoded) {
           if (err) {
             return res
