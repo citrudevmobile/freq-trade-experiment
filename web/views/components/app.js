@@ -23,12 +23,12 @@ const App = () => {
             url: "/verify",
             headers: { "x-access-token": localStorage.token },
           }).then(function (response) {
-            console.log(response.data)
+            
             localStorage.setItem("user", response.data.user)
             localStorage.setItem("admin", response.data.admin)
             localStorage.setItem("active", response.data.active)
             if (localStorage.user) {
-              
+              console.log(localStorage)
               setAuth(true)
               
               
