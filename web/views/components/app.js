@@ -24,7 +24,6 @@ const App = () => {
             localStorage.setItem("admin", response.data.admin)
             localStorage.setItem("active", response.data.active)
             localStorage.setItem("auth", "true")
-            navigate(window.location.pathname)
           }).catch (function (error) {
             localStorage.setItem("auth", 'false')
             navigate('/')
