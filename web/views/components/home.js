@@ -19,7 +19,7 @@ export default function Home({authenticate}) {
       },
     }).then(function (response) {
       localStorage.setItem("token", response.data.token)
-      navigate('/dashbaord')
+      navigate('/dashboard')
     }).catch (function (error) {
       console.log(error)
     })
