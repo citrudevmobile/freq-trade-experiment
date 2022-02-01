@@ -11,10 +11,9 @@ import ConfirmEmail from './confirmEmail';
 
 
 const App = () => {
-
-   
-  const [auth, setAuth] = useState(false)
+  const [auth, setAuth] = useState(null)
   let navigate = useNavigate()
+   
 
     let authenticate = function (cb) {
         let token = localStorage.token
@@ -30,39 +29,46 @@ const App = () => {
             localStorage.setItem("user", response.data.user)
             localStorage.setItem("admin", response.data.admin)
             localStorage.setItem("active", response.data.active)
-            localStorage.setItem("auth", "true")
-            if (localStorage.auth == 'true' && localStorage.token && localStorage.user) {
-              navigate(window.location.pathname)
-            } else {
-              navigate('/')
+            if (localStorage.user) {
+              console.log('local user is there...')
+              setAuth(true)
+              cb()
             }
-            cb()
           }).catch (function (error) {
-            localStorage.setItem("auth", "false")
+            setAuth(false)
           })
         } else {
-          localStorage.setItem("auth", "false")
+          setAuth(false)
         }
     }
 
     let logout = function () {
+      console.log('log out is called..')
       localStorage.removeItem("user")
       localStorage.removeItem("token")
       localStorage.removeItem("admin")
       localStorage.removeItem("active")
-      localStorage.removeItem("auth")
+      setAuth(false)
     }
   
     useEffect(() => {
       authenticate()
     }, [])
   
-    
+    useEffect(() => {
+      console.log(auth)
+      console.log('called useEffect...')
+      if (auth && localStorage.token && localStorage.user) {
+        navigate(window.location.pathname)
+      } else {
+        navigate('/')
+      }
+    }, [auth])
   
     return (
         <Routes>
         
-        {!(localStorage.auth == 'true') && (
+        {!auth && (
          <>
             <Route
               path="/"
@@ -77,15 +83,15 @@ const App = () => {
          </>
         )}
   
-        {localStorage.auth == 'true' && (
+        {auth && (
           <>
             <Route path="/dashboard" 
-            element={ localStorage.active == 'true' ? <Dashboard authenticate={authenticate} logout={logout} /> :  <ConfirmEmail authenticate={authenticate} logout={logout} /> } 
+            element={ localStorage.active =='true' ? <Dashboard authenticate={authenticate} logout={logout} /> :  <ConfirmEmail authenticate={authenticate} logout={logout} /> } 
             />
           </>
         )}
        
-        <Route path="*" element={<Navigate to={localStorage.auth == 'true'  ? "/dashboard" : "/"} />}  />
+        <Route path="*" element={<Navigate to={auth ? "/dashboard" : "/"} />}  />
 
       </Routes>
     );
