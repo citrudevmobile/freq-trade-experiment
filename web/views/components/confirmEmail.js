@@ -6,7 +6,7 @@ import emailImage from '../images/confirmemail.png';
 import trading from '../images/trade.jpg';
 
 
-export default function Home({ authenticate }) {
+export default function Home({ authenticate, logout }) {
 
     function sendConfirmEmail() {
         axios({
@@ -46,7 +46,7 @@ export default function Home({ authenticate }) {
                 
                 <div class="flex items-center justify-center space-x-1">
                     <a onClick={sendConfirmEmail}  class="bg-blue-300 text-xs md:text-base rounded-md p-2 hover:text-white hover:bg-blue-500" href="#">Resend Email</a>
-                    <a onClick={sendConfirmEmail}  class="bg-blue-300 text-xs md:text-base rounded-md p-2 hover:text-white hover:bg-blue-500" href="#">Home</a>
+                    <a onClick={logout}  class="bg-blue-300 text-xs md:text-base rounded-md p-2 hover:text-white hover:bg-blue-500" href="#">Home</a>
                 </div>
             </div>
             </header>
