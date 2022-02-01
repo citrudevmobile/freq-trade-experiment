@@ -52,13 +52,13 @@ const App = () => {
   
     useEffect(() => {
       authenticate(function () {
-        
+
       })
     }, [])
   
     useEffect(() => {
       if (auth && localStorage.token && localStorage.user) {
-        navigate(window.location.pathname)
+        navigate('/dashboard')
       } else {
         navigate('/')
       }
