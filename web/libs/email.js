@@ -1,7 +1,7 @@
 const nodeMailer = require('nodemailer')
 
 const transporter = nodeMailer.createTransport({
-  host: 'smtp.zoho.com',
+  host: 'smtp.ethereal.email',
   secure: true,
   port: 465,
   auth: {
