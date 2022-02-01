@@ -83,6 +83,11 @@ const App = () => {
         {auth && (
           <>
 
+            <Route
+              path="/confirm-email-link/:token"
+              element={<ConfirmEmail />}
+            />
+
             <Route path="/dashboard" 
             element={ localStorage.active =='true' ? <Dashboard authenticate={authenticate} logout={logout} /> :  <SendConfirmEmail authenticate={authenticate} logout={logout} /> } 
             />
