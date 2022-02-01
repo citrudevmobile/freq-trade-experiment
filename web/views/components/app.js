@@ -13,11 +13,10 @@ const App = () => {
   let navigate = useNavigate()
 
   let logout = function () {
-    localStorage.removeItem("user")
-    localStorage.removeItem("token")
-    localStorage.removeItem("admin")
-    localStorage.removeItem("active")
-    localStorage.removeItem("auth")
+    localStorage.setItem("user", "")
+    localStorage.setItem("admin", "")
+    localStorage.setItem('active', "")
+    localStorage.setItem('auth', "")
     navigate('/')
   }
    
@@ -43,8 +42,6 @@ const App = () => {
 
     useEffect(() => {
       authenticate()
-      console.log('Auth: '+localStorage['auth'])
-      console.log('Active: '+localStorage['active'])
     }, [])
   
     useEffect(() => {
