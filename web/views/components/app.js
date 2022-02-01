@@ -8,11 +8,12 @@ import Dashboard from "./dashboard";
 import Register from './register';
 import ConfirmEmail from './confirmEmail';
 
+const [auth, setAuth] = useState(false)
+let navigate = useNavigate()
 
 const App = () => {
 
-    const [auth, setAuth] = useState(false)
-    let navigate = useNavigate()
+   
 
     let authenticate = function (cb) {
         let token = localStorage.token
@@ -69,7 +70,6 @@ const App = () => {
         
         {!auth && (
          <>
-
             <Route
               path="/"
               element={<Home authenticate={authenticate} />}
@@ -85,15 +85,12 @@ const App = () => {
   
         {auth && (
           <>
-
             <Route path="/dashboard" 
             element={ localStorage.active =='true' ? <Dashboard authenticate={authenticate} logout={logout} /> :  <ConfirmEmail authenticate={authenticate} logout={logout} /> } 
             />
-
           </>
         )}
        
-        
         <Route path="*" element={<Navigate to={auth ? "/dashboard" : "/"} />}  />
 
       </Routes>
