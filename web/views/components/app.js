@@ -15,7 +15,7 @@ const App = () => {
   let navigate = useNavigate()
    
 
-    let authenticate = function () {
+    let authenticate = function (cb) {
         let token = localStorage.token
         if (token) {
           axios({
@@ -30,6 +30,7 @@ const App = () => {
             if (localStorage.user) {
               
               setAuth(true)
+              cb()
               
             }
           }).catch (function (error) {
@@ -50,7 +51,9 @@ const App = () => {
     }
   
     useEffect(() => {
-      authenticate()
+      authenticate(function () {
+        
+      })
     }, [])
   
     useEffect(() => {
