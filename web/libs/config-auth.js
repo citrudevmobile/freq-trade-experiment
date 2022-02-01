@@ -110,7 +110,9 @@ module.exports = {
                 subject: 'Please confirm your email',
                 html: emailTemplates.verifyEmail(emailToken)
               }, function (err) {
+                console.log(err)
                 if (err) return res.status(401).json({ sent: false })
+
                 res.status(200).json({ sent: true })
               })
             }
