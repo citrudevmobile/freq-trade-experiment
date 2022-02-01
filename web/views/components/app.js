@@ -32,7 +32,7 @@ const App = () => {
             if (localStorage.user) {
               console.log('local user is there...')
               setAuth(true)
-              cb()
+              
             }
           }).catch (function (error) {
             console.log(error)
