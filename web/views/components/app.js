@@ -33,10 +33,10 @@ const App = () => {
             localStorage.setItem("active", response.data.active)
             localStorage.setItem("auth", "true")
           }).catch (function (error) {
-            logout()
+           
           })
         } else {
-          logout()
+         
         }
     }
 
