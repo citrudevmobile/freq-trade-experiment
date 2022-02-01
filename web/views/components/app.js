@@ -52,16 +52,16 @@ const App = () => {
   
     useEffect(() => {
       authenticate(function () {
-
+        if (auth && localStorage.token && localStorage.user) {
+          navigate('/dashboard')
+        } else {
+          navigate('/')
+        }
       })
     }, [])
   
     useEffect(() => {
-      if (auth && localStorage.token && localStorage.user) {
-        navigate('/dashboard')
-      } else {
-        navigate('/')
-      }
+      
     }, [auth])
   
     return (
