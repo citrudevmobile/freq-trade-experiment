@@ -5,13 +5,13 @@ import axios from 'axios';
 import Home from "./home";
 import Dashboard from "./dashboard";
 import Register from './register';
+import SendConfirmEmail from './sendConfirmEmail';
 import ConfirmEmail from './confirmEmail';
 
 const App = () => {
   const [auth, setAuth] = useState(null)
   let navigate = useNavigate()
    
-
     let authenticate = function () {
         let token = localStorage.token
         if (token) {
@@ -71,6 +71,14 @@ const App = () => {
               path="/register"
               element={<Register authenticate={authenticate}/>}
             />
+
+            <Route
+              exact
+              path="/confirm-email-link/:token"
+              render={(props) => (
+                <ConfirmEmail token={props.match.params.token}/>
+              )}
+            />
         
          </>
         )}
@@ -78,7 +86,7 @@ const App = () => {
         {auth && (
           <>
             <Route path="/dashboard" 
-            element={ localStorage.active =='true' ? <Dashboard authenticate={authenticate} logout={logout} /> :  <ConfirmEmail authenticate={authenticate} logout={logout} /> } 
+            element={ localStorage.active =='true' ? <Dashboard authenticate={authenticate} logout={logout} /> :  <SendConfirmEmail authenticate={authenticate} logout={logout} /> } 
             />
           </>
         )}

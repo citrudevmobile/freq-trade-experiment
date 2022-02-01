@@ -6,12 +6,12 @@ import emailImage from '../images/confirmemail.png';
 import trading from '../images/trade.jpg';
 
 
-export default function Home({ authenticate, logout }) {
+export default function emailConfirmation({ token }) {
 
-    function sendConfirmEmail() {
+    function confirmEmail() {
         axios({
             method: 'post',
-            url: '/send-confirm-email',
+            url: '/confirm-email-link',
             headers: { "x-access-token": localStorage.token },
         }).then(function (response) {
         
@@ -21,8 +21,8 @@ export default function Home({ authenticate, logout }) {
     }
   
     useEffect(()=>{
-        authenticate()
-        sendConfirmEmail()
+        console.log(token)
+       // confirmEmail()
     }, [])
 
     return (
@@ -41,11 +41,10 @@ export default function Home({ authenticate, logout }) {
                         rel="preload"
                         />
                     </a>
-                    <p class="text-gray-500 text-xs text-center md:text-base">Your account has been successfully registered. To complete the process please check your email for a validation request.</p>
+                    <p class="text-gray-500 text-xs text-center md:text-base">Great! Your email has been confirmed.</p>
                 
                 <div class="flex items-center justify-center space-x-1">
-                    <a onClick={sendConfirmEmail}  class="bg-blue-300 text-xs md:text-base rounded-md p-2 hover:text-white hover:bg-blue-500" href="#">Resend Email</a>
-                    <a onClick={logout}  class="bg-blue-300 text-xs md:text-base rounded-md p-2 hover:text-white hover:bg-blue-500" href="#">Home</a>
+                    <NavLink end to="/dashboard"  class="bg-blue-300 text-xs md:text-base rounded-md p-2 hover:text-white hover:bg-blue-500" href="#">Dashboard</NavLink >
                 </div>
             </div>
             </header>
