@@ -18,6 +18,7 @@ const App = () => {
     localStorage.removeItem("admin")
     localStorage.removeItem("active")
     localStorage.removeItem("auth")
+    navigate('/')
   }
    
     let authenticate = function () {
