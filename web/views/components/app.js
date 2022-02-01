@@ -53,7 +53,6 @@ const App = () => {
     }, [])
   
     useEffect(() => {
-      console.log(localStorage)
       console.log('called useEffect...')
       if (localStorage.auth == 'true' && localStorage.token && localStorage.user) {
         navigate(window.location.pathname)
