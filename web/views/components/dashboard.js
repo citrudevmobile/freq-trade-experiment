@@ -6,13 +6,13 @@ import WelcomeBanner from './dashboard/WelcomeBanner';
 import DashboardCard05 from './dashboard/Dashboard05'
 
 
-function Dashboard ({authenticate, logout}) {
+function Dashboard ({logout}) {
 
   const [sidebarOpen, setSidebarOpen] = useState(true);
   let navigate = useNavigate()
 
   useEffect(() => {
-    //authenticate()
+  
   }, [])
 
   return (

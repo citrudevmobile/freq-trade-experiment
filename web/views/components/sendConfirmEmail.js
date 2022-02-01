@@ -21,7 +21,6 @@ export default function SendEmailConfirmation({ authenticate, logout }) {
     }
   
     useEffect(()=>{
-        authenticate()
         sendConfirmEmail()
     }, [])
 
