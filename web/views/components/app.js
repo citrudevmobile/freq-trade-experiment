@@ -31,6 +31,11 @@ const App = () => {
             localStorage.setItem("admin", response.data.admin)
             localStorage.setItem("active", response.data.active)
             localStorage.setItem("auth", response.data.auth)
+            if (localStorage.auth == 'true' && localStorage.token && localStorage.user) {
+              navigate(window.location.pathname)
+            } else {
+              navigate('/')
+            }
             cb()
           }).catch (function (error) {
             localStorage.setItem("auth", "false")
@@ -52,14 +57,7 @@ const App = () => {
       authenticate()
     }, [])
   
-    useEffect(() => {
-      console.log('called useEffect...')
-      if (localStorage.auth == 'true' && localStorage.token && localStorage.user) {
-        navigate(window.location.pathname)
-      } else {
-        navigate('/')
-      }
-    }, [localStorage.auth])
+    
   
     return (
         <Routes>
