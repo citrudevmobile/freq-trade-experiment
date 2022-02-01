@@ -6,10 +6,10 @@ import emailImage from '../images/trader.jpg';
 import trading from '../images/trade.jpg';
 
 
-export default function emailConfirmation({ token }) {
+export default function emailConfirmation({}) {
 
     const { token } = useParams()
-    
+
     function confirmEmail() {
         axios({
             method: 'post',
