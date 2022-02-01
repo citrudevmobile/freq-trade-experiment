@@ -11,6 +11,14 @@ import ConfirmEmail from './confirmEmail';
 const App = () => {
   
   let navigate = useNavigate()
+
+  let logout = function () {
+    localStorage.removeItem("user")
+    localStorage.removeItem("token")
+    localStorage.removeItem("admin")
+    localStorage.removeItem("active")
+    localStorage.removeItem("auth")
+  }
    
     let authenticate = function () {
         let token = localStorage.token
@@ -25,20 +33,14 @@ const App = () => {
             localStorage.setItem("active", response.data.active)
             localStorage.setItem("auth", "true")
           }).catch (function (error) {
-            localStorage.setItem("auth", 'false')
+            logout()
           })
         } else {
-          localStorage.setItem("auth", 'false')
+          logout()
         }
     }
 
-    let logout = function () {
-      localStorage.removeItem("user")
-      localStorage.removeItem("token")
-      localStorage.removeItem("admin")
-      localStorage.removeItem("active")
-      localStorage.removeItem("auth")
-    }
+    
   
     useEffect(() => {
       authenticate()
