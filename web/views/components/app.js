@@ -33,6 +33,8 @@ const App = () => {
           }).then(function (response) {
             localStorage.setItem("user", response.data.user)
             localStorage.setItem("admin", response.data.admin)
+            localStorage.setItem('active', response.data.active)
+            localStorage.setItem('auth', response.data.auth)
             setActive(response.data.active)
             setAuth(true)
           }).catch (function (error) {
@@ -47,6 +49,8 @@ const App = () => {
 
     useEffect(() => {
       authenticate()
+      console.log('Auth: '+localStorage.auth)
+      console.log('Active: '+localStorage.active)
     }, [])
   
     useEffect(() => {
@@ -74,7 +78,7 @@ const App = () => {
             />
 
             <Route path="/dashboard" 
-              element={ auth ? ( active ? <Dashboard logout={logout} /> : <SendConfirmEmail logout={logout} /> ) : <Navigate to="/"/> } 
+              element={ localStorage.auth == 'true' ? ( localStorage.active == 'true' ? <Dashboard logout={logout} /> : <SendConfirmEmail logout={logout} /> ) : <Navigate to="/"/> } 
             />
 
             <Route path="*" element={<Navigate to={auth ? "/dashboard": "/" }/>}  />
