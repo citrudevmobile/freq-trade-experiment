@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import axios from 'axios'
 
 
@@ -9,7 +9,7 @@ export default function Home({ authenticate }) {
   const [username, setUsername] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-
+  let navigate = useNavigate()
   
 
   function registerUser (e) {
@@ -24,9 +24,9 @@ export default function Home({ authenticate }) {
         fullname: fullname
       },
     }).then(function (response) {
-      console.log(response.data)
       localStorage.setItem("token", response.data.token)
-      authenticate()
+      navigate('/dashboard')
+      
     }).catch (function (error) {
       console.log(error)
     })
