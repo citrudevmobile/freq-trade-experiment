@@ -2,16 +2,16 @@ import { useState, useEffect } from "react";
 import { NavLink } from 'react-router-dom';
 import axios from 'axios'
 
-import emailImage from '../images/trader.jpg';
+import emailImage from '../images/confirmemail.png';
 import trading from '../images/trade.jpg';
 
 
-export default function emailConfirmation({ token }) {
+export default function SendEmailConfirmation({ authenticate, logout }) {
 
-    function confirmEmail() {
+    function sendConfirmEmail() {
         axios({
             method: 'post',
-            url: '/confirm-email-link',
+            url: '/send-confirm-email',
             headers: { "x-access-token": localStorage.token },
         }).then(function (response) {
         
@@ -21,8 +21,8 @@ export default function emailConfirmation({ token }) {
     }
   
     useEffect(()=>{
-        console.log(token)
-       // confirmEmail()
+        authenticate()
+        sendConfirmEmail()
     }, [])
 
     return (
@@ -41,10 +41,11 @@ export default function emailConfirmation({ token }) {
                         rel="preload"
                         />
                     </a>
-                    <p class="text-gray-500 text-xs text-center md:text-base">Great! Your email has been confirmed.</p>
+                    <p class="text-gray-500 text-xs text-center md:text-base">Your account has been successfully registered. To complete the process please check your email for a validation request.</p>
                 
                 <div class="flex items-center justify-center space-x-1">
-                    <NavLink end to="/dashboard"  class="bg-blue-300 text-xs md:text-base rounded-md p-2 hover:text-white hover:bg-blue-500" href="#">Dashboard</NavLink >
+                    <a onClick={sendConfirmEmail}  class="bg-blue-300 text-xs md:text-base rounded-md p-2 hover:text-white hover:bg-blue-500" href="#">Resend Email</a>
+                    <a onClick={logout}  class="bg-blue-300 text-xs md:text-base rounded-md p-2 hover:text-white hover:bg-blue-500" href="#">Home</a>
                 </div>
             </div>
             </header>

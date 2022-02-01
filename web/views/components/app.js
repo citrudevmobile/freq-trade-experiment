@@ -60,8 +60,7 @@ const App = () => {
     return (
         <Routes>
         
-        {!auth && (
-         <>
+        
             <Route
               path="/"
               element={<Home authenticate={authenticate} />}
@@ -80,8 +79,7 @@ const App = () => {
               )}
             />
         
-         </>
-        )}
+      
   
         {auth && (
           <>
