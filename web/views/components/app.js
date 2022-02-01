@@ -15,7 +15,7 @@ const App = () => {
    
   const [auth, setAuth] = useState(false)
   let navigate = useNavigate()
-  
+
     let authenticate = function (cb) {
         let token = localStorage.token
         console.log('authenticate called...')
@@ -57,6 +57,7 @@ const App = () => {
     }, [])
   
     useEffect(() => {
+      console.log(localStorage)
       console.log(auth)
       console.log('called useEffect...')
       if (auth && localStorage.token && localStorage.user) {
