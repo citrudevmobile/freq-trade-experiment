@@ -44,11 +44,8 @@ const App = () => {
         }
     }
 
-    
-  
     useEffect(() => {
       authenticate()
-      navigate(window.location.pathname)
     }, [])
   
     
