@@ -9,8 +9,7 @@ import SendConfirmEmail from './sendConfirmEmail';
 import ConfirmEmail from './confirmEmail';
 
 const App = () => {
-  let [auth, setAuth] = useState(null)
-  let [active, setActive] = useState(null)
+  
   let navigate = useNavigate()
 
   let logout = function () {
@@ -19,7 +18,6 @@ const App = () => {
     localStorage.removeItem("admin")
     localStorage.removeItem("active")
     localStorage.removeItem("auth")
-    setAuth(false)
     navigate('/')
   }
    
@@ -35,15 +33,11 @@ const App = () => {
             localStorage.setItem("admin", response.data.admin)
             localStorage.setItem('active', response.data.active)
             localStorage.setItem('auth', response.data.auth)
-            setActive(response.data.active)
-            setAuth(true)
           }).catch (function (error) {
             localStorage.setItem("auth", "false")
-            setAuth(false)
           })
         } else {
           localStorage.setItem("auth", "false")
-          setAuth(false)
         }
     }
 
@@ -54,9 +48,9 @@ const App = () => {
     }, [])
   
     useEffect(() => {
-      console.log(auth)
+      console.log(localStorage.auth)
       console.log('auth has changed...')
-    }, [auth])
+    }, [localStorage.auth])
     
   
     return (
