@@ -74,7 +74,6 @@ const App = () => {
             />
 
             <Route
-              exact
               path="/confirm-email-link"
               element={<ConfirmEmail />}
             />
