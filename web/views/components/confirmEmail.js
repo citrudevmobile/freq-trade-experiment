@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import axios from 'axios'
 
 import emailImage from '../images/trader.jpg';
@@ -8,6 +8,8 @@ import trading from '../images/trade.jpg';
 
 export default function emailConfirmation({ token }) {
 
+    const { token } = useParams()
+    
     function confirmEmail() {
         axios({
             method: 'post',
