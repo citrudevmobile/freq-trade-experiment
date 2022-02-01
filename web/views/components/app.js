@@ -40,7 +40,6 @@ const App = () => {
       localStorage.removeItem("admin")
       localStorage.removeItem("active")
       localStorage.removeItem("auth")
-      setAuth(false)
     }
   
     useEffect(() => {
