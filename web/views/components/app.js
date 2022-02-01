@@ -98,12 +98,6 @@ const App = () => {
           </>
         )}
         
-        <Route
-              exact
-              path="/confirm-email-link/:token"
-              element={<Navigate to="/confirm-email-link/:token" />}
-            />
-        <Route path="*" element={<Navigate to={auth ? "/dashboard" : "/"} />}  />
 
       </Routes>
     );
