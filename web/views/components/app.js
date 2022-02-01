@@ -15,10 +15,8 @@ const App = () => {
   let navigate = useNavigate()
    
 
-    let authenticate = function (cb) {
+    let authenticate = function () {
         let token = localStorage.token
-        console.log('authenticate called...')
-        console.log(token)
         if (token) {
           axios({
             method: "post",
@@ -30,13 +28,12 @@ const App = () => {
             localStorage.setItem("admin", response.data.admin)
             localStorage.setItem("active", response.data.active)
             if (localStorage.user) {
-              console.log('local user is there...')
+              
               setAuth(true)
               
             }
           }).catch (function (error) {
-            console.log(error)
-            console.log('request has error')
+            
             setAuth(false)
           })
         } else {
@@ -45,7 +42,6 @@ const App = () => {
     }
 
     let logout = function () {
-      console.log('log out is called..')
       localStorage.removeItem("user")
       localStorage.removeItem("token")
       localStorage.removeItem("admin")
@@ -58,8 +54,6 @@ const App = () => {
     }, [])
   
     useEffect(() => {
-      console.log(auth)
-      console.log('called useEffect...')
       if (auth && localStorage.token && localStorage.user) {
         navigate(window.location.pathname)
       } else {
@@ -88,7 +82,7 @@ const App = () => {
         {auth && (
           <>
             <Route path="/dashboard" 
-            element={ localStorage.active =='true' ? <Dashboard authenticate={authenticate} logout={logout} /> :  <ConfirmEmail authenticate={authenticate} logout={logout} /> } 
+            element={ auth ? <Dashboard authenticate={authenticate} logout={logout} /> :  <ConfirmEmail authenticate={authenticate} logout={logout} /> } 
             />
           </>
         )}
