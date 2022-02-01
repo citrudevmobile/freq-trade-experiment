@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import axios from 'axios'
 
 import emailImage from '../images/confirmemail.png';
-import trading from '../images/trading.jpg';
+import trading from '../images/trade.jpg';
 
 
 export default function Home({ authenticate }) {
