@@ -69,7 +69,7 @@ const App = () => {
             />
 
             <Route path="/dashboard" 
-              element={ auth ? (localStorage.active =='true' ? <Dashboard logout={logout} /> :  <SendConfirmEmail logout={logout} />) : <Navigate to="/"/> } 
+              element={ auth ? (localStorage.active =='false' ? <Dashboard logout={logout} /> :  <SendConfirmEmail logout={logout} />) : <Navigate to="/"/> } 
             />
 
             <Route path="*" element={<Navigate to={auth ? "/dashboard": "/" }/>}  />
