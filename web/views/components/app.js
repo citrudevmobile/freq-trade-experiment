@@ -43,14 +43,14 @@ const App = () => {
 
     useEffect(() => {
       authenticate()
-      console.log('Auth: '+localStorage.auth)
-      console.log('Active: '+localStorage.active)
+      console.log('Auth: '+localStorage['auth'])
+      console.log('Active: '+localStorage['active'])
     }, [])
   
     useEffect(() => {
-      console.log(localStorage.auth)
+      console.log(localStorage['auth'])
       console.log('auth has changed...')
-    }, [localStorage.auth])
+    }, [localStorage['auth']])
     
   
     return (
