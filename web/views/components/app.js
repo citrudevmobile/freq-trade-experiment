@@ -30,7 +30,7 @@ const App = () => {
             localStorage.setItem("user", response.data.user)
             localStorage.setItem("admin", response.data.admin)
             localStorage.setItem("active", response.data.active)
-            localStorage.setItem("auth", response.data.auth)
+            localStorage.setItem("auth", "true")
             if (localStorage.auth == 'true' && localStorage.token && localStorage.user) {
               navigate(window.location.pathname)
             } else {
@@ -62,7 +62,7 @@ const App = () => {
     return (
         <Routes>
         
-        {!auth && (
+        {!(localStorage.auth == 'true') && (
          <>
             <Route
               path="/"
@@ -77,7 +77,7 @@ const App = () => {
          </>
         )}
   
-        {auth && (
+        {localStorage.auth == 'true' && (
           <>
             <Route path="/dashboard" 
             element={ localStorage.active == 'true' ? <Dashboard authenticate={authenticate} logout={logout} /> :  <ConfirmEmail authenticate={authenticate} logout={logout} /> } 
