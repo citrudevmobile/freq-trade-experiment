@@ -25,7 +25,7 @@ export default function Home({ authenticate }) {
       },
     }).then(function (response) {
       localStorage.setItem("token", response.data.token)
-      navigate('../dashboard')
+      navigate('/dashboard')
       
     }).catch (function (error) {
       console.log(error)
