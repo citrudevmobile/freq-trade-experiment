@@ -26,11 +26,9 @@ const App = () => {
             localStorage.setItem("auth", "true")
           }).catch (function (error) {
             localStorage.setItem("auth", 'false')
-            navigate('/')
           })
         } else {
           localStorage.setItem("auth", 'false')
-          navigate('/')
         }
     }
 
