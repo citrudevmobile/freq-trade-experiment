@@ -73,7 +73,6 @@ const App = () => {
             />
 
             <Route
-              exact
               path="/confirm-email-link/:token"
               render={(props) => (
                 <ConfirmEmail token={props.match.params.token}/>
@@ -85,9 +84,7 @@ const App = () => {
   
         {auth && (
           <>
-
             <Route
-              exact
               path="/confirm-email-link/:token"
               render={(props) => (
                 <ConfirmEmail token={props.match.params.token}/>
@@ -97,7 +94,7 @@ const App = () => {
             <Route path="/dashboard" 
             element={ localStorage.active =='true' ? <Dashboard authenticate={authenticate} logout={logout} /> :  <SendConfirmEmail authenticate={authenticate} logout={logout} /> } 
             />
-            
+
           </>
         )}
         
