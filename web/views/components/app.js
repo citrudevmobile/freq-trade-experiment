@@ -54,8 +54,6 @@ const App = () => {
     return (
         <Routes>
         
-        {!auth && (
-          <>
             <Route
               path="/"
               element={<Home authenticate={authenticate} />}
@@ -67,30 +65,15 @@ const App = () => {
             />
 
             <Route
-              path="/confirm-email-link"
+              path="/confirm-email-link/:token"
               element={<ConfirmEmail />}
             />
-         </>
-        )}
-      
-  
-        {auth && (
-          <>
 
             <Route path="/dashboard" 
-            element={ localStorage.active =='true' ? <Dashboard authenticate={authenticate} logout={logout} /> :  <SendConfirmEmail authenticate={authenticate} logout={logout} /> } 
+              element={ auth ? (localStorage.active =='true' ? <Dashboard authenticate={authenticate} logout={logout} /> :  <SendConfirmEmail authenticate={authenticate} logout={logout} />) : <Navigate to="/"/> } 
             />
 
-            <Route
-              path="/confirm-email-link"
-              element={<ConfirmEmail />}
-            />
-
-          </>
-        )}
-        
-        
-        <Route path="*" element={<Navigate to={auth ? "/dashboard" : "/"} />}  />
+            <Route path="*" element={<Navigate to="/" />}  />
 
       </Routes>
     );
