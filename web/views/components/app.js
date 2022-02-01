@@ -73,6 +73,7 @@ const App = () => {
             />
 
             <Route
+              exact
               path="/confirm-email-link/:token"
               element={<ConfirmEmail />}
             />
@@ -84,6 +85,7 @@ const App = () => {
           <>
 
             <Route
+              exact
               path="/confirm-email-link/:token"
               element={<ConfirmEmail />}
             />
