@@ -51,6 +51,7 @@ const App = () => {
   
     useEffect(() => {
       if (auth && localStorage.token && localStorage.user) {
+        console.log(window.location.pathname)
         navigate(window.location.pathname)
       } else {
         navigate('/')
