@@ -23,12 +23,14 @@ const App = () => {
             localStorage.setItem("user", response.data.user)
             localStorage.setItem("admin", response.data.admin)
             localStorage.setItem("active", response.data.active)
-            localStorage.setItem("auth", response.data.auth)
+            localStorage.setItem("auth", "true")
             navigate(window.location.pathname)
           }).catch (function (error) {
+            localStorage.setItem("auth", 'false')
             navigate('/')
           })
         } else {
+          localStorage.setItem("auth", 'false')
           navigate('/')
         }
     }
