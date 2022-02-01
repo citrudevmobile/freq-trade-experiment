@@ -8,13 +8,14 @@ import Dashboard from "./dashboard";
 import Register from './register';
 import ConfirmEmail from './confirmEmail';
 
-const [auth, setAuth] = useState(false)
-let navigate = useNavigate()
+
 
 const App = () => {
 
    
-
+  const [auth, setAuth] = useState(false)
+  let navigate = useNavigate()
+  
     let authenticate = function (cb) {
         let token = localStorage.token
         console.log('authenticate called...')
