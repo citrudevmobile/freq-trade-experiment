@@ -30,26 +30,22 @@ const App = () => {
             localStorage.setItem("user", response.data.user)
             localStorage.setItem("admin", response.data.admin)
             localStorage.setItem("active", response.data.active)
-            if (localStorage.user) {
-              console.log('local user is there...')
-              setAuth(true)
-              cb()
-            }
+            localStorage.setItem("auth", response.data.auth)
+            cb()
           }).catch (function (error) {
-            setAuth(false)
+            localStorage.setItem("auth", "false")
           })
         } else {
-          setAuth(false)
+          localStorage.setItem("auth", "false")
         }
     }
 
     let logout = function () {
-      console.log('log out is called..')
       localStorage.removeItem("user")
       localStorage.removeItem("token")
       localStorage.removeItem("admin")
       localStorage.removeItem("active")
-      setAuth(false)
+      localStorage.removeItem("auth")
     }
   
     useEffect(() => {
@@ -58,14 +54,13 @@ const App = () => {
   
     useEffect(() => {
       console.log(localStorage)
-      console.log(auth)
       console.log('called useEffect...')
-      if (auth && localStorage.token && localStorage.user) {
+      if (localStorage.auth == 'true' && localStorage.token && localStorage.user) {
         navigate(window.location.pathname)
       } else {
         navigate('/')
       }
-    }, [auth])
+    }, [localStorage.auth])
   
     return (
         <Routes>
@@ -88,12 +83,12 @@ const App = () => {
         {auth && (
           <>
             <Route path="/dashboard" 
-            element={ localStorage.active =='true' ? <Dashboard authenticate={authenticate} logout={logout} /> :  <ConfirmEmail authenticate={authenticate} logout={logout} /> } 
+            element={ localStorage.active == 'true' ? <Dashboard authenticate={authenticate} logout={logout} /> :  <ConfirmEmail authenticate={authenticate} logout={logout} /> } 
             />
           </>
         )}
        
-        <Route path="*" element={<Navigate to={auth ? "/dashboard" : "/"} />}  />
+        <Route path="*" element={<Navigate to={localStorage.auth == 'true'  ? "/dashboard" : "/"} />}  />
 
       </Routes>
     );
