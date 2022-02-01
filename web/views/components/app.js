@@ -72,7 +72,7 @@ const App = () => {
               element={ auth ? (localStorage.active =='true' ? <Dashboard logout={logout} /> :  <SendConfirmEmail logout={logout} />) : <Navigate to="/"/> } 
             />
 
-            <Route path="*" element={<Navigate to="/" />}  />
+            <Route path="*" element={<Navigate to={auth ? "/dashboard": "/" }/>}  />
 
       </Routes>
     );
