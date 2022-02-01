@@ -9,7 +9,7 @@ import SendConfirmEmail from './sendConfirmEmail';
 import ConfirmEmail from './confirmEmail';
 
 const App = () => {
-  const [auth, setAuth] = useState(null)
+  
   let navigate = useNavigate()
    
     let authenticate = function () {
@@ -20,18 +20,16 @@ const App = () => {
             url: "/verify",
             headers: { "x-access-token": localStorage.token },
           }).then(function (response) {
-            
             localStorage.setItem("user", response.data.user)
             localStorage.setItem("admin", response.data.admin)
             localStorage.setItem("active", response.data.active)
-            if (localStorage.user) {
-              setAuth(true)
-            }
+            localStorage.setItem("auth", response.data.auth)
+            navigate(window.location.pathname)
           }).catch (function (error) {
-            setAuth(false)
+            navigate('/')
           })
         } else {
-          setAuth(false)
+          navigate('/')
         }
     }
 
@@ -40,6 +38,7 @@ const App = () => {
       localStorage.removeItem("token")
       localStorage.removeItem("admin")
       localStorage.removeItem("active")
+      localStorage.removeItem("auth")
       setAuth(false)
     }
   
@@ -47,9 +46,7 @@ const App = () => {
       authenticate()
     }, [])
   
-    useEffect(() => {
-      
-    }, [auth])
+    
   
     return (
         <Routes>
@@ -70,7 +67,7 @@ const App = () => {
             />
 
             <Route path="/dashboard" 
-              element={ auth ? (localStorage.active =='true' ? <Dashboard authenticate={authenticate} logout={logout} /> :  <SendConfirmEmail authenticate={authenticate} logout={logout} />) : <Navigate to="/"/> } 
+              element={ localStorage.auth == 'true' ? (localStorage.active =='true' ? <Dashboard authenticate={authenticate} logout={logout} /> :  <SendConfirmEmail authenticate={authenticate} logout={logout} />) : <Navigate to="/"/> } 
             />
 
             <Route path="*" element={<Navigate to="/" />}  />
