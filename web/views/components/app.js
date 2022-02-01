@@ -61,6 +61,7 @@ const App = () => {
         console.log('navigating to dashboard...')
         navigate('/dashboard')
       } else {
+        console.log('navigating to login..')
         navigate('/')
       }
     }, [auth])
@@ -91,6 +92,7 @@ const App = () => {
           </>
         )}
        
+       <Route path="/dashboard" element={<Navigate to={auth ? "/dashboard" : "/"} />}  />
         <Route path="*" element={<Navigate to={auth ? "/dashboard" : "/"} />}  />
 
       </Routes>
