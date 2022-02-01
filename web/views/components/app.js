@@ -19,6 +19,7 @@ const App = () => {
     localStorage.removeItem("admin")
     localStorage.removeItem("active")
     localStorage.removeItem("auth")
+    setAuth(false)
     navigate('/')
   }
    
@@ -48,6 +49,10 @@ const App = () => {
       authenticate()
     }, [])
   
+    useEffect(() => {
+      console.log(auth)
+      console.log('auth has changed...')
+    }, [auth])
     
   
     return (
@@ -69,7 +74,7 @@ const App = () => {
             />
 
             <Route path="/dashboard" 
-              element={ auth ? (active ? <Dashboard logout={logout} /> :  <SendConfirmEmail logout={logout} />) : <Navigate to="/"/> } 
+              element={ auth ? ( active ? <Dashboard logout={logout} /> : <SendConfirmEmail logout={logout} /> ) : <Navigate to="/"/> } 
             />
 
             <Route path="*" element={<Navigate to={auth ? "/dashboard": "/" }/>}  />
