@@ -60,7 +60,8 @@ const App = () => {
     return (
         <Routes>
         
-        
+        {!auth && (
+          <>
             <Route
               path="/"
               element={<Home authenticate={authenticate} />}
@@ -78,14 +79,25 @@ const App = () => {
                 <ConfirmEmail token={props.match.params.token}/>
               )}
             />
-        
+         </>
+        )}
       
   
         {auth && (
           <>
+
+            <Route
+              exact
+              path="/confirm-email-link/:token"
+              render={(props) => (
+                <ConfirmEmail token={props.match.params.token}/>
+              )}
+            />
+
             <Route path="/dashboard" 
             element={ localStorage.active =='true' ? <Dashboard authenticate={authenticate} logout={logout} /> :  <SendConfirmEmail authenticate={authenticate} logout={logout} /> } 
             />
+            
           </>
         )}
         
