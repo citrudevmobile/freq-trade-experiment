@@ -50,10 +50,7 @@ const App = () => {
     }, [])
   
     useEffect(() => {
-      if (auth && localStorage.token && localStorage.user) {
-      } else {
-        navigate('/')
-      }
+      
     }, [auth])
   
     return (
