@@ -22,9 +22,11 @@ export default function Home({ authenticate, logout }) {
   
     useEffect(()=>{
         console.log('now at confirm email..')
+        /*
         authenticate(function () {
             sendConfirmEmail()
         })
+        */
     }, [])
 
     return (
