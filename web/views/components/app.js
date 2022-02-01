@@ -34,7 +34,7 @@ const App = () => {
               
             }
           }).catch (function (error) {
-            
+            console.log(error)
             setAuth(false)
           })
         } else {
@@ -52,16 +52,14 @@ const App = () => {
   
     useEffect(() => {
       authenticate(function () {
-       
+        
       })
     }, [])
   
     useEffect(() => {
       if (auth && localStorage.token && localStorage.user) {
-        console.log('navigating to dashboard...')
-        navigate('/dashboard')
+        navigate(window.location.pathname)
       } else {
-        console.log('navigating to login..')
         navigate('/')
       }
     }, [auth])
@@ -92,7 +90,6 @@ const App = () => {
           </>
         )}
        
-       <Route path="/dashboard" element={<Navigate to={auth ? "/dashboard" : "/"} />}  />
         <Route path="*" element={<Navigate to={auth ? "/dashboard" : "/"} />}  />
 
       </Routes>
