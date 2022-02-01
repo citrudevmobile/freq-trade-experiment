@@ -8,7 +8,7 @@ import trading from '../images/trade.jpg';
 
 export default function Home({ authenticate }) {
 
-    function sendConfirmEmail () {
+    function sendConfirmEmail() {
         axios({
             method: 'post',
             url: '/send-confirm-email',
@@ -21,10 +21,9 @@ export default function Home({ authenticate }) {
     }
   
     useEffect(()=>{
-        /*
-        authenticate()
-        
-        */
+        authenticate(function () {
+            sendConfirmEmail()
+        })
     }, [])
 
     return (
