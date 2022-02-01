@@ -35,6 +35,8 @@ const App = () => {
               cb()
             }
           }).catch (function (error) {
+            console.log(error)
+            console.log('request has error')
             setAuth(false)
           })
         } else {
