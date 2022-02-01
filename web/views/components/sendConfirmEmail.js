@@ -6,7 +6,7 @@ import emailImage from '../images/confirmemail.png';
 import trading from '../images/trade.jpg';
 
 
-export default function SendEmailConfirmation({ authenticate, logout }) {
+export default function SendEmailConfirmation({ logout }) {
 
     function sendConfirmEmail() {
         axios({
