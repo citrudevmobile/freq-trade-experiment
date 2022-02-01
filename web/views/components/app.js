@@ -13,10 +13,10 @@ const App = () => {
   let navigate = useNavigate()
 
   let logout = function () {
-    localStorage.setItem("user", "")
-    localStorage.setItem("admin", "")
-    localStorage.setItem('active', "")
-    localStorage.setItem('auth', "")
+    localStorage.setItem("user", '')
+    localStorage.setItem("admin", '')
+    localStorage.setItem('active', '')
+    localStorage.setItem('auth', '')
     navigate('/')
   }
    
