@@ -10,6 +10,7 @@ import ConfirmEmail from './confirmEmail';
 
 const App = () => {
   let [auth, setAuth] = useState(null)
+  let [active, setActive] = useState(null)
   let navigate = useNavigate()
 
   let logout = function () {
@@ -31,8 +32,7 @@ const App = () => {
           }).then(function (response) {
             localStorage.setItem("user", response.data.user)
             localStorage.setItem("admin", response.data.admin)
-            localStorage.setItem("active", response.data.active)
-            localStorage.setItem("auth", "true")
+            setActive(response.data.active)
             setAuth(true)
           }).catch (function (error) {
             localStorage.setItem("auth", "false")
@@ -69,7 +69,7 @@ const App = () => {
             />
 
             <Route path="/dashboard" 
-              element={ auth ? (localStorage.active =='false' ? <Dashboard logout={logout} /> :  <SendConfirmEmail logout={logout} />) : <Navigate to="/"/> } 
+              element={ auth ? (active ? <Dashboard logout={logout} /> :  <SendConfirmEmail logout={logout} />) : <Navigate to="/"/> } 
             />
 
             <Route path="*" element={<Navigate to={auth ? "/dashboard": "/" }/>}  />
