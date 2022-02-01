@@ -57,7 +57,8 @@ const App = () => {
     }, [])
   
     useEffect(() => {
-      if (auth ) {
+      if (auth && localStorage.token && localStorage.user) {
+        console.log('navigating to dashboard...')
         navigate('/dashboard')
       } else {
         navigate('/')
