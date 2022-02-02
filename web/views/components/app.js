@@ -33,8 +33,8 @@ const App = () => {
           }).then(function (response) {
             localStorage.setItem("user", response.data.user)
             localStorage.setItem("auth", "true")
-            //setAuth(Boolean(localStorage.auth))
-            //setActive(Boolean(response.data.active))
+            setAuth(Boolean(localStorage.auth))
+            setActive(Boolean(response.data.active))
           }).catch (function (error) {
             setAuth(false)
             localStorage.setItem("auth", "false")
