@@ -31,13 +31,13 @@ export default function emailConfirmation({}) {
     <>
     <section class="flex justify-center items-center text-white bg-black bg-no-repeat bg-center bg-cover min-h-screen w-full" style={{ backgroundImage: 'url(' + trading + ')'}} >
         <div class="absolute bg-black p-0 m-0 opacity-90 inset-0 z-0 h-screen w-full"></div>
-        <header class="text-white opacity-90 bg-white rounded-md p-5 mx-auto w-3/4 sm:w-3/6 h-screen">
+        <header class="text-white opacity-90 bg-white rounded-md p-5 mx-auto w-3/4 sm:w-3/6 h-full">
             <div class="container mx-auto md:p-10 flex flex-col space-y-5">
                 <h1 class="text-black text-xl md:text-4xl text-center font-bold text-center">Best Crypto Bot Ever!</h1>
                 
                     <a class="block" href="#">
                         <img
-                        class="shadow-sm mx-auto object-scale-down"
+                        class="shadow-sm mx-auto object-scale-down h-3/4"
                         src={emailImage}
                         alt="logo"
                         rel="preload"
