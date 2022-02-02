@@ -36,15 +36,15 @@ export default function emailConfirmation({}) {
             <div class="container mx-auto md:p-10 flex flex-col space-y-5">
                 <h1 class="text-black text-xl md:text-4xl text-center font-bold text-center">Best Crypto Bot Ever!</h1>
                 
-                    <a class="block" href="#">
+                    
                         <img
-                        class="shadow-sm mx-auto object-contain "
+                        class="block shadow-sm mx-auto object-contain "
                         style="height: 300px"
                         src={emailImage}
                         alt="logo"
                         rel="preload"
                         />
-                    </a>
+                    
                     <p class="text-gray-500 text-xs text-center md:text-base">Great! Your email has been confirmed.</p>
                 
                 <div class="flex items-center justify-center space-x-1">
