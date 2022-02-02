@@ -40,16 +40,16 @@ export default function emailConfirmation({}) {
                     <a class="block" href="#">
                         <img
                         class="shadow-sm mx-auto object-contain "
+                        style="height: 300px"
                         src={emailImage}
                         alt="logo"
                         rel="preload"
                         />
                     </a>
-                    <p class="text-gray-500 text-xs text-center md:text-base">Your account has been successfully registered. To complete the process please check your email for a validation request.</p>
+                    <p class="text-gray-500 text-xs text-center md:text-base">Great! Your email has been confirmed.</p>
                 
                 <div class="flex items-center justify-center space-x-1">
-                    <a  class="bg-blue-300 text-xs md:text-base rounded-md p-2 hover:text-white hover:bg-blue-500" href="#">Resend Email</a>
-                    <a   class="bg-blue-300 text-xs md:text-base rounded-md p-2 hover:text-white hover:bg-blue-500" href="#">Home</a>
+                    <NavLink end to="/dashboard" class="bg-blue-300 text-xs md:text-base rounded-md p-2 hover:text-white hover:bg-blue-500" href="#">Dashboard</NavLink>
                 </div>
             </div>
             </header>
