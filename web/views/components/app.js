@@ -23,22 +23,26 @@ const App = () => {
     navigate('/')
   }
    
-    let authenticate = function () {
+    let authenticate = async function () {
         let token = localStorage.token
         if (token) {
-          axios({
-            method: "post",
-            url: "/verify",
-            headers: { "x-access-token": localStorage.token },
-          }).then(function (response) {
+          try {
+            let response = await axios({
+              method: "post",
+              url: "/verify",
+              headers: { "x-access-token": localStorage.token },
+            })
+            
             localStorage.setItem("user", response.data.user)
             localStorage.setItem("auth", "true")
             setAuth(Boolean(localStorage.auth))
             setActive(Boolean(response.data.active))
-          }).catch (function (error) {
+
+          } catch (error) {
             setAuth(false)
             localStorage.setItem("auth", "false")
-          })
+          }
+          
         } else {
           setAuth(false)
           localStorage.setItem("auth", "false")
