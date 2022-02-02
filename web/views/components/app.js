@@ -9,13 +9,15 @@ import SendConfirmEmail from './sendConfirmEmail';
 import ConfirmEmail from './confirmEmail';
 
 const App = () => {
-  
+  let [auth, setAuth] = useState(null)
+  let [active, setActive] = useState(null)
+
   let navigate = useNavigate()
 
   let logout = function () {
     localStorage.removeItem("user")
     localStorage.removeItem("token")
-    localStorage.setItem("auth", "false")
+    setAuth(false)
     navigate('/')
   }
    
@@ -28,14 +30,13 @@ const App = () => {
             headers: { "x-access-token": localStorage.token },
           }).then(function (response) {
             localStorage.setItem("user", response.data.user)
-            localStorage.setItem("admin", response.data.admin)
-            localStorage.setItem("active", response.data.active)
-            localStorage.setItem("auth", "true")
+            setAuth(response.data.auth)
+            setActive(response.data.active)
           }).catch (function (error) {
-            localStorage.setItem("auth", "false")
+            setAuth(false)
           })
         } else {
-          localStorage.setItem("auth", "false")
+          setAuth(false)
         }
     }
 
@@ -69,10 +70,10 @@ const App = () => {
             />
 
             <Route path="/dashboard" 
-              element={ Boolean(localStorage['auth']) ? ( Boolean(localStorage['active']) == 'true' ? <Dashboard logout={logout} /> : <SendConfirmEmail logout={logout} /> ) : <Navigate to="/"/> } 
+              element={ auth ? ( active ? <Dashboard logout={logout} /> : <SendConfirmEmail logout={logout} /> ) : <Navigate to="/"/> } 
             />
 
-            <Route path="*" element={<Navigate to={ localStorage['auth'] == 'true' ? "/dashboard": "/" }/>}  />
+            <Route path="*" element={<Navigate to={ auth ? "/dashboard": "/" }/>}  />
 
       </Routes>
     );
