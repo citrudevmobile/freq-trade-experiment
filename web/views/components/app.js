@@ -13,7 +13,7 @@ const App = () => {
   let [active, setActive] = useState(null)
 
   let navigate = useNavigate()
-  setAuth(Boolean(localStorage.auth))
+  
 
   let logout = function () {
     localStorage.removeItem("user")
@@ -46,6 +46,7 @@ const App = () => {
     }
 
     useEffect(() => {
+      setAuth(Boolean(localStorage.auth))
       authenticate()
     }, [])
   
