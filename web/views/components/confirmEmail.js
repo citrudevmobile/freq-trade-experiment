@@ -9,7 +9,6 @@ export default function emailConfirmation({}) {
 
     const { token } = useParams()
     let [msg, setMsg] = useState('Checking...')
-    let [valid, setValid] = useState(false)
 
     let confirmEmail = async function () {
         try {
@@ -18,15 +17,13 @@ export default function emailConfirmation({}) {
                 url: '/confirm-email-link',
                 headers: { "x-access-token": token },
             })
-            console.log(response)
-            console.log('activated')
+            
             setMsg('Great! Your email has been confirmed.')
-            setValid(true)
+            
         } catch (error) {
-            console.log(error)
-            console.log('fail')
+           
             setMsg('Sorry! Failed to validate your email address. Please try again.')
-            setValid(false)
+            
         }
     }
   
