@@ -3,7 +3,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import axios from 'axios'
 
 
-export default function Home({ authenticate }) {
+export default function RegisterUser({ authenticate }) {
 
   const [fullname, setFullname] = useState("")
   const [username, setUsername] = useState("")
