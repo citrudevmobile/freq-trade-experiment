@@ -62,7 +62,7 @@ const App = () => {
 
             <Route
               path="/confirm-email-link/:token"
-              element={<ConfirmEmail logout={logout} />}
+              element={<ConfirmEmail authenticate={authenticate} />}
             />
 
             <Route path="/dashboard" 

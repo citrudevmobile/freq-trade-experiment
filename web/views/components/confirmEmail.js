@@ -5,7 +5,7 @@ import emailImage from '../images/trader.jpg';
 import trading from '../images/trade.jpg';
 
 
-export default function emailConfirmation({}) {
+export default function emailConfirmation({ authenticate }) {
 
     const { token } = useParams()
     let [msg, setMsg] = useState('Checking...')
@@ -17,7 +17,7 @@ export default function emailConfirmation({}) {
                 url: '/confirm-email-link',
                 headers: { "x-access-token": token },
             })
-            
+            authenticate()
             setMsg('Great! Your email has been confirmed.')
             
         } catch (error) {
