@@ -44,14 +44,8 @@ const App = () => {
           localStorage.setItem("auth", "false")
         }
     }
-
-    useEffect(() => {
-      setAuth(Boolean(localStorage.auth))
-      authenticate()
-    }, [])
   
-
-    
+    authenticate()
   
     return (
         <Routes>
