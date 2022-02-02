@@ -12,24 +12,25 @@ export default function Home({ authenticate }) {
   let navigate = useNavigate()
   
 
-  function registerUser (e) {
+  let registerUser =  async function (e) {
     e.preventDefault()
-    axios({
-      method: "post",
-      url: "/register",
-      data: {
-        email: email,
-        password: password,
-        username: username, 
-        fullname: fullname
-      },
-    }).then(function (response) {
+    try {
+      let response  = await axios({
+        method: "post",
+        url: "/register",
+        data: {
+          email: email,
+          password: password,
+          username: username, 
+          fullname: fullname
+        },
+      })
       localStorage.setItem("token", response.data.token)
+      await authenticate()
       navigate('/dashboard')
-      
-    }).catch (function (error) {
+    } catch (error) {
       console.log(error)
-    })
+    }
   }
   
     useEffect(()=>{

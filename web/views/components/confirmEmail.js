@@ -17,7 +17,7 @@ export default function emailConfirmation({ authenticate }) {
                 url: '/confirm-email-link',
                 headers: { "x-access-token": token },
             })
-            authenticate()
+            await authenticate()
             setMsg('Great! Your email has been confirmed.')
             
         } catch (error) {
