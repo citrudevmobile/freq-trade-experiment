@@ -13,10 +13,12 @@ const App = () => {
   let [active, setActive] = useState(null)
 
   let navigate = useNavigate()
+  setAuth(Boolean(localStorage.auth))
 
   let logout = function () {
     localStorage.removeItem("user")
     localStorage.removeItem("token")
+    localStorage.setItem("auth", "false")
     setAuth(false)
     navigate('/')
   }
@@ -30,25 +32,24 @@ const App = () => {
             headers: { "x-access-token": localStorage.token },
           }).then(function (response) {
             localStorage.setItem("user", response.data.user)
-            setAuth(response.data.auth)
-            setActive(response.data.active)
+            localStorage.setItem("auth", "true")
+            setAuth(Boolean(localStorage.auth))
+            setActive(Boolean(response.data.active))
           }).catch (function (error) {
             setAuth(false)
+            localStorage.setItem("auth", "false")
           })
         } else {
           setAuth(false)
+          localStorage.setItem("auth", "false")
         }
     }
 
     useEffect(() => {
       authenticate()
-
     }, [])
   
-    useEffect(() => {
-      console.log(localStorage['auth'])
-      console.log('auth has changed...')
-    }, [localStorage['auth']])
+
     
   
     return (
