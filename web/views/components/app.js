@@ -31,8 +31,8 @@ const App = () => {
           }).then(function (response) {
             localStorage.setItem("user", response.data.user)
             localStorage.setItem("admin", response.data.admin)
-            localStorage.setItem('active', response.data.active)
-            localStorage.setItem('auth', response.data.auth)
+            localStorage.setItem("active", response.data.active)
+            localStorage.setItem("auth", "true")
           }).catch (function (error) {
             localStorage.setItem("auth", "false")
           })
