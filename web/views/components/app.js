@@ -9,7 +9,7 @@ import SendConfirmEmail from './sendConfirmEmail';
 import ConfirmEmail from './confirmEmail';
 
 const App = () => {
-  let [auth, setAuth] = useState(null)
+  let [auth, setAuth] = useState(true)
   let [active, setActive] = useState(null)
 
   let navigate = useNavigate()
