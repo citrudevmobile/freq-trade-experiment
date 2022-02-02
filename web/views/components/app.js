@@ -15,9 +15,7 @@ const App = () => {
   let logout = function () {
     localStorage.removeItem("user")
     localStorage.removeItem("token")
-    localStorage.removeItem("admin")
-    localStorage.removeItem("active")
-    localStorage.removeItem("auth")
+    localStorage.setItem("auth", "false")
     navigate('/')
   }
    
