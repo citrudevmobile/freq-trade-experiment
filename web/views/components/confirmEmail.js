@@ -8,6 +8,8 @@ import trading from '../images/trade.jpg';
 export default function emailConfirmation({}) {
 
     const { token } = useParams()
+    let [msg, setMsg] = useState('Checking...')
+    let [valid, setValid] = useState(false)
 
     let confirmEmail = async function () {
         try {
@@ -18,9 +20,13 @@ export default function emailConfirmation({}) {
             })
             console.log(response)
             console.log('activated')
+            setMsg('Great! Your email has been confirmed.')
+            setValid(true)
         } catch (error) {
             console.log(error)
             console.log('fail')
+            setMsg('Sorry! Failed to validate your email address. Please try again.')
+            setValid(false)
         }
     }
   
@@ -45,9 +51,10 @@ export default function emailConfirmation({}) {
                         rel="preload"
                         />
                     
-                    <p class="text-gray-500 text-xs text-center md:text-base">Great! Your email has been confirmed.</p>
+                    <p class="text-gray-500 text-xs text-center md:text-base">{msg}</p>
                 
                 <div class="flex items-center justify-center space-x-1">
+                    <a class="bg-blue-300 text-xs md:text-base rounded-md p-2 hover:text-white hover:bg-blue-500" href="#">Resend Email</a>
                     <NavLink end to="/dashboard" className="bg-blue-300 text-xs md:text-base rounded-md p-2 hover:text-white hover:bg-blue-500" href="#">Dashboard</NavLink>
                 </div>
             </div>
