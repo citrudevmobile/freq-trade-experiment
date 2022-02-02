@@ -11,7 +11,7 @@ export default function Home({authenticate}) {
   let login =  async function (e) {
     e.preventDefault()
     try {
-      let response  = axios({
+      let response  = await axios({
         method: "post",
         url: "/login",
         data: {
