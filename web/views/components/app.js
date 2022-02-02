@@ -19,7 +19,7 @@ const App = () => {
     localStorage.removeItem("user")
     localStorage.removeItem("token")
     localStorage.setItem("auth", "false")
-    setAuth(false)
+    //setAuth(false)
     navigate('/')
   }
    
@@ -35,16 +35,16 @@ const App = () => {
             
             localStorage.setItem("user", response.data.user)
             localStorage.setItem("auth", "true")
-            setAuth(Boolean(localStorage.auth))
-            setActive(Boolean(response.data.active))
+            //setAuth(Boolean(localStorage.auth))
+            //setActive(Boolean(response.data.active))
 
           } catch (error) {
-            setAuth(false)
+            //setAuth(false)
             localStorage.setItem("auth", "false")
           }
           
         } else {
-          setAuth(false)
+          //setAuth(false)
           localStorage.setItem("auth", "false")
         }
     }
