@@ -37,7 +37,8 @@ export default function emailConfirmation({}) {
                 
                     <a class="block" href="#">
                         <img
-                        class="shadow-sm mx-auto object-scale-down h-2/4"
+                        class="shadow-sm mx-auto object-scale-down"
+                        style="height: 200px"
                         src={emailImage}
                         alt="logo"
                         rel="preload"
