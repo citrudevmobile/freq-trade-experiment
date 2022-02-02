@@ -8,21 +8,24 @@ export default function Home({authenticate}) {
   const [password, setPassword] = useState("")
   let navigate = useNavigate()
 
-  let login = function (e) {
+  let login =  async function (e) {
     e.preventDefault()
-    axios({
-      method: "post",
-      url: "/login",
-      data: {
-        email: email,
-        password: password
-      },
-    }).then(function (response) {
+    try {
+      let response  = axios({
+        method: "post",
+        url: "/login",
+        data: {
+          email: email,
+          password: password
+        },
+      })
+
       localStorage.setItem("token", response.data.token)
+      authenticate()
       navigate('/dashboard')
-    }).catch (function (error) {
+    } catch (error) {
       console.log(error)
-    })
+    }
   }
   
     useEffect(()=>{
