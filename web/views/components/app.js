@@ -16,35 +16,30 @@ const App = () => {
   
 
   let logout = function () {
-    localStorage.removeItem("user")
-    localStorage.removeItem("token")
-    localStorage.setItem("auth", "false")
-    setAuth(false)
+    localStorage.clear()
     navigate('/')
   }
    
     let authenticate = async function () {
-        let token = localStorage.token
+        let token = localStorage.getItem('token')
         if (token) {
           try {
             let response = await axios({
               method: "post",
               url: "/verify",
-              headers: { "x-access-token": localStorage.token },
+              headers: { "x-access-token": token },
             })
             
             localStorage.setItem("user", response.data.user)
+            localStorage.setItem("active", response.data.active)
+            localStorage.setItem("admin", response.data.admin)
             localStorage.setItem("auth", "true")
-            setAuth(Boolean(localStorage.auth))
-            setActive(Boolean(response.data.active))
-
+            
           } catch (error) {
-            setAuth(false)
+            console.log(error)
             localStorage.setItem("auth", "false")
           }
-          
         } else {
-          setAuth(false)
           localStorage.setItem("auth", "false")
         }
     }
@@ -70,10 +65,10 @@ const App = () => {
             />
 
             <Route path="/dashboard" 
-              element={ auth ? ( active ? <Dashboard logout={logout} /> : <SendConfirmEmail logout={logout} /> ) : <Navigate to="/"/> } 
+              element={ localStorage.getItem('auth') == 'true' ? ( localStorage.getItem('active') == 'true'  ? <Dashboard logout={logout} /> : <SendConfirmEmail logout={logout} /> ) : <Navigate to="/"/> } 
             />
 
-            <Route path="*" element={<Navigate to={ auth ? "/dashboard": "/" }/>}  />
+            <Route path="*" element={<Navigate to={ localStorage.getItem('auth') == 'true' ? "/dashboard": "/" }/>}  />
 
       </Routes>
     );
