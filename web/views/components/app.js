@@ -49,7 +49,6 @@ const App = () => {
     useEffect(() => {
       console.log(localStorage['auth'])
       console.log('auth has changed...')
-      window.location.reload(true)
     }, [localStorage['auth']])
     
   
