@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { NavLink, useParams } from 'react-router-dom';
 import axios from 'axios'
-
 import emailImage from '../images/trader.jpg';
 import trading from '../images/trade.jpg';
 
@@ -49,7 +48,7 @@ export default function emailConfirmation({}) {
                     <p class="text-gray-500 text-xs text-center md:text-base">Great! Your email has been confirmed.</p>
                 
                 <div class="flex items-center justify-center space-x-1">
-                    <NavLink end to="/dashboard" class="bg-blue-300 text-xs md:text-base rounded-md p-2 hover:text-white hover:bg-blue-500" href="#">Dashboard</NavLink>
+                    <NavLink end to="/dashboard" className="bg-blue-300 text-xs md:text-base rounded-md p-2 hover:text-white hover:bg-blue-500" href="#">Dashboard</NavLink>
                 </div>
             </div>
             </header>
