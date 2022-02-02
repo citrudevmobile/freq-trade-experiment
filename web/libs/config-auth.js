@@ -133,12 +133,14 @@ module.exports = {
               .status(401)
               .json({})
           }
+          console.log('activating user')
+          console.log(token)
     
           User.findOne({ _id: decoded.id }, function (err, user) {
             if (err) return res.status(500).json({})
             if (!user) return res.status(500).json({})
             if (user) {
-              user.isActive = true
+              user.active = true
               user.save(function (err, user) {
                 if (err) return res.status(500).json({})
                 return res.status(200).json({ activated: true })
