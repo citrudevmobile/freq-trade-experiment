@@ -45,7 +45,8 @@ const App = () => {
     }
   
     authenticate()
-  
+    console.log('auth: '+localStorage.getItem('auth'))
+    console.log('active: '+localStorage.getItem('active'))
     return (
         <Routes>
         

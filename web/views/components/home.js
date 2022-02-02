@@ -21,7 +21,7 @@ export default function Home({authenticate}) {
       })
 
       localStorage.setItem("token", response.data.token)
-      authenticate()
+      await  authenticate()
       navigate('/dashboard')
     } catch (error) {
       console.log(error)
