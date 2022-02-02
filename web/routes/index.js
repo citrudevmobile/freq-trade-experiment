@@ -7,6 +7,7 @@ module.exports = (app, io) => {
     app.post('/register', Auth.register)
     app.post('/verify', Auth.verifyAuthToken)
     app.post('/send-confirm-email', Auth.sendConfirmEmail)
+    app.post('/confirm-email-link', Auth.activateUser)
     app.get('*', (req, res) => { res.sendFile(path.join(__basedir + '/dist/index.html')) })
     
 }

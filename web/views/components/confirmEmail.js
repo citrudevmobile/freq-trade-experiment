@@ -10,21 +10,23 @@ export default function emailConfirmation({}) {
 
     const { token } = useParams()
 
-    function confirmEmail() {
-        axios({
-            method: 'post',
-            url: '/confirm-email-link',
-            headers: { "x-access-token": localStorage.token },
-        }).then(function (response) {
-        
-        }).catch (function (error) {
+    let confirmEmail = async function () {
+        try {
+            let response = await axios({
+                method: 'post',
+                url: '/confirm-email-link',
+                headers: { "x-access-token": token },
+            })
+            console.log(response)
+            console.log('activated')
+        } catch (error) {
             console.log(error)
-        })
+            console.log('fail')
+        }
     }
   
     useEffect(()=>{
-        console.log(token)
-       // confirmEmail()
+       confirmEmail()
     }, [])
 
     return (
@@ -38,7 +40,7 @@ export default function emailConfirmation({}) {
                     <a class="block" href="#">
                         <img
                         class="shadow-sm mx-auto object-scale-down"
-                        style="height: 200px"
+                        height="200"
                         src={emailImage}
                         alt="logo"
                         rel="preload"

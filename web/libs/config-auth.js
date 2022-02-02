@@ -125,22 +125,22 @@ module.exports = {
         if (!token) {
           return res
             .status(401)
-            .json({ activated: false, message: 'No token provided.' })
+            .json({ })
         }
         jwt.verify(token, process.env.JWTsecret, function (err, decoded) {
           if (err) {
             return res
               .status(401)
-              .json({ activated: false, message: 'Failed to authenticate token.' })
+              .json({})
           }
     
           User.findOne({ _id: decoded.id }, function (err, user) {
-            if (err) return res.status(500).json({ reset: false, message: 'Internal server error while retriving user data' })
-            if (!user) return res.status(500).json({ activated: false, message: 'User not found' })
+            if (err) return res.status(500).json({})
+            if (!user) return res.status(500).json({})
             if (user) {
               user.isActive = true
               user.save(function (err, user) {
-                if (err) return res.status(500).json({ activated: false, message: 'Internal server error while saving changes to user.' })
+                if (err) return res.status(500).json({})
                 return res.status(200).json({ activated: true })
               })
             }
