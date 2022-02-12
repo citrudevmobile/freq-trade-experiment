@@ -4,8 +4,6 @@ const DockerCtrl = require('../controllers/dockerCtrl')
 
 module.exports = (app, io) => {
 
-    
-
     app.post('/login', Auth.login)
     app.post('/register', Auth.register)
     app.post('/verify', Auth.verifyAuthToken)

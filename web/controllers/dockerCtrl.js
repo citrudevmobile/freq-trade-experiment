@@ -1,16 +1,16 @@
-let Dockerode = require('dockerode');
-let DockerodeCompose = require('dockerode-compose');
+let Dockerode = require('dockerode')
+let DockerodeCompose = require('dockerode-compose')
 
 
 module.exports = {
 
     startBot: async function (req, res) {
         let docker = new Dockerode();
-        let compose = new DockerodeCompose(docker, '../../freqtrade/docker-compose.yml', 'helloworld');
+        let compose = new DockerodeCompose(docker, '../../freqtrade/docker-compose.yml', 'helloworld')
         try {
-            await compose.pull();
-            let state = await compose.up();
-            console.log(state);
+            await compose.pull()
+            let state = await compose.up()
+            console.log(state)
             res.status(200).json(state)
         } catch (e) {
             console.log(e)
@@ -19,11 +19,11 @@ module.exports = {
     },
 
     stopBot: async function (req, res) {
-        let docker = new Dockerode();
-        let compose = new DockerodeCompose(docker, '../../freqtrade/docker-compose.yml', 'helloworld');
+        let docker = new Dockerode()
+        let compose = new DockerodeCompose(docker, '../../freqtrade/docker-compose.yml', 'helloworld')
         try {
-            let state = await compose.down({ volumes: true });
-            console.log(state);
+            let state = await compose.down({ volumes: true })
+            console.log(state)
             res.status(200).json(state)
         } catch (e) {
             console.log(e)
@@ -32,6 +32,17 @@ module.exports = {
     },
 
     restartBot: async function () {
-
+        let docker = new Dockerode()
+        let compose = new DockerodeCompose(docker, '../../freqtrade/docker-compose.yml', 'helloworld')
+        try {
+            let state = await compose.down({ volumes: true })
+            console.log(state)
+            state = await compose.up()
+            console.log(state)
+            res.status(200).json(state)
+        } catch (e) {
+            console.log(e)
+            res.status(500).json(e)
+        }
     }
 }
