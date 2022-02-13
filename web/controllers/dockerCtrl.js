@@ -5,7 +5,7 @@ let DockerodeCompose = require('dockerode-compose')
 module.exports = {
 
     startBot: async function (req, res) {
-        let docker = new Dockerode({host: '127.0.0.1', port: 3000});
+        let docker = new Dockerode();
         let compose = new DockerodeCompose(docker, `${process.cwd()}/freqtrade/docker-compose.yml`, 'helloworld')
         try {
             await compose.pull()
@@ -19,7 +19,7 @@ module.exports = {
     },
 
     stopBot: async function (req, res) {
-        let docker = new Dockerode({host: '127.0.0.1', port: 3000})
+        let docker = new Dockerode()
         let compose = new DockerodeCompose(docker, `${process.cwd()}/freqtrade/docker-compose.yml`, 'helloworld')
         try {
             let state = await compose.down({ volumes: true })
@@ -32,7 +32,7 @@ module.exports = {
     },
 
     restartBot: async function () {
-        let docker = new Dockerode({host: '127.0.0.1', port: 3000})
+        let docker = new Dockerode()
         let compose = new DockerodeCompose(docker, `${process.cwd()}/freqtrade/docker-compose.yml`, 'helloworld')
         try {
             let state = await compose.down({ volumes: true })
