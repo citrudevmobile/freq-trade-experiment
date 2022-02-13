@@ -6,7 +6,7 @@ module.exports = {
 
     startBot: async function (req, res) {
         let docker = new Dockerode();
-        let compose = new DockerodeCompose(docker, '../../freqtrade/docker-compose.yml', 'helloworld')
+        let compose = new DockerodeCompose(docker, '../freqtrade/docker-compose.yml', 'helloworld')
         try {
             await compose.pull()
             let state = await compose.up()
