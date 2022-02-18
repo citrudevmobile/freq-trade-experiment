@@ -1,5 +1,6 @@
 let Dockerode = require('dockerode')
-let DockerodeCompose = require('../libs/dockerode-compose/compose')
+//let DockerodeCompose = require('../libs/dockerode-compose/compose')
+let DockerodeCompose = require('dockerode-compose')
 
 
 module.exports = {
