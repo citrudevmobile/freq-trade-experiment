@@ -26,7 +26,12 @@ module.exports = {
         try {
             container = docker.getContainer(containerId)
             container.kill()
-            res.status(200).json({})
+            container.remove({
+                force: true
+            }, function(err) {
+                if (err) return res.status(500).json({})
+                res.status(200).json({})
+            })
         } catch (e) {
             console.log(e)
             res.status(500).json(e)
