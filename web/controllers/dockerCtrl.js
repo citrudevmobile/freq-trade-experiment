@@ -25,7 +25,7 @@ module.exports = {
         let container = null
         try {
             container = docker.getContainer(containerId)
-            container.kill()
+            container.stop()
             container.remove({
                 force: true
             }, function(err) {
