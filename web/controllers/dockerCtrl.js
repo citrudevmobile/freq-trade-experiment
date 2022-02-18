@@ -20,12 +20,12 @@ module.exports = {
     },
 
     stopBot: async function (req, res) {
-        let docker = new Dockerode()
-        let compose = new DockerodeCompose(docker, `${process.cwd()}/freqtrade/docker-compose.yml`, 'helloworld')
+        let docker = new Dockerode();
+        let containerId = req.body.id
+        let container = null
         try {
-            let state = await compose.down({ volumes: true })
-            console.log(state)
-            res.status(200).json(state)
+            container = docker.getContainer(containerId)
+            container.stop()
         } catch (e) {
             console.log(e)
             res.status(500).json(e)
