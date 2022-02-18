@@ -1,7 +1,7 @@
 let Dockerode = require('dockerode')
 //let DockerodeCompose = require('../libs/dockerode-compose/compose')
 let DockerodeCompose = require('dockerode-compose')
-
+let containerId = ""
 
 module.exports = {
 
@@ -12,6 +12,8 @@ module.exports = {
             await compose.pull()
             let state = await compose.up()
             console.log(state)
+            containerId = state["services"][0]["id"]
+            console.log(containerId)
             res.status(200).json(state)
         } catch (e) {
             console.log(e)
