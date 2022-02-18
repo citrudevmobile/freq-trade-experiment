@@ -23,8 +23,7 @@ module.exports = {
 
     stopBot: async function (req, res) {
         let docker = new Dockerode();
-        let containerId = req.body.id
-        let container = null
+       
         try {
             container = docker.getContainer(containerId)
             container.remove({
