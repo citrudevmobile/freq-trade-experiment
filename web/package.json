@@ -4,7 +4,7 @@
   "description": "web app for trader bot",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "parcel build ./views/index.html && node index.js",
+    "build": "parcel build ./views/index.html && pm2 start index.js",
     "dev": "parcel ./views/index.html",
     "css": "tailwindcss -i ./views/css/main.css -o ./views/css/output.css"
   },
@@ -17,6 +17,7 @@
   "devDependencies": {
     "autoprefixer": "^10.4.2",
     "parcel": "^2.2.1",
+    "pm2": "^5.2.0",
     "postcss": "^8.4.5",
     "tailwindcss": "^3.0.16"
   },
