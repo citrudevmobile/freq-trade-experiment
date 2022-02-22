@@ -15,11 +15,10 @@ class Compose {
   constructor(dockerode, recipe, projectName) {
     this.docker = dockerode;
 
-    if (file === undefined || projectName === undefined) {
+    if (projectName === undefined) {
       throw new Error('please specify a file and a project name');
     }
 
-    this.file = file;
     this.projectName = projectName;
 
     try {
