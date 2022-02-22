@@ -12,7 +12,7 @@ const tools = require('./lib/tools');
 
 
 class Compose {
-  constructor(dockerode, file, projectName) {
+  constructor(dockerode, recipe, projectName) {
     this.docker = dockerode;
 
     if (file === undefined || projectName === undefined) {
@@ -23,7 +23,7 @@ class Compose {
     this.projectName = projectName;
 
     try {
-      this.recipe = yaml.load(fs.readFileSync(file, 'utf8'));
+      this.recipe = recipe
       console.log(this.recipe)
       console.log(this.recipe['services']['freqtrade']['volumes'])
       console.log(this.recipe['services']['freqtrade']['ports'])
@@ -37,7 +37,6 @@ class Compose {
   async up(options) {
     var output = {};
     try {
-      output.file = this.file;
       output.secrets = await secrets(this.docker, this.projectName, this.recipe, output);
       output.volumes = await volumes(this.docker, this.projectName, this.recipe, output);
       output.configs = await configs(this.docker, this.projectName, this.recipe, output);

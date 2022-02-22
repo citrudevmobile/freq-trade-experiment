@@ -1,27 +1,27 @@
 let Dockerode = require('dockerode')
 let DockerodeCompose = require('../libs/dockerode-compose/compose')
 let containerId = ""
-/*
+
 let recipe  = {
     version: '3',
     services: {
       freqtrade: {
         image: 'freqtradeorg/freqtrade:stable',
         restart: 'unless-stopped',
-        container_name: 'freqtrade',
+        container_name: 'freqtradeMain',
         volumes: ['/root/trader_bot/web/freqtrade/user_data:/freqtrade/user_data'],
         ports: ['8080:8080'],
         command: 'trade --logfile /root/trader_bot/web/freqtrade/user_data/logs/freqtrade.log --db-url sqlite:////root/trader_bot/web/freqtrade/user_data/tradesv3.sqlite --config /root/trader_bot/web/freqtrade/user_data/config.json --strategy SampleStrategy\n'
       }
     }
 }
-*/
+
 
 module.exports = {
 
     startBot: async function (req, res) {
         let docker = new Dockerode();
-        let compose = new DockerodeCompose(docker, `${process.cwd()}/freqtrade/docker-compose.yml`, 'helloworld')
+        let compose = new DockerodeCompose(docker, recipe, 'helloworld')
         try {
             await compose.pull()
             let state = await compose.up()
@@ -53,7 +53,7 @@ module.exports = {
 
     restartBot: async function () {
         let docker = new Dockerode()
-        let compose = new DockerodeCompose(docker, `${process.cwd()}/freqtrade/docker-compose.yml`, 'helloworld')
+        let compose = new DockerodeCompose(docker, recipe, 'helloworld')
         try {
             let state = await compose.down({ volumes: true })
             console.log(state)
