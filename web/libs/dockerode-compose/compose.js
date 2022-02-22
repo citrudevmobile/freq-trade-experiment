@@ -27,6 +27,8 @@ class Compose {
     }
   }
 
+  console.log(this.recipe)
+  
   async up(options) {
     var output = {};
     try {
