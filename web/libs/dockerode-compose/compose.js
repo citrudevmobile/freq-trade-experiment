@@ -9,6 +9,8 @@ const networks = require('./lib/networks');
 const services = require('./lib/services');
 const tools = require('./lib/tools');
 
+
+
 class Compose {
   constructor(dockerode, file, projectName) {
     this.docker = dockerode;
@@ -23,6 +25,8 @@ class Compose {
     try {
       this.recipe = yaml.load(fs.readFileSync(file, 'utf8'));
       console.log(this.recipe)
+      console.log(this.recipe['services']['freqtrade']['volumes'])
+      console.log(this.recipe['services']['freqtrade']['ports'])
     } catch (e) {
       throw e;
     }

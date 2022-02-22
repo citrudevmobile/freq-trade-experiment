@@ -1,6 +1,24 @@
 let Dockerode = require('dockerode')
 let DockerodeCompose = require('../libs/dockerode-compose/compose')
 let containerId = ""
+/*
+let recipe  = {
+    version: '3',
+    services: {
+      freqtrade: {
+        image: 'freqtradeorg/freqtrade:stable',
+        restart: 'unless-stopped',
+        container_name: 'freqtrade',
+        volumes: [Array],
+        ports: [Array],
+        command: 'trade --logfile /root/trader_bot/web/freqtrade/user_data/logs/freqtrade.log --db-url sqlite:////root/trader_bot/web/freqtrade/user_data/tradesv3.sqlite --config /root/trader_bot/web/freqtrade/user_data/config.json --strategy SampleStrategy\n'
+      }
+    }
+}
+  
+recipe['services']['freqtrade']['volumes']
+recipe['services']['freqtrade']['ports']
+*/
 
 module.exports = {
 
