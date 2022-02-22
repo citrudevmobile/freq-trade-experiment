@@ -1,33 +1,69 @@
 {
-  "name": "dockerode-compose",
-  "version": "1.3.0",
-  "description": "docker-compose in nodejs using dockerode",
-  "main": "./compose.js",
-  "scripts": {
-    "test": "./node_modules/mocha/bin/mocha -R spec --exit"
+  "_args": [
+    [
+      "dockerode-compose@1.2.2",
+      "/home/citrudev/.Repos/trader_bot/web"
+    ]
+  ],
+  "_from": "dockerode-compose@1.2.2",
+  "_id": "dockerode-compose@1.2.2",
+  "_inBundle": false,
+  "_integrity": "sha512-XyVS61js2vYK5OtjcPvqPrzX30vZ+nnA3H7EQ53zBBqx9ZbaZMqIAPPU8dYmlyRCXJbVCQNex62xLO3PjVsD+w==",
+  "_location": "/dockerode-compose",
+  "_phantomChildren": {
+    "chownr": "1.1.4",
+    "mkdirp-classic": "0.5.3",
+    "pump": "3.0.0",
+    "tar-stream": "2.2.0"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/apocas/dockerode-compose.git"
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "dockerode-compose@1.2.2",
+    "name": "dockerode-compose",
+    "escapedName": "dockerode-compose",
+    "rawSpec": "1.2.2",
+    "saveSpec": null,
+    "fetchSpec": "1.2.2"
   },
-  "author": "Pedro Dias <petermdias@gmail.com>",
-  "license": "Apache-2.0",
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/dockerode-compose/-/dockerode-compose-1.2.2.tgz",
+  "_spec": "1.2.2",
+  "_where": "/home/citrudev/.Repos/trader_bot/web",
+  "author": {
+    "name": "Pedro Dias",
+    "email": "petermdias@gmail.com"
+  },
   "bugs": {
     "url": "https://github.com/apocas/dockerode-compose/issues"
   },
-  "keywords": [
-    "docker",
-    "docker-compose"
-  ],
-  "homepage": "https://github.com/apocas/dockerode-compose#readme",
   "dependencies": {
     "dockerode": "^3.2.1",
     "js-yaml": "^4.0.0",
     "tar-fs": "^2.1.1"
   },
+  "description": "docker-compose in nodejs using dockerode",
   "devDependencies": {
     "chai": "~4.2.0",
     "memorystream": "~0.3.0",
     "mocha": "^7.1.0"
-  }
+  },
+  "homepage": "https://github.com/apocas/dockerode-compose#readme",
+  "keywords": [
+    "docker",
+    "docker-compose"
+  ],
+  "license": "Apache-2.0",
+  "main": "./compose.js",
+  "name": "dockerode-compose",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/apocas/dockerode-compose.git"
+  },
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha -R spec --exit"
+  },
+  "version": "1.2.2"
 }

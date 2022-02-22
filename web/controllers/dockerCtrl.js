@@ -1,6 +1,6 @@
 let Dockerode = require('dockerode')
 //let DockerodeCompose = require('../libs/dockerode-compose/compose')
-let DockerodeCompose = require('dockerode-compose')
+let DockerodeCompose = require('../libs/dockerode-compose/compose')
 let containerId = ""
 
 module.exports = {
@@ -22,8 +22,7 @@ module.exports = {
     },
 
     stopBot: async function (req, res) {
-        let docker = new Dockerode();
-       
+        let docker = new Dockerode()
         try {
             container = docker.getContainer(containerId)
             container.remove({
