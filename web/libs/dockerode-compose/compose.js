@@ -22,13 +22,14 @@ class Compose {
 
     try {
       this.recipe = yaml.load(fs.readFileSync(file, 'utf8'));
+      console.log(this.recipe)
     } catch (e) {
       throw e;
     }
   }
 
-  console.log(this.recipe)
   
+
   async up(options) {
     var output = {};
     try {
