@@ -2,6 +2,7 @@ let Dockerode = require('dockerode')
 let DockerodeCompose = require('../libs/dockerode-compose/compose')
 let containerId = ""
 
+/*
 let recipe  = {
     version: '3',
     services: {
@@ -15,13 +16,14 @@ let recipe  = {
       }
     }
 }
-
+*/
 
 module.exports = {
 
     startBot: async function (req, res) {
         let docker = new Dockerode();
-        let compose = new DockerodeCompose(docker, recipe, 'helloworld')
+        //let compose = new DockerodeCompose(docker, recipe, 'helloworld')
+        let compose = new DockerodeCompose(docker, `${process.cwd()}/freqtrade/docker-compose.yml`, 'helloworld')
         try {
             await compose.pull()
             let state = await compose.up()
