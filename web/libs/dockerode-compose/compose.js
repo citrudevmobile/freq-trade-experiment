@@ -23,15 +23,10 @@ class Compose {
 
     try {
       this.recipe = recipe
-      console.log(this.recipe)
-      console.log(this.recipe['services']['freqtrade']['volumes'])
-      console.log(this.recipe['services']['freqtrade']['ports'])
     } catch (e) {
       throw e;
     }
   }
-
-  
 
   async up(options) {
     var output = {};
