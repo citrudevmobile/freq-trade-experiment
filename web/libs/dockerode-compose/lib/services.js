@@ -5,9 +5,10 @@ const yaml = require('js-yaml');
 const path = require('path');
 
 module.exports = async function (docker, projectName, recipe, output, options) {
+
   console.log('At services...')
   console.log(projectName)
-  
+
   var services = [];
   var serviceNames = tools.sortServices(recipe);
   for (var serviceName of serviceNames) {
@@ -122,7 +123,7 @@ module.exports = async function (docker, projectName, recipe, output, options) {
     };
 
     if (service.networks !== undefined) {
-      servicesTools.buildNetworks(service.networks, networksToAttach);
+      servicesTools.buildNetworks(service.networks, networksToAttach, projectName);
     } else {
       opts.NetworkingConfig.EndpointsConfig[projectName + '_default'] = {
         'IPAMConfig': {},
