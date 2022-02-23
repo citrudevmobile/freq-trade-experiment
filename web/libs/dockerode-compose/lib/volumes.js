@@ -1,19 +1,4 @@
-async function down(docker, projectName, recipe, output) {
-  var volumes = [];
-  var volumeNames = Object.keys(recipe.volumes || []);
-  for (var volumeName of volumeNames) {
-    try {
-      var volume = await docker.getVolume(projectName + '_' + volumeName);
-    } catch (e) {}
-
-    try {
-      await volume.remove();
-    } catch (e) {}
-  }
-  return volumes;
-}
-
-async function up(docker, projectName, recipe, output) {
+module.exports = async function (docker, projectName, recipe, output) {
   var volumes = [];
   var volumeNames = Object.keys(recipe.volumes || []);
   for (var volumeName of volumeNames) {
@@ -21,16 +6,10 @@ async function up(docker, projectName, recipe, output) {
     if (volume === null) volume = {};
     if (volume.external === true) continue;
     var opts = {
-      Name: projectName + '_' + volumeName,
-      Driver: volume.driver,
-      DriverOpts: volume.driver_opts,
-      Labels: {
-        ...volume.labels,
-        ...{
-          'com.docker.compose.project': projectName,
-          'com.docker.compose.volume': volumeName,
-        },
-      },
+      'Name': projectName + '_' + volumeName,
+      'Driver': volume.driver,
+      'DriverOpts': volume.driver_opts,
+      'Labels': volume.labels
     };
     if (volume.name !== undefined) {
       opts.Name = volumeName;
@@ -39,8 +18,3 @@ async function up(docker, projectName, recipe, output) {
   }
   return volumes;
 }
-
-module.exports = {
-  down,
-  up,
-};
