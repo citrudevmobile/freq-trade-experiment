@@ -22,8 +22,9 @@ module.exports = {
 
     startBot: async function (req, res) {
         let docker = new Dockerode();
+        let compose = new DockerodeCompose(docker, `${process.cwd()}/freqtrade/docker-compose.yml`, "firstProject")
         //let compose = new DockerodeCompose(docker, recipe, 'helloworld')
-        let compose = new DockerodeCompose(docker, `${process.cwd()}/freqtrade/docker-compose.yml`, 'helloworld')
+       
         try {
             await compose.pull()
             let state = await compose.up()
