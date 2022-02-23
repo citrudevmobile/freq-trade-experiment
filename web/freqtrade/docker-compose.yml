@@ -28,7 +28,4 @@ services:
       --config /root/trader_bot/web/freqtrade/user_data/config.json
       --strategy SampleStrategy
 
-networks:
-  freqtradenet:
-    driver: bridge
-    name: freqtradenet
+
