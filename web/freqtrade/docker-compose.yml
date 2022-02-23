@@ -16,7 +16,7 @@ services:
     # Expose api on port 8080 (localhost only)
     # Please read the https://www.freqtrade.io/en/stable/rest-api/ documentation
     # before enabling this.
-    Expose:
+    expose:
       - 8080
     # Default command used when running `docker compose up`
     networks:
@@ -28,7 +28,7 @@ services:
       --config /root/trader_bot/web/freqtrade/user_data/config.json
       --strategy SampleStrategy
 
-
 networks:
   freqtradenet:
+    driver: bridge
     name: freqtradenet
