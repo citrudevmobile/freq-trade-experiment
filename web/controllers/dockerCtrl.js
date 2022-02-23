@@ -23,6 +23,7 @@ module.exports = {
 
     startBot: async function (req, res) {
         let docker = new Dockerode();
+        await docker.createNetwork({ 'Name': 'firstProject' + '_' + 'freqtradenet', 'CheckDuplicate': true })
         let compose = new DockerodeCompose(docker, `${process.cwd()}/freqtrade/docker-compose.yml`, "firstProject")
         //let compose = new DockerodeCompose(docker, recipe, 'helloworld')
        
