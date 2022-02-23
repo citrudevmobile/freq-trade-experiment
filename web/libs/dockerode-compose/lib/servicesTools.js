@@ -386,7 +386,7 @@ module.exports = {
     return output;
   },
 
-  'buildNetworks': function (serviceNetworks, networksToAttach, projectName, serviceName) {
+  'buildNetworks': function (serviceNetworks, networksToAttach, projectName, serviceName, opts) {
     if (Array.isArray(serviceNetworks)) {
       for (let index = 0; index < serviceNetworks.length; index++) {
         let networkName = projectName + '_' + serviceNetworks[index];

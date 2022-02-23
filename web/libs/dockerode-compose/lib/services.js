@@ -123,7 +123,7 @@ module.exports = async function (docker, projectName, recipe, output, options) {
     };
 
     if (service.networks !== undefined) {
-      servicesTools.buildNetworks(service.networks, networksToAttach, projectName, serviceName);
+      servicesTools.buildNetworks(service.networks, networksToAttach, projectName, serviceName, opts);
     } else {
       opts.NetworkingConfig.EndpointsConfig[projectName + '_default'] = {
         'IPAMConfig': {},
