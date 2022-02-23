@@ -22,6 +22,7 @@ class Compose {
 
     try {
       this.recipe = yaml.load(fs.readFileSync(file, 'utf8'));
+      console.log(this.recipe)
     } catch (e) {
       throw e;
     }
