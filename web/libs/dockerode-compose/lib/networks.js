@@ -3,6 +3,7 @@ module.exports = async function (docker, projectName, recipe, output) {
   var networkNames = Object.keys(recipe.networks || []);
   for (var networkName of networkNames) {
     var network = recipe.networks[networkName];
+    console.log(network)
     if (network === null) {
       try {
         networks.push({ 'name': projectName + '_' + networkName, 'network': await docker.createNetwork({ 'Name': projectName + '_' + networkName, 'CheckDuplicate': true }) });
