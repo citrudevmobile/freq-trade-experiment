@@ -5,6 +5,9 @@ const yaml = require('js-yaml');
 const path = require('path');
 
 module.exports = async function (docker, projectName, recipe, output, options) {
+  console.log('At services...')
+  console.log(projectName)
+  
   var services = [];
   var serviceNames = tools.sortServices(recipe);
   for (var serviceName of serviceNames) {
