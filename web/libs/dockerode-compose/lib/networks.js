@@ -2,6 +2,7 @@ module.exports = async function (docker, projectName, recipe, output) {
   var networks = [];
   var networkNames = Object.keys(recipe.networks || []);
   for (var networkName of networkNames) {
+    console.log('networks file...')
     console.log(networkName)
     var network = recipe.networks[networkName];
     
