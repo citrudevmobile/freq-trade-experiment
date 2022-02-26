@@ -38,6 +38,7 @@ module.exports = {
         } catch (e) {
             console.log('create network error...')
             console.log(e)
+            res.status(500).json({})
         }
 
 
@@ -49,6 +50,7 @@ module.exports = {
         } catch (e) {
             console.log('failed to create container...')
             console.log(e)
+            res.status(500).json({})
         }
 
 
@@ -57,6 +59,7 @@ module.exports = {
         } catch (e) {
             console.log('error connecting container to bot network...')
             console.log(e)
+            res.status(500).json({})
         }
     },
 
