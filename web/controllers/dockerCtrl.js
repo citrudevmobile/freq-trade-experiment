@@ -50,6 +50,7 @@ module.exports = {
             await botNetwork.connect({Container: docker.id})
         } catch (e) {
             console.log('error connecting container to bot network...')
+            console.log(e)
         }
        
         
