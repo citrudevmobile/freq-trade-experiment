@@ -30,6 +30,7 @@ module.exports = {
             let networkName = 'freqtradenet'
             let networks = await dockerNetwork.listNetworks()
             let network = networks.filter( network => network.Name == networkName)
+            console.log(network)
             if (network) {
                 let botNetwork = await dockerNetwork.getNetwork(network.Id)
                 console.log('existing bot network')
