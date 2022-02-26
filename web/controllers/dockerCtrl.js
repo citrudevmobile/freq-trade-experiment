@@ -18,7 +18,6 @@ module.exports = {
     startBot: async function (req, res) {
 
         let docker = new Dockerode();
-        let dockerNetwork = new Dockerode();
         let botNetwork = null
         let container = null
 
@@ -28,39 +27,32 @@ module.exports = {
             let network = networks.filter( network => network.Name == networkName )
             if (network.length > 0) {
                 botNetwork = await docker.getNetwork(network[0].Id)
-                console.log('existing bot network')
-                console.log(botNetwork)
             } else {
                 botNetwork = await docker.createNetwork({ 'Name': networkName, 'CheckDuplicate': true })
-                console.log('created new bot network')
-                console.log(botNetwork)
+            }
+            try {
+                container = await docker.createContainer(opts)
+                containerId = container.id
+                console.log(container)
+                try {
+                    await botNetwork.connect({Container: container.id})
+                    res.status(200).json({id: container.id})
+                } catch (e) {
+                    console.log('error connecting container to bot network...')
+                    console.log(e)
+                    res.status(500).json({})
+                }
+            } catch (e) {
+                console.log('failed to create container...')
+                console.log(e)
+                res.status(500).json({})
             }
         } catch (e) {
             console.log('create network error...')
             console.log(e)
             res.status(500).json({})
         }
-
-
-        try {
-            container = await docker.createContainer(opts)
-            containerId = container.id
-            console.log(container)
-            res.status(200).json({id: container.id})
-        } catch (e) {
-            console.log('failed to create container...')
-            console.log(e)
-            res.status(500).json({})
-        }
-
-
-        try {
-            await botNetwork.connect({Container: container.id})
-        } catch (e) {
-            console.log('error connecting container to bot network...')
-            console.log(e)
-            res.status(500).json({})
-        }
+  
     },
 
     stopBot: async function (req, res) {
