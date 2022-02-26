@@ -26,9 +26,9 @@ module.exports = {
         let docker = new Dockerode();
 
         try {
-            let network = await docker.getNetwork('freqtradenet') 
+            let networks = await docker.listNetworks()
             //await docker.createNetwork({ 'Name': 'firstProject' + '_' + 'freqtradenet', 'CheckDuplicate': true })
-            console.log(network)
+            console.log(networks)
         } catch (e) {
             console.log('create network error...')
             console.log(e)
