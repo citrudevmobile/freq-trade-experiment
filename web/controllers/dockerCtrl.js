@@ -31,6 +31,7 @@ module.exports = {
                 botNetwork = await docker.createNetwork({ 'Name': networkName, 'CheckDuplicate': true })
             }
             try {
+                await docker.pull(opts.Image)
                 container = await docker.createContainer(opts)
                 containerId = container.id
                 console.log(container)
