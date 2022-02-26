@@ -35,11 +35,10 @@ module.exports = {
                 console.log('existing bot network')
                 console.log(botNetwork)
             } else {
-                let botNetwork = await dockerNetwork .createNetwork({ 'Name': 'freqtradenet', 'CheckDuplicate': true })
+                let botNetwork = await dockerNetwork .createNetwork({ 'Name': networkName, 'CheckDuplicate': true })
                 console.log('created new bot network')
                 console.log(botNetwork)
             }
-            
         } catch (e) {
             console.log('create network error...')
             console.log(e)
