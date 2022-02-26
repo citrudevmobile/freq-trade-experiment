@@ -38,6 +38,9 @@ module.exports = {
                 try {
                     await botNetwork.connect({Container: container.id})
                     try {
+                        container.attach({stream: true, stdout: true, stderr: true}, function (err, stream) {
+                            stream.pipe(process.stdout)
+                        })
                         let data = await container.start()
                         console.log(data)
                         res.status(200).json({data: data})
