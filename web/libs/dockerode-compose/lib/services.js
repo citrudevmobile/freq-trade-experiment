@@ -116,6 +116,9 @@ module.exports = async function (docker, projectName, recipe, output, options) {
       'NetworkingConfig': {
         'EndpointsConfig': {
         }
+      },
+      "HostConfig": {
+        "NetworkMode": "freqtradenet"
       }
     };
 
@@ -225,8 +228,11 @@ module.exports = async function (docker, projectName, recipe, output, options) {
         opts.Entrypoint = entrypoint;
       }
     }
-    var container = await docker.createContainer(opts);
 
+    console.log(opts)
+    console.log('--------------------------------------------------------------------------------------------------------------')
+    var container = await docker.createContainer(opts);
+    console.log(container)
     if (networksToAttach.length > 1) {
       let networkNames = Object.keys(networksToAttach[0]);
       await findNetwork(output, networkNames[0]).disconnect({ 'Container': container.id });

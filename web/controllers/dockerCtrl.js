@@ -22,12 +22,11 @@ let recipe  = {
 module.exports = {
 
     startBot: async function (req, res) {
-        let docker = new Dockerode({"HostConfig": {
-            "NetworkMode": "firstProject_freqtradenet"
-        }});
+        let docker = new Dockerode();
+        
 
         try {
-            await docker.createNetwork({ 'Name': 'firstProject' + '_' + 'freqtradenet', 'CheckDuplicate': true })
+            await docker.createNetwork({ 'Name':'freqtradenet', 'CheckDuplicate': true })
         } catch (e) {
         }
         
