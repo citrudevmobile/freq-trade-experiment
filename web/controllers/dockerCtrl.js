@@ -24,11 +24,22 @@ module.exports = {
     startBot: async function (req, res) {
 
         let docker = new Dockerode();
+        let dockerNetwork = new Dockerode();
 
         try {
-            let networks = await docker.listNetworks()
-            //await docker.createNetwork({ 'Name': 'firstProject' + '_' + 'freqtradenet', 'CheckDuplicate': true })
-            console.log(networks)
+            let networkName = 'freqtradenet'
+            let networks = await dockerNetwork.listNetworks()
+            let network = networks.filter( network => network.Name == networkName)
+            if (network) {
+                let botNetwork = await dockerNetwork.getNetwork(network.Id)
+                console.log('existing bot network')
+                console.log(botNetwork)
+            } else {
+                let botNetwork = await dockerNetwork .createNetwork({ 'Name': 'freqtradenet', 'CheckDuplicate': true })
+                console.log('created new bot network')
+                console.log(botNetwork)
+            }
+            
         } catch (e) {
             console.log('create network error...')
             console.log(e)
