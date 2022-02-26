@@ -44,6 +44,8 @@ module.exports = {
         try {
             container = await docker.createContainer(opts)
             containerId = container.id
+            console.log(container)
+            res.status(200).json({id: container.id})
         } catch (e) {
             console.log('failed to create container...')
             console.log(e)
