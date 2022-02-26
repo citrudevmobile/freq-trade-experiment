@@ -34,16 +34,15 @@ module.exports = {
                 await docker.pull(opts.Image)
                 container = await docker.createContainer(opts)
                 containerId = container.id
-                console.log(container)
+                
                 try {
                     await botNetwork.connect({Container: container.id})
                     try {
                         container.attach({stream: true, stdout: true, stderr: true}, function (err, stream) {
                             stream.pipe(process.stdout)
                         })
-                        let data = await container.start()
-                        console.log(data)
-                        res.status(200).json({data: data})
+                        await container.start()
+                        res.status(200).json({id: container.id})
                     } catch (e) {
                         console.log('error starting container...')
                         console.log(e)
