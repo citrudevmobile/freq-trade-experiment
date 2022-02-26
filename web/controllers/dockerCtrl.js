@@ -25,6 +25,7 @@ module.exports = {
 
         let docker = new Dockerode();
         let dockerNetwork = new Dockerode();
+        let botNetwork = null
 
         try {
             let networkName = 'freqtradenet'
@@ -32,11 +33,11 @@ module.exports = {
             let network = networks.filter( network => network.Name == networkName)
             console.log(network[0])
             if (network) {
-                let botNetwork = await dockerNetwork.getNetwork(network[0].Id)
+                botNetwork = await dockerNetwork.getNetwork(network[0].Id)
                 console.log('existing bot network')
                 console.log(botNetwork)
             } else {
-                let botNetwork = await dockerNetwork .createNetwork({ 'Name': networkName, 'CheckDuplicate': true })
+                botNetwork = await dockerNetwork .createNetwork({ 'Name': networkName, 'CheckDuplicate': true })
                 console.log('created new bot network')
                 console.log(botNetwork)
             }
@@ -44,6 +45,13 @@ module.exports = {
             console.log('create network error...')
             console.log(e)
         }
+
+        try {
+            await botNetwork.connect({Container: docker.id})
+        } catch (e) {
+            console.log('error connecting container to bot network...')
+        }
+       
         
         let compose = new DockerodeCompose(docker, `${process.cwd()}/freqtrade/docker-compose.yml`, "firstProject")
         //let compose = new DockerodeCompose(docker, recipe, 'helloworld')
