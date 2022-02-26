@@ -37,7 +37,16 @@ module.exports = {
                 console.log(container)
                 try {
                     await botNetwork.connect({Container: container.id})
-                    res.status(200).json({id: container.id})
+                    try {
+                        let data = await container.start()
+                        console.log(data)
+                        res.status(200).json({data: data})
+                    } catch (e) {
+                        console.log('error starting container...')
+                        console.log(e)
+                        res.status(500).json({})
+                    }
+                    
                 } catch (e) {
                     console.log('error connecting container to bot network...')
                     console.log(e)
