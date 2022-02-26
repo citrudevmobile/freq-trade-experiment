@@ -3,21 +3,15 @@ let Dockerode = require('dockerode')
 let DockerodeCompose = require('../libs/dockerode-compose/compose')
 let containerId = ""
 
-/*
-let recipe  = {
-    version: '3',
-    services: {
-      freqtrade: {
-        image: 'freqtradeorg/freqtrade:stable',
-        restart: 'unless-stopped',
-        container_name: 'freqtradeMain',
-        volumes: ['/root/trader_bot/web/freqtrade/user_data:/freqtrade/user_data'],
-        ports: ['8080:8080'],
-        command: 'trade --logfile /root/trader_bot/web/freqtrade/user_data/logs/freqtrade.log --db-url sqlite:////root/trader_bot/web/freqtrade/user_data/tradesv3.sqlite --config /root/trader_bot/web/freqtrade/user_data/config.json --strategy SampleStrategy\n'
-      }
-    }
-}
-*/
+let opts = {
+    name: 'freqtrade',
+    Image: 'freqtradeorg/freqtrade:stable',
+    Env: [],
+    Volumes: { '/freqtrade/user_data': {} },
+    ExposedPorts: { '8080/tcp': {} },
+    Cmd: 'trade --logfile /root/trader_bot/web/freqtrade/user_data/logs/freqtrade.log --db-url sqlite:////root/trader_bot/web/freqtrade/user_data/tradesv3.sqlite --config /root/trader_bot/web/freqtrade/user_data/config.json --strategy SampleStrategy\n'
+  }
+  
 
 module.exports = {
 
@@ -26,18 +20,18 @@ module.exports = {
         let docker = new Dockerode();
         let dockerNetwork = new Dockerode();
         let botNetwork = null
+        let container = null
 
         try {
             let networkName = 'freqtradenet'
-            let networks = await dockerNetwork.listNetworks()
-            let network = networks.filter( network => network.Name == networkName)
-            console.log(network[0])
-            if (network) {
-                botNetwork = await dockerNetwork.getNetwork(network[0].Id)
+            let networks = await docker.listNetworks()
+            let network = networks.filter( network => network.Name == networkName )
+            if (network.length > 0) {
+                botNetwork = await docker.getNetwork(network[0].Id)
                 console.log('existing bot network')
                 console.log(botNetwork)
             } else {
-                botNetwork = await dockerNetwork .createNetwork({ 'Name': networkName, 'CheckDuplicate': true })
+                botNetwork = await docker.createNetwork({ 'Name': networkName, 'CheckDuplicate': true })
                 console.log('created new bot network')
                 console.log(botNetwork)
             }
@@ -46,27 +40,21 @@ module.exports = {
             console.log(e)
         }
 
+
         try {
-            await botNetwork.connect({Container: docker.id})
+            container = await docker.createContainer(opts)
+            containerId = container.id
+        } catch (e) {
+            console.log('failed to create container...')
+            console.log(e)
+        }
+
+
+        try {
+            await botNetwork.connect({Container: container.id})
         } catch (e) {
             console.log('error connecting container to bot network...')
             console.log(e)
-        }
-       
-        
-        let compose = new DockerodeCompose(docker, `${process.cwd()}/freqtrade/docker-compose.yml`, "firstProject")
-        //let compose = new DockerodeCompose(docker, recipe, 'helloworld')
-       
-        try {
-            await compose.pull()
-            let state = await compose.up()
-            console.log(state)
-            containerId = state["services"][0]["id"]
-            console.log(containerId)
-            res.status(200).json(state)
-        } catch (e) {
-            console.log(e)
-            res.status(500).json(e)
         }
     },
 
