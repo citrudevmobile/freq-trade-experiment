@@ -22,10 +22,13 @@ let recipe  = {
 module.exports = {
 
     startBot: async function (req, res) {
+
         let docker = new Dockerode();
 
         try {
-            await docker.createNetwork({ 'Name': 'firstProject' + '_' + 'freqtradenet', 'CheckDuplicate': true })
+            let networks = await docker.listNetworks()
+            //await docker.createNetwork({ 'Name': 'firstProject' + '_' + 'freqtradenet', 'CheckDuplicate': true })
+            console.log(networks)
         } catch (e) {
             console.log('create network error...')
             console.log(e)
