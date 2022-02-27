@@ -8,7 +8,9 @@ let opts = {
     Image: 'freqtradeorg/freqtrade:stable',
     Env: [],
     Volumes: { '/freqtrade/user_data': {} },
-    Binds: ['/root/trader_bot/web/freqtrade/user_data:/freqtrade/user_data:rw'],
+    HostConfig: {
+        Binds: ['/root/trader_bot/web/freqtrade/user_data:/freqtrade/user_data']
+      },
     ExposedPorts: { '8080/tcp': {} },
     Cmd: 'trade --logfile /root/trader_bot/web/freqtrade/user_data/logs/freqtrade.log --db-url sqlite:////root/trader_bot/web/freqtrade/user_data/tradesv3.sqlite --config /root/trader_bot/web/freqtrade/user_data/config.json --strategy SampleStrategy\n'
   }
