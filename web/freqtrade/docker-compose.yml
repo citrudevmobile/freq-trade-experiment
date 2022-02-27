@@ -19,10 +19,9 @@ services:
     expose:
       - 8080
     # Default command used when running `docker compose up`
-    networks:
-      - freqtradenet
+    
     command: >
-      trade
+      freqtrade trade
       --logfile /root/trader_bot/web/freqtrade/user_data/logs/freqtrade.log
       --db-url sqlite:////root/trader_bot/web/freqtrade/user_data/tradesv3.sqlite
       --config /root/trader_bot/web/freqtrade/user_data/config.json
