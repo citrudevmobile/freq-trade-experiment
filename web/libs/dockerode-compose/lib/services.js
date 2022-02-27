@@ -230,8 +230,9 @@ module.exports = async function (docker, projectName, recipe, output, options) {
     }
 
     var container = await docker.createContainer(opts);
-    container.attach({stream: true, stdout: true, stderr: true}, function (err, stream) {
+    container.attach({stream: true, stdout: true, stderr: true, stdin: true}, function (err, stream) {
       stream.pipe(process.stdout)
+      process.stdin.pipe(stream)
     })
     
     if (networksToAttach.length > 1) {

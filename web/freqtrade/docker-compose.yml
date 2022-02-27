@@ -19,8 +19,5 @@ services:
     expose:
       - 8080
     # Default command used when running `docker compose up`
-    
-    command: >
-      freqtrade trade  -c /root/trader_bot/web/freqtrade/user_data/config.json
-     
+  
 
