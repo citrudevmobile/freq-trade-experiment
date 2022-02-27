@@ -72,7 +72,7 @@ module.exports = {
 
         let docker = new Dockerode();
         await docker.pull(opts.Image)
-        docker.run(opts.Image, [], process.stdout, {name: opts.name, Hostname: opts.name, Volumes: { '/freqtrade/user_data': {} }, ExposedPorts: { '8080/tcp': {} }, Cmd: 'trade', HostConfig: { NetworkMode: 'freqtradenet', Binds: ['/root/trader_bot/web/freqtrade/user_data:/freqtrade/user_data']}}, function(err, data, container) {
+        docker.run(opts.Image, [], process.stdout, {name: opts.name, Hostname: opts.name, Volumes: { '/freqtrade/user_data': {} }, ExposedPorts: { '8080/tcp': {} }, Cmd: 'trade -c config.json', HostConfig: { NetworkMode: 'freqtradenet', Binds: ['/root/trader_bot/web/freqtrade/user_data:/freqtrade/user_data']}}, function(err, data, container) {
             if (err) return res.status(500).json({})
             containerId = container.id
             res.status(200).json({id: container.id})
