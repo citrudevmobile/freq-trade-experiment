@@ -229,9 +229,10 @@ module.exports = async function (docker, projectName, recipe, output, options) {
       }
     }
 
-    console.log(opts)
-    console.log('--------------------------------------------------------------------------------------------------------------')
     var container = await docker.createContainer(opts);
+    container.attach({stream: true, stdout: true, stderr: true}, function (err, stream) {
+      stream.pipe(process.stdout)
+    })
     
     if (networksToAttach.length > 1) {
       let networkNames = Object.keys(networksToAttach[0]);

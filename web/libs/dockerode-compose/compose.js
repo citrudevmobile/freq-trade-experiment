@@ -35,7 +35,7 @@ class Compose {
       output.secrets = await secrets(this.docker, this.projectName, this.recipe, output);
       output.volumes = await volumes(this.docker, this.projectName, this.recipe, output);
       output.configs = await configs(this.docker, this.projectName, this.recipe, output);
-      //output.networks = await networks(this.docker, this.projectName, this.recipe, output);
+      output.networks = await networks(this.docker, this.projectName, this.recipe, output);
       output.services = await services(this.docker, this.projectName, this.recipe, output, options);
       return output;
     } catch (e) {

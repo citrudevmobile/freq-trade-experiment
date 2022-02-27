@@ -19,7 +19,8 @@ let opts = {
 module.exports = {
 
     startBot: async function (req, res) {
-
+        
+        /*
         let docker = new Dockerode();
         let botNetwork = null
         let container = null
@@ -66,6 +67,24 @@ module.exports = {
             console.log('create network error...')
             console.log(e)
             res.status(500).json({})
+        }
+        */
+
+        let docker = new Dockerode();
+        
+        let compose = new DockerodeCompose(docker, `${process.cwd()}/freqtrade/docker-compose.yml`, "firstProject")
+        //let compose = new DockerodeCompose(docker, recipe, 'helloworld')
+       
+        try {
+            await compose.pull()
+            let state = await compose.up()
+            console.log(state)
+            containerId = state["services"][0]["id"]
+            console.log(containerId)
+            res.status(200).json(state)
+        } catch (e) {
+            console.log(e)
+            res.status(500).json(e)
         }
   
     },
