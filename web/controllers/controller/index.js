@@ -6,7 +6,7 @@ const helmet = require('helmet')
 const app = express()
 const server = require('http').Server(app)
 const io = require('socket.io')(server)
-
+console.log('controller started....')
 app.use(morgan('combined'))
 app.use(helmet({
   contentSecurityPolicy: false,
