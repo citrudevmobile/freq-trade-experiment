@@ -78,6 +78,8 @@ module.exports = {
             res.status(200).json({id: container.id})
         })
 
+        
+
         /*
         
         let compose = new DockerodeCompose(docker, `${process.cwd()}/freqtrade/docker-compose.yml`, "firstProject")
