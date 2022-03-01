@@ -69,16 +69,41 @@ module.exports = {
             res.status(500).json({})
         }
         */
+        let createOptions =  {
+            OpenStdin: true, 
+            AttachStdin: true, 
+            name: 'ctrl', 
+            Hostname: 'ctrl', 
+            //Volumes: { '/freqtrade/user_data': {} }, 
+            //ExposedPorts: { '8080/tcp': {} }, 
+            
+            HostConfig: { 
+                NetworkMode: 'freqtradenet', 
+                //Binds: ['/root/trader_bot/web/freqtrade/user_data:/freqtrade/user_data']
+            }
+        }
+
+        let startOptions = {
+            PortBindings: {
+                "80/tcp": [{
+                    "HostIP":"0.0.0.0",
+                    "HostPort": "80"
+                }],
+                "8080/tcp": [{
+                    "HostIP":"0.0.0.0",
+                    "HostPort": "8080"
+                }],
+            },
+        }
 
         let docker = new Dockerode()
-        await docker.pull(opts.Image)
-        docker.run(opts.Image, [], process.stdout, {OpenStdin: true, AttachStdin: true, name: opts.name, Hostname: opts.name, Volumes: { '/freqtrade/user_data': {} }, ExposedPorts: { '8080/tcp': {} }, Cmd: 'freqtrade create-userdir --userdir user_data', HostConfig: { NetworkMode: 'freqtradenet', Binds: ['/root/trader_bot/web/freqtrade/user_data:/freqtrade/user_data']}}, function(err, data, container) {
+        docker.run('controller:latest', [], process.stdout, createOptions, startOptions, function(err, data, container) {
             if (err) return res.status(500).json({})
             containerId = container.id
             res.status(200).json({id: container.id})
         })
 
-        
+
 
         /*
         
