@@ -85,9 +85,9 @@ module.exports = {
 
         let startOptions = {
             PortBindings: {
-                "80/tcp": [{
+                "8080/tcp": [{
                     "HostIP":"0.0.0.0",
-                    "HostPort": "80"
+                    "HostPort": "8080"
                 }],
                 "8080/tcp": [{
                     "HostIP":"0.0.0.0",
@@ -97,7 +97,7 @@ module.exports = {
         }
 
         let docker = new Dockerode()
-        docker.run('controller', [], process.stdout, createOptions, startOptions, function(err, data, container) {
+        docker.run('9ec37c25b382', [], process.stdout, createOptions, startOptions, function(err, data, container) {
             console.log(err)
             if (err) return res.status(500).json({})
             containerId = container.id
