@@ -39,7 +39,7 @@ module.exports = {
         let container = null
 
         try {
-            let stream = await dockerode.buildImage({
+            let stream = await docker.buildImage({
                 context: `${process.cwd()}/controllers/controller`,
                 src: ['Dockerfile']
             },{t: 'ctrl'})
@@ -90,8 +90,6 @@ module.exports = {
             res.status(500).json(e)
         }
     }
-
-    
 }
 
 
