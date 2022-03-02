@@ -73,39 +73,23 @@ module.exports = {
             name: 'ctrl', 
             Hostname: 'ctrl', 
             //Volumes: { '/freqtrade/user_data': {} }, 
-            
+            Image: 'controller',
             ExposedPorts: { '8080/tcp': {} }, 
             
             HostConfig: { 
                 NetworkMode: 'freqtradenet', 
                 //Binds: ['/root/trader_bot/web/freqtrade/user_data:/freqtrade/user_data']
-            },
-
-            PortBindings: {
-                "8080/tcp": [{
-                    "HostIP":"0.0.0.0",
-                    "HostPort": "8080"
-                }],
-                "8080/tcp": [{
-                    "HostIP":"0.0.0.0",
-                    "HostPort": "8080"
-                }],
+                PortBindings: {
+                    "8080/tcp": [{
+                        "HostIP":"0.0.0.0",
+                        "HostPort": "8080"
+                    }],
+                },
             },
 
         }
 
-        let startOptions = {
-            PortBindings: {
-                "8080/tcp": [{
-                    "HostIP":"0.0.0.0",
-                    "HostPort": "8080"
-                }],
-                "8080/tcp": [{
-                    "HostIP":"0.0.0.0",
-                    "HostPort": "8080"
-                }],
-            },
-        }
+        
 
         /*
         let docker = new Dockerode()
