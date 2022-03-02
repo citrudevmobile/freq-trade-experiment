@@ -11,13 +11,12 @@ module.exports = (app, io) => {
     app.post('/send-confirm-email', Auth.sendConfirmEmail)
     app.post('/confirm-email-link', Auth.activateUser)
   
-    
     app.post('/start-ctrlbot', DockerCtrl.startCtrlBot)
     app.post('/start-tradebot', DockerCtrl.startTradeBot)
 
-
     app.post('/stop-ctrlbot', DockerCtrl.stopCtrlBot)
     app.post('/ping-ctrlbot', CommsCtrl.pingCtrlBot)
+    app.post('/ping-tradebot', CommsCtrl.pingTradeBot)
    
     app.get('*', (req, res) => { res.sendFile(path.join(__basedir + '/dist/index.html')) })
     
