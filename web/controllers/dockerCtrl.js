@@ -81,7 +81,6 @@ module.exports = {
                 //Binds: ['/root/trader_bot/web/freqtrade/user_data:/freqtrade/user_data']
                 PortBindings: {
                     "8080/tcp": [{
-                        "HostIP":"0.0.0.0",
                         "HostPort": "8080"
                     }],
                 },
