@@ -62,6 +62,46 @@ module.exports = {
             }
     },
 
+
+    startTradeBot: async function (req, res) {
+        
+        let ctrlCreateOptions =  {
+            name: 'tradebot', 
+            Hostname: 'tradebot', 
+            Image: 'tradebot',
+            ExposedPorts: { '8080/tcp': {} }, 
+            HostConfig: { 
+                NetworkMode: 'freqtrade_network', 
+            },
+        }
+
+        let docker = new Dockerode()
+        let container = null
+
+            try {
+                let networkName = ctrlCreateOptions.HostConfig.NetworkMode
+                let networks = await docker.listNetworks()
+                let network = networks.filter( network => network.Name == networkName )
+                if (!(network.length > 0)) {
+                    await docker.createNetwork({ 'Name': networkName, 'CheckDuplicate': true })
+                } 
+                try {
+                    container = await docker.createContainer(ctrlCreateOptions)
+                    containerId = container.id
+                    console.log(containerId)
+                    await container.start()
+                    res.status(200).json({id: containerId})
+                } catch(e) {
+                    console.log(e)
+                    res.status(500).json({})
+                }
+            } catch (e) {
+                console.log('Error occured while creating bot network...')
+                console.log(e)
+                res.status(500).json({})
+            }
+    },
+
     stopCtrlBot: async function (req, res) {
         let docker = new Dockerode()
         try {
