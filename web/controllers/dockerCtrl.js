@@ -37,15 +37,7 @@ module.exports = {
 
         let docker = new Dockerode()
         let container = null
-        console.log(`${process.cwd()}/controllers/controller`)
-        try {
-            let stream = await docker.buildImage({
-                context: `${process.cwd()}/controllers/controller`,
-                src: ['Dockerfile']
-            }, {t: 'ctrl'})
-            await new Promise((resolve, reject) => {
-                docker.modem.followProgress(stream, (err, res) => err ? reject(err) : resolve(res))
-            })
+
             try {
                 let networkName = ctrlCreateOptions.HostConfig.NetworkMode
                 let networks = await docker.listNetworks()
@@ -68,11 +60,6 @@ module.exports = {
                 console.log(e)
                 res.status(500).json({})
             }
-        } catch (e) {
-            console.log(`Failed to build Image...`)
-            console.log(e)
-            res.status(500).json({})
-        }
     },
 
     stopCtrlBot: async function (req, res) {
