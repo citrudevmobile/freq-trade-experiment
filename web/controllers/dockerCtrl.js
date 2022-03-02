@@ -70,8 +70,6 @@ module.exports = {
         }
         */
         let createOptions =  {
-            OpenStdin: true, 
-            AttachStdin: true, 
             name: 'ctrl', 
             Hostname: 'ctrl', 
             //Volumes: { '/freqtrade/user_data': {} }, 
@@ -123,7 +121,7 @@ module.exports = {
         
         let docker = new Dockerode()
         const image = docker.getImage('controller')
-        docker.run(image, [], process.stdout, function(err, data, container) {
+        docker.run(image, [], process.stdout, createOptions, function(err, data, container) {
             console.log(err)
             if (err) return res.status(500).json({})
             containerId = container.id
