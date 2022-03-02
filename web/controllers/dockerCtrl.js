@@ -41,8 +41,9 @@ module.exports = {
         try {
             let stream = await docker.buildImage({
                 context: `${process.cwd()}/controllers/controller`,
-                src: ['Dockerfile']
-            },{t: 'ctrl'})
+                src: ['Dockerfile'],
+                t: 'ctrl'
+            })
             await new Promise((resolve, reject) => {
                 docker.modem.followProgress(stream, (err, res) => err ? reject(err) : resolve(res))
             })
