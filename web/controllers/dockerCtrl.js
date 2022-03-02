@@ -104,14 +104,16 @@ module.exports = {
         */
         
         let docker = new Dockerode()
-        
-        docker.run('controller', [], process.stdout, createOptions, function(err, data, container) {
-            console.log(err)
-            if (err) return res.status(500).json({})
+        let container = null
+        try{
+            container = await docker.createContainer(createOptions)
             containerId = container.id
             console.log(containerId)
-            res.status(200).json({id: container.id})
-        })
+            res.status(200).json({id: containerId})
+        } catch(e) {
+            console.log(e)
+            res.status(500).json({})
+        }
         
 
 
