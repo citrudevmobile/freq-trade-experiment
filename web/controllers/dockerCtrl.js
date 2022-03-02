@@ -69,22 +69,19 @@ module.exports = {
             res.status(500).json({})
         }
         */
-        let createOptions =  {
+        let ctrlCreateOptions =  {
             name: 'ctrl', 
             Hostname: 'ctrl', 
-            //Volumes: { '/freqtrade/user_data': {} }, 
             Image: 'controller',
             ExposedPorts: { '8080/tcp': {} }, 
             HostConfig: { 
-                NetworkMode: 'freqtradenet', 
-                //Binds: ['/root/trader_bot/web/freqtrade/user_data:/freqtrade/user_data']
+                NetworkMode: 'freqtradenet01', 
                 PortBindings: {
                     "8080/tcp": [{
                         "HostPort": "8080"
                     }],
                 },
             },
-
         }
 
         
@@ -104,12 +101,10 @@ module.exports = {
         let docker = new Dockerode()
         let container = null
         try{
-            container = await docker.createContainer(createOptions)
+            container = await docker.createContainer(ctrlCreateOptions)
             containerId = container.id
             console.log(containerId)
             await container.start()
-            let result  = await container.inspect()
-            console.log(result)
             res.status(200).json({id: containerId})
         } catch(e) {
             console.log(e)
