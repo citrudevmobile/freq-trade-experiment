@@ -44,7 +44,7 @@ module.exports = {
                 src: ['Dockerfile']
             },{t: 'ctrl'})
             await new Promise((resolve, reject) => {
-                dockerode.modem.followProgress(stream, (err, res) => err ? reject(err) : resolve(res))
+                docker.modem.followProgress(stream, (err, res) => err ? reject(err) : resolve(res))
             })
             try {
                 let networkName = ctrlCreateOptions.HostConfig.NetworkMode
