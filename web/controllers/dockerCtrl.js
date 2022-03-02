@@ -109,6 +109,7 @@ module.exports = {
             },
         }
 
+        /*
         let docker = new Dockerode()
         try {
             const image = docker.getImage('controller')
@@ -118,15 +119,17 @@ module.exports = {
         } catch (e) {
             res.status(500).json({})
         }
+        */
         
-        /*
-        docker.run('controller:latest', [], process.stdout, createOptions, function(err, data, container) {
+        
+        docker.run('controller:latest', [], process.stdout, function(err, data, container) {
             console.log(err)
             if (err) return res.status(500).json({})
             containerId = container.id
+            console.log(containerId)
             res.status(200).json({id: container.id})
         })
-        */
+        
 
 
         /*
