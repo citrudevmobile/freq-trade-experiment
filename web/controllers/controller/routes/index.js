@@ -11,7 +11,7 @@ module.exports = (app, io) => {
         try {
             const response = await axios.get('http://tradebot:8080/')
             console.log(response.data);
-            res.status(200).json({data: response.data})
+            res.status(200).json({message: response.data})
           } catch (error) {
             console.error('Unable to reach tradebot')
             res.status(500).json({})
