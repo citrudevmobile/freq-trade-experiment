@@ -18,15 +18,15 @@ let opts = {
 
 module.exports = {
 
-    startBot: async function (req, res) {
+    startCtrlBot: async function (req, res) {
         
         let ctrlCreateOptions =  {
             name: 'ctrl', 
             Hostname: 'ctrl', 
-            Image: 'controller',
+            Image: 'ctrl',
             ExposedPorts: { '8080/tcp': {} }, 
             HostConfig: { 
-                NetworkMode: 'freqtradenet01', 
+                NetworkMode: 'freqtrade_network', 
                 PortBindings: {
                     "8080/tcp": [{
                         "HostPort": "8080"
@@ -39,30 +39,43 @@ module.exports = {
         let container = null
 
         try {
-            let networkName = ctrlCreateOptions.HostConfig.NetworkMode
-            let networks = await docker.listNetworks()
-            let network = networks.filter( network => network.Name == networkName )
-            if (!(network.length > 0)) {
-                await docker.createNetwork({ 'Name': networkName, 'CheckDuplicate': true })
-            } 
+            let stream = await dockerode.buildImage({
+                context: `${process.cwd()}/controllers/controller`,
+                src: ['Dockerfile']
+            },{t: 'ctrl'})
+            await new Promise((resolve, reject) => {
+                dockerode.modem.followProgress(stream, (err, res) => err ? reject(err) : resolve(res))
+            })
             try {
-                container = await docker.createContainer(ctrlCreateOptions)
-                containerId = container.id
-                console.log(containerId)
-                await container.start()
-                res.status(200).json({id: containerId})
-            } catch(e) {
+                let networkName = ctrlCreateOptions.HostConfig.NetworkMode
+                let networks = await docker.listNetworks()
+                let network = networks.filter( network => network.Name == networkName )
+                if (!(network.length > 0)) {
+                    await docker.createNetwork({ 'Name': networkName, 'CheckDuplicate': true })
+                } 
+                try {
+                    container = await docker.createContainer(ctrlCreateOptions)
+                    containerId = container.id
+                    console.log(containerId)
+                    await container.start()
+                    res.status(200).json({id: containerId})
+                } catch(e) {
+                    console.log(e)
+                    res.status(500).json({})
+                }
+            } catch (e) {
+                console.log('Error occured while creating bot network...')
                 console.log(e)
                 res.status(500).json({})
             }
-        
         } catch (e) {
-            console.log('Error occured while creating bot network...')
+            console.log(`Failed to build Image...`)
+            console.log(e)
+            res.status(500).json({})
         }
-      
     },
 
-    stopBot: async function (req, res) {
+    stopCtrlBot: async function (req, res) {
         let docker = new Dockerode()
         try {
             container = docker.getContainer(containerId)
@@ -76,22 +89,9 @@ module.exports = {
             console.log(e)
             res.status(500).json(e)
         }
-    },
-
-    restartBot: async function () {
-        let docker = new Dockerode()
-        let compose = new DockerodeCompose(docker, recipe, 'helloworld')
-        try {
-            let state = await compose.down({ volumes: true })
-            console.log(state)
-            state = await compose.up()
-            console.log(state)
-            res.status(200).json(state)
-        } catch (e) {
-            console.log(e)
-            res.status(500).json(e)
-        }
     }
+
+    
 }
 
 

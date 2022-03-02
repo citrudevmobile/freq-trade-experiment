@@ -1,7 +1,7 @@
 const axios = require('axios')
 
 module.exports = {
-    pingBot: async function (req, res) {
+    pingCtrlBot: async function (req, res) {
         try {
             const response = await axios.get('http://localhost:8080/')
             console.log(response.data);
