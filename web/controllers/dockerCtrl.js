@@ -37,7 +37,7 @@ module.exports = {
 
         let docker = new Dockerode()
         let container = null
-
+        console.log(`${process.cwd()}/controllers/controller`)
         try {
             let stream = await docker.buildImage({
                 context: `${process.cwd()}/controllers/controller`,
