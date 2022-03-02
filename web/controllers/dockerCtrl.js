@@ -75,7 +75,6 @@ module.exports = {
             //Volumes: { '/freqtrade/user_data': {} }, 
             Image: 'controller',
             ExposedPorts: { '8080/tcp': {} }, 
-            
             HostConfig: { 
                 NetworkMode: 'freqtradenet', 
                 //Binds: ['/root/trader_bot/web/freqtrade/user_data:/freqtrade/user_data']
