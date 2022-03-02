@@ -122,7 +122,8 @@ module.exports = {
         */
         
         let docker = new Dockerode()
-        docker.run('controller', [], process.stdout, function(err, data, container) {
+        const image = docker.getImage('controller')
+        docker.run(image, [], process.stdout, function(err, data, container) {
             console.log(err)
             if (err) return res.status(500).json({})
             containerId = container.id
