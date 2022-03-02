@@ -108,6 +108,8 @@ module.exports = {
             containerId = container.id
             console.log(containerId)
             await container.start()
+            let result  = await container.inspect()
+            console.log(result)
             res.status(200).json({id: containerId})
         } catch(e) {
             console.log(e)
