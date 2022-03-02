@@ -109,6 +109,7 @@ module.exports = {
             container = await docker.createContainer(createOptions)
             containerId = container.id
             console.log(containerId)
+            await container.start()
             res.status(200).json({id: containerId})
         } catch(e) {
             console.log(e)
