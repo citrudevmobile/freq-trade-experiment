@@ -69,6 +69,7 @@ module.exports = {
             res.status(500).json({})
         }
         */
+       
         let ctrlCreateOptions =  {
             name: 'ctrl', 
             Hostname: 'ctrl', 
@@ -83,8 +84,6 @@ module.exports = {
                 },
             },
         }
-
-        
 
         /*
         let docker = new Dockerode()
