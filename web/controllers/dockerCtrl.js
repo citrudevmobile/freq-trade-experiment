@@ -97,7 +97,7 @@ module.exports = {
         }
 
         let docker = new Dockerode()
-        docker.run('9ec37c25b382', ['node', 'index.js'], process.stdout, createOptions, startOptions, function(err, data, container) {
+        docker.run('controller:latest', ['node', 'index.js'], process.stdout, createOptions, startOptions, function(err, data, container) {
             console.log(err)
             if (err) return res.status(500).json({})
             containerId = container.id
