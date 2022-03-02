@@ -20,7 +20,102 @@ module.exports = {
 
     startBot: async function (req, res) {
         
-        /*
+        let ctrlCreateOptions =  {
+            name: 'ctrl', 
+            Hostname: 'ctrl', 
+            Image: 'controller',
+            ExposedPorts: { '8080/tcp': {} }, 
+            HostConfig: { 
+                NetworkMode: 'freqtradenet01', 
+                PortBindings: {
+                    "8080/tcp": [{
+                        "HostPort": "8080"
+                    }],
+                },
+            },
+        }
+
+        let docker = new Dockerode()
+        let container = null
+
+        try {
+            let networkName = ctrlCreateOptions.HostConfig.NetworkMode
+            let networks = await docker.listNetworks()
+            let network = networks.filter( network => network.Name == networkName )
+            if (!(network.length > 0)) {
+                await docker.createNetwork({ 'Name': networkName, 'CheckDuplicate': true })
+            } 
+            try {
+                container = await docker.createContainer(ctrlCreateOptions)
+                containerId = container.id
+                console.log(containerId)
+                await container.start()
+                res.status(200).json({id: containerId})
+            } catch(e) {
+                console.log(e)
+                res.status(500).json({})
+            }
+        
+        } catch (e) {
+            console.log('Error occured while creating bot network...')
+        }
+      
+    },
+
+    stopBot: async function (req, res) {
+        let docker = new Dockerode()
+        try {
+            container = docker.getContainer(containerId)
+            container.remove({
+                force: true
+            }, function(err) {
+                if (err) return res.status(500).json({})
+                res.status(200).json({})
+            })
+        } catch (e) {
+            console.log(e)
+            res.status(500).json(e)
+        }
+    },
+
+    restartBot: async function () {
+        let docker = new Dockerode()
+        let compose = new DockerodeCompose(docker, recipe, 'helloworld')
+        try {
+            let state = await compose.down({ volumes: true })
+            console.log(state)
+            state = await compose.up()
+            console.log(state)
+            res.status(200).json(state)
+        } catch (e) {
+            console.log(e)
+            res.status(500).json(e)
+        }
+    }
+}
+
+
+
+  /*
+        
+        let compose = new DockerodeCompose(docker, `${process.cwd()}/freqtrade/docker-compose.yml`, "firstProject")
+        //let compose = new DockerodeCompose(docker, recipe, 'helloworld')
+       
+        try {
+            await compose.pull()
+            let state = await compose.up()
+            console.log(state)
+            containerId = state["services"][0]["id"]
+            console.log(containerId)
+            res.status(200).json(state)
+        } catch (e) {
+            console.log(e)
+            res.status(500).json(e)
+        }
+
+    */
+  
+         /*
         let docker = new Dockerode();
         let botNetwork = null
         let container = null
@@ -69,98 +164,3 @@ module.exports = {
             res.status(500).json({})
         }
         */
-       
-        let ctrlCreateOptions =  {
-            name: 'ctrl', 
-            Hostname: 'ctrl', 
-            Image: 'controller',
-            ExposedPorts: { '8080/tcp': {} }, 
-            HostConfig: { 
-                NetworkMode: 'freqtradenet01', 
-                PortBindings: {
-                    "8080/tcp": [{
-                        "HostPort": "8080"
-                    }],
-                },
-            },
-        }
-
-        /*
-        let docker = new Dockerode()
-        try {
-            const image = docker.getImage('controller')
-            let result  = await image.inspect()
-            console.log(result)
-            res.status(200).json({})
-        } catch (e) {
-            res.status(500).json({})
-        }
-        */
-        
-        let docker = new Dockerode()
-        let container = null
-        try{
-            container = await docker.createContainer(ctrlCreateOptions)
-            containerId = container.id
-            console.log(containerId)
-            await container.start()
-            res.status(200).json({id: containerId})
-        } catch(e) {
-            console.log(e)
-            res.status(500).json({})
-        }
-        
-
-
-        /*
-        
-        let compose = new DockerodeCompose(docker, `${process.cwd()}/freqtrade/docker-compose.yml`, "firstProject")
-        //let compose = new DockerodeCompose(docker, recipe, 'helloworld')
-       
-        try {
-            await compose.pull()
-            let state = await compose.up()
-            console.log(state)
-            containerId = state["services"][0]["id"]
-            console.log(containerId)
-            res.status(200).json(state)
-        } catch (e) {
-            console.log(e)
-            res.status(500).json(e)
-        }
-
-        */
-  
-    },
-
-    stopBot: async function (req, res) {
-        let docker = new Dockerode()
-        try {
-            container = docker.getContainer(containerId)
-            container.remove({
-                force: true
-            }, function(err) {
-                if (err) return res.status(500).json({})
-                res.status(200).json({})
-            })
-        } catch (e) {
-            console.log(e)
-            res.status(500).json(e)
-        }
-    },
-
-    restartBot: async function () {
-        let docker = new Dockerode()
-        let compose = new DockerodeCompose(docker, recipe, 'helloworld')
-        try {
-            let state = await compose.down({ volumes: true })
-            console.log(state)
-            state = await compose.up()
-            console.log(state)
-            res.status(200).json(state)
-        } catch (e) {
-            console.log(e)
-            res.status(500).json(e)
-        }
-    }
-}
