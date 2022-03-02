@@ -1,4 +1,5 @@
-let axios = require('axios')
+const axios = require('axios')
+
 module.exports = {
     pingBot: async function (req, res) {
         try {
