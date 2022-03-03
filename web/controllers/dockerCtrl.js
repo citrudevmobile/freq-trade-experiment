@@ -53,7 +53,6 @@ module.exports = {
 
 
     startTradeBot: async function (req, res) {
-        
         let ctrlCreateOptions =  {
             name: req.body.name, 
             Hostname: req.body.name, 
