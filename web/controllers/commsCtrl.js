@@ -4,7 +4,7 @@ const axios = require('axios')
 // Currently there are two apps: the controller application and tradebot application respectively
 
 module.exports = {
-  
+
     pingCtrlBot: async function (req, res) {
         try {
             const response = await axios.get('http://localhost:8080/')
@@ -18,7 +18,9 @@ module.exports = {
 
     pingTradeBot: async function (req, res) {
       try {
-          const response = await axios.get('http://localhost:8080/ping-tradebot')
+          const response = await axios.post('http://localhost:8080/ping-tradebot', {
+            name: req.body.name
+          })
           console.log(response.data);
           res.status(200).json(response.data)
         } catch (error) {

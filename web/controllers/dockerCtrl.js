@@ -11,6 +11,7 @@ module.exports = {
             name: 'ctrl', 
             Hostname: 'ctrl', 
             Image: 'ctrl',
+            Env: [`BOT_NAME=ctrl`],
             ExposedPorts: { '8080/tcp': {} }, 
             HostConfig: { 
                 NetworkMode: 'freqtrade_network',
@@ -60,6 +61,7 @@ module.exports = {
             name: req.body.name, 
             Hostname: req.body.name, 
             Image: 'tradebot',
+            Env: [`BOT_NAME=${req.body.name}`],
             ExposedPorts: { '8080/tcp': {} }, 
             HostConfig: { 
                 NetworkMode: 'freqtrade_network', 
@@ -69,7 +71,9 @@ module.exports = {
 
         let docker = new Dockerode()
         let container = null
-
+        let containers = await docker.listContainers()
+        containers = containers.filter( container => container.Names.includes(`/ctrl`) )
+        if (!(containers.length > 0)) { 
             try {
                 let networkName = ctrlCreateOptions.HostConfig.NetworkMode
                 let networks = await docker.listNetworks()
@@ -90,6 +94,9 @@ module.exports = {
                 console.log(e)
                 res.status(500).json({message: 'Internal server error'})
             }
+        } else {
+            res.status(200).json({id: containers[0].Id, name: ctrlCreateOptions.name})
+        }   
     },
 
     stopCtrlBot: async function (req, res) {
