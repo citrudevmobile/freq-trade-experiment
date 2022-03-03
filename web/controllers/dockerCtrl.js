@@ -69,7 +69,7 @@ module.exports = {
         let docker = new Dockerode()
         let container = null
         let containers = await docker.listContainers()
-        containers = containers.filter( container => container.Names.includes(`/ctrl`) )
+        containers = containers.filter( container => container.Names.includes(`/${req.body.name}`) )
         if (!(containers.length > 0)) { 
             try {
                 let networkName = ctrlCreateOptions.HostConfig.NetworkMode
