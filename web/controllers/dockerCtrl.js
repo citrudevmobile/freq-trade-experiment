@@ -81,7 +81,7 @@ module.exports = {
                 try {
                     container = await docker.createContainer(ctrlCreateOptions)
                     await container.start()
-                    res.status(200).json({id: containerId, name: req.body.name})
+                    res.status(200).json({id: container.id, name: req.body.name})
                 } catch(e) {
                     console.log(e)
                     res.status(500).json({})
