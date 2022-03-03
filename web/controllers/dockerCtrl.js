@@ -104,10 +104,10 @@ module.exports = {
                     force: true
                 }, function(err) {
                     if (err) return res.status(500).json({})
-                    res.status(200).json({message: `container ${containerName} has been shut down`})
+                    res.status(200).json({message: `container ctrl has been shut down`})
                 })
             } else {
-                res.status(200).json({ message: `container ${containerName} not found. Already shut down` })
+                res.status(200).json({ message: `container ctrl not found. Already shut down` })
             }
         } catch (e) {
             console.log(e)
