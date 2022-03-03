@@ -74,7 +74,6 @@ module.exports = {
                 } 
                 try {
                     container = await docker.createContainer(ctrlCreateOptions)
-                    containerId = container.id
                     await container.start()
                     res.status(200).json({id: containerId, name: req.body.name})
                 } catch(e) {
