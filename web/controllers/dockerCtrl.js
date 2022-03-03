@@ -91,7 +91,7 @@ module.exports = {
         let docker = new Dockerode()
         try {
             let containers = await docker.listContainers()
-            let containers = containers.filter( container => container.Names.includes(`/ctrl`) )
+            containers = containers.filter( container => container.Names.includes(`/ctrl`) )
             console.log(containers)
             if (containers.length > 0) {
                 container = docker.getContainer(containers[0].Id)
@@ -114,7 +114,7 @@ module.exports = {
         let docker = new Dockerode()
         try {
             let containers = await docker.listContainers()
-            let containers = containers.filter( container => container.Names.includes(`/${req.body.name}`) )
+            containers = containers.filter( container => container.Names.includes(`/${req.body.name}`) )
             console.log(containers)
             if (containers.length > 0) {
                 container = docker.getContainer(containers[0].Id)
