@@ -107,7 +107,9 @@ module.exports = {
     stopCtrlBot: async function (req, res) {
         let docker = new Dockerode()
         try {
-            container = docker.getContainer(containerId)
+            let containers = await docker.listContainers({"name": "ctrl"})
+            console.log(containers)
+            container = docker.getContainer(containers[0].Id)
             container.remove({
                 force: true
             }, function(err) {

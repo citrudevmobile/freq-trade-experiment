@@ -1,6 +1,10 @@
 const axios = require('axios')
 
+// This is resposible for communications with the applications in the containers. 
+// Currently there are two apps: the controller application and tradebot application respectively
+
 module.exports = {
+  
     pingCtrlBot: async function (req, res) {
         try {
             const response = await axios.get('http://localhost:8080/')
@@ -18,7 +22,7 @@ module.exports = {
           console.log(response.data);
           res.status(200).json(response.data)
         } catch (error) {
-          console.error('Unable to reach controller')
+          console.error('Unable to reach tradebot')
           res.status(500).json({})
         }
   }
