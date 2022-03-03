@@ -26,7 +26,8 @@ module.exports = {
             Image: 'ctrl',
             ExposedPorts: { '8080/tcp': {} }, 
             HostConfig: { 
-                NetworkMode: 'freqtrade_network', 
+                NetworkMode: 'freqtrade_network',
+                Binds: [`${process.cwd()}/controllers/controller:/usr/src/app`], 
                 PortBindings: {
                     "8080/tcp": [{
                         "HostPort": "8080"
@@ -72,6 +73,7 @@ module.exports = {
             ExposedPorts: { '8080/tcp': {} }, 
             HostConfig: { 
                 NetworkMode: 'freqtrade_network', 
+                Binds: [`${process.cwd()}/controllers/temptradebot:/usr/src/app`], 
             },
         }
 
