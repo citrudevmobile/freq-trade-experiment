@@ -4,7 +4,7 @@ module.exports = (app, io) => {
 
     app.get('/', (req, res) => {
         console.log('controller works')
-        res.status(200).json({message: 'this is the controller bot...'})
+        res.status(200).json({message: 'Controller bot up...'})
     })
 
     app.get('/ping-tradebot', async (req, res) => {
