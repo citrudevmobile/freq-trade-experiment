@@ -137,7 +137,6 @@ module.exports = {
                 res.status(200).json({ message: `container ${req.body.name} not found. Already shut down` })
             }
         } catch (e) {
-            console.log(e)
             res.status(500).json({message: 'Internal server error'})
         }
     }

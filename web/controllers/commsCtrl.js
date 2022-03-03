@@ -21,11 +21,9 @@ module.exports = {
           const response = await axios.post('http://localhost:8080/ping-tradebot', {
             name: req.body.name
           })
-          console.log(response.data);
           res.status(200).json(response.data)
         } catch (error) {
-          console.error('Unable to reach tradebot')
-          res.status(500).json({})
+          res.status(500).json({message: 'Unable to reach tradebot'})
         }
   }
 }
