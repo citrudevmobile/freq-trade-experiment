@@ -3,7 +3,7 @@ let Dockerode = require('dockerode')
 module.exports = {
 
     startCtrlBot: async function (req, res) {
-        
+        // start controller bot
         let ctrlCreateOptions =  {
             name: 'ctrl', 
             Hostname: 'ctrl', 
@@ -53,6 +53,7 @@ module.exports = {
 
 
     startTradeBot: async function (req, res) {
+        //start trade bot with a specified name
         let ctrlCreateOptions =  {
             name: req.body.name, 
             Hostname: req.body.name, 
@@ -96,6 +97,7 @@ module.exports = {
     },
 
     stopCtrlBot: async function (req, res) {
+        // stop controller bot
         let docker = new Dockerode()
         try {
             let containers = await docker.listContainers()
@@ -119,6 +121,7 @@ module.exports = {
     },
 
     stopTradeBot: async function (req, res) {
+        // stop tradebot with a specified name
         let docker = new Dockerode()
         try {
             let containers = await docker.listContainers()
