@@ -15,6 +15,8 @@ module.exports = (app, io) => {
     app.post('/start-tradebot', DockerCtrl.startTradeBot)
 
     app.post('/stop-ctrlbot', DockerCtrl.stopCtrlBot)
+    app.post('/stop-tradebot', DockerCtrl.stopTradeBot)
+
     app.post('/ping-ctrlbot', CommsCtrl.pingCtrlBot)
     app.post('/ping-tradebot', CommsCtrl.pingTradeBot)
    
