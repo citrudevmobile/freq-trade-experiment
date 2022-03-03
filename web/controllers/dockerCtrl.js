@@ -1,20 +1,7 @@
 let Dockerode = require('dockerode')
 //let DockerodeCompose = require('dockerode-compose')
 let DockerodeCompose = require('../libs/dockerode-compose/compose')
-let containerId = ""
 
-let opts = {
-    name: 'freqtrade',
-    Image: 'freqtradeorg/freqtrade',
-    Env: [],
-    Volumes: { '/freqtrade/user_data': {} },
-    HostConfig: {
-        Binds: ['/root/trader_bot/web/freqtrade/user_data:/freqtrade/user_data']
-      },
-    ExposedPorts: { '8080/tcp': {} },
-    Cmd: 'trade --logfile /root/trader_bot/web/freqtrade/user_data/logs/freqtrade.log --db-url sqlite:////root/trader_bot/web/freqtrade/user_data/tradesv3.sqlite --config /root/trader_bot/web/freqtrade/user_data/config.json --strategy SampleStrategy\n'
-  }
-  
 
 module.exports = {
 
@@ -48,10 +35,8 @@ module.exports = {
                 } 
                 try {
                     container = await docker.createContainer(ctrlCreateOptions)
-                    containerId = container.id
-                    console.log(containerId)
                     await container.start()
-                    res.status(200).json({id: containerId})
+                    res.status(200).json({id: containerId, name: ctrlCreateOptions.name})
                 } catch(e) {
                     console.log(e)
                     res.status(500).json({})
@@ -59,7 +44,7 @@ module.exports = {
             } catch (e) {
                 console.log('Error occured while creating bot network...')
                 console.log(e)
-                res.status(500).json({})
+                res.status(500).json({message: 'Internal server error'})
             }
     },
 
@@ -67,8 +52,8 @@ module.exports = {
     startTradeBot: async function (req, res) {
         
         let ctrlCreateOptions =  {
-            name: 'tradebot', 
-            Hostname: 'tradebot', 
+            name: req.body.name, 
+            Hostname: req.body.name, 
             Image: 'tradebot',
             ExposedPorts: { '8080/tcp': {} }, 
             HostConfig: { 
@@ -90,9 +75,8 @@ module.exports = {
                 try {
                     container = await docker.createContainer(ctrlCreateOptions)
                     containerId = container.id
-                    console.log(containerId)
                     await container.start()
-                    res.status(200).json({id: containerId})
+                    res.status(200).json({id: containerId, name: req.body.name})
                 } catch(e) {
                     console.log(e)
                     res.status(500).json({})
@@ -100,25 +84,53 @@ module.exports = {
             } catch (e) {
                 console.log('Error occured while creating bot network...')
                 console.log(e)
-                res.status(500).json({})
+                res.status(500).json({message: 'Internal server error'})
             }
     },
 
     stopCtrlBot: async function (req, res) {
         let docker = new Dockerode()
         try {
-            let containers = await docker.listContainers({"name": "ctrl"})
+            let containers = await docker.listContainers()
+            let containers = containers.filter( container => container.Names.includes(`/ctrl`) )
             console.log(containers)
-            container = docker.getContainer(containers[0].Id)
-            container.remove({
-                force: true
-            }, function(err) {
-                if (err) return res.status(500).json({})
-                res.status(200).json({})
-            })
+            if (containers.length > 0) {
+                container = docker.getContainer(containers[0].Id)
+                container.remove({
+                    force: true
+                }, function(err) {
+                    if (err) return res.status(500).json({})
+                    res.status(200).json({message: `container ${containerName} has been shut down`})
+                })
+            } else {
+                res.status(200).json({ message: `container ${containerName} not found. Already shut down` })
+            }
         } catch (e) {
             console.log(e)
-            res.status(500).json(e)
+            res.status(500).json({message: 'Internal server error'})
+        }
+    },
+
+    stopTradeBot: async function (req, res) {
+        let docker = new Dockerode()
+        try {
+            let containers = await docker.listContainers()
+            let containers = containers.filter( container => container.Names.includes(`/${req.body.name}`) )
+            console.log(containers)
+            if (containers.length > 0) {
+                container = docker.getContainer(containers[0].Id)
+                container.remove({
+                    force: true
+                }, function(err) {
+                    if (err) return res.status(500).json({})
+                    res.status(200).json({message: `container ${req.body.name} has been shut down`})
+                })
+            } else {
+                res.status(200).json({ message: `container ${req.body.name} not found. Already shut down` })
+            }
+        } catch (e) {
+            console.log(e)
+            res.status(500).json({message: 'Internal server error'})
         }
     }
 }
