@@ -11,7 +11,8 @@ app.use(morgan('combined'))
 app.use(helmet({
   contentSecurityPolicy: false,
 }))
-
+console.log('Message from container...')
+console.log('Controller container statered...')
 app.use(compression())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
