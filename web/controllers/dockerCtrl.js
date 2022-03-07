@@ -3,6 +3,18 @@ let Dockerode = require('dockerode')
 module.exports = {
 
     testImage: async function (req, res) {
+
+        let ctrlCreateOptions =  {
+            name: req.body.name, 
+            Hostname: req.body.name, 
+            Image: 'tradebot',
+            Env: [`BOT_NAME=${req.body.name}`],
+            ExposedPorts: { '8080/tcp': {} }, 
+            HostConfig: { 
+                NetworkMode: 'freqtrade_network', 
+                Binds: [`${process.cwd()}/controllers/temptradebot:/usr/src/app`], 
+            },
+        }
         try {
             let docker = new Dockerode()
             let freqtrade = await docker.getImage('freqtradeorg/freqtrade:stable')
@@ -48,6 +60,15 @@ module.exports = {
                 } 
                 try {
                     container = await docker.createContainer(ctrlCreateOptions)
+                    await container.attach({
+                        stream: true,
+                        stdout: true,
+                        stderr: true
+                      }, function handler(err, stream) {
+                        //...
+                        container.modem.demuxStream(stream, process.stdout, process.stderr);
+                        //...
+                      });
                     await container.start()
                     res.status(200).json({id: container.id, name: ctrlCreateOptions.name})
                 } catch(e) {
