@@ -67,6 +67,7 @@ module.exports = {
 
     startTradeBot: async function (req, res) {
         //start trade bot with a specified name
+        // should be create container instead
         let ctrlCreateOptions =  {
             name: req.body.name, 
             Hostname: req.body.name, 
