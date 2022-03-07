@@ -2,6 +2,19 @@ let Dockerode = require('dockerode')
 
 module.exports = {
 
+    testImage: async function (req, res) {
+        try {
+            let docker = new Dockerode()
+            let freqtrade = await docker.getImage('freqtradeorg/freqtrade:stable')
+            let result = await freqtrade.inspect()
+            console.log(result)
+            res.status(200).json({})
+        } catch (e) {
+            console.log(e)
+            res.status(500).json({})
+        }
+    },
+
     startCtrlBot: async function (req, res) {
         // start controller bot
         let ctrlCreateOptions =  {
