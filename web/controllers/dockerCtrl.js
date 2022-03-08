@@ -91,7 +91,7 @@ module.exports = {
             HostConfig: { 
                 NetworkMode: 'freqtrade_network', 
             },
-            Cmd: [`ls user_data`],
+            Cmd: [`ls freqtrade`],
             Entrypoint: [""]
         }
 
