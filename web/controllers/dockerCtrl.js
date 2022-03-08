@@ -106,23 +106,9 @@ module.exports = {
             HostConfig: { 
                 NetworkMode: 'freqtrade_network', 
             },
-            Cmd: [`ls`, 'user_data'],
+            Cmd: `ls`,
             Entrypoint: [""]
         }
-
-        //trade --logfile /freqtrade/user_data/logs/freqtrade.log --db-url sqlite:////freqtrade/user_data/tradesv3.sqlite --config /freqtrade/user_data/config.json --strategy SampleStrategy
-        /*
-        try {
-            let docker = new Dockerode()
-            let freqimg = await docker.getImage('freqtradeorg/freqtrade:stable')
-            let result = await freqimg.inspect()
-            console.log(result)
-            res.status(200).json()
-        } catch (e) {
-            console.log(e)
-            res.status(500).json()
-        }
-        */
 
         let docker = new Dockerode()
         let container = null
