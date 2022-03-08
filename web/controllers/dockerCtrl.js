@@ -53,9 +53,35 @@ module.exports = {
     },
 
 
+    stopCtrlBot: async function (req, res) {
+        // stop controller bot
+        let docker = new Dockerode()
+        try {
+            let containers = await docker.listContainers()
+            containers = containers.filter( container => container.Names.includes(`/ctrl`) )
+            console.log(containers)
+            if (containers.length > 0) {
+                container = docker.getContainer(containers[0].Id)
+                container.remove({
+                    force: true
+                }, function(err) {
+                    if (err) return res.status(500).json({})
+                    res.status(200).json({message: `container ctrl has been shut down`})
+                })
+            } else {
+                res.status(200).json({ message: `container ctrl not found. Already shut down` })
+            }
+        } catch (e) {
+            console.log(e)
+            res.status(500).json({message: 'Internal server error'})
+        }
+    },
+
+
     startTradeBot: async function (req, res) {
         //start trade bot with a specified name
         // should be create container instead
+        
         let ctrlCreateOptions =  {
             name: req.body.name, 
             Hostname: req.body.name, 
@@ -86,10 +112,8 @@ module.exports = {
                         stdout: true,
                         stderr: true
                       }, function handler(err, stream) {
-                        //...
-                        container.modem.demuxStream(stream, process.stdout, process.stderr);
-                        //...
-                      });
+                        container.modem.demuxStream(stream, process.stdout, process.stderr)
+                      })
                     await container.start()
                     res.status(200).json({id: container.id, name: req.body.name})
                 } catch(e) {
@@ -106,30 +130,7 @@ module.exports = {
         }   
     },
 
-    stopCtrlBot: async function (req, res) {
-        // stop controller bot
-        let docker = new Dockerode()
-        try {
-            let containers = await docker.listContainers()
-            containers = containers.filter( container => container.Names.includes(`/ctrl`) )
-            console.log(containers)
-            if (containers.length > 0) {
-                container = docker.getContainer(containers[0].Id)
-                container.remove({
-                    force: true
-                }, function(err) {
-                    if (err) return res.status(500).json({})
-                    res.status(200).json({message: `container ctrl has been shut down`})
-                })
-            } else {
-                res.status(200).json({ message: `container ctrl not found. Already shut down` })
-            }
-        } catch (e) {
-            console.log(e)
-            res.status(500).json({message: 'Internal server error'})
-        }
-    },
-
+    
     stopTradeBot: async function (req, res) {
         // stop tradebot with a specified name
         let docker = new Dockerode()
