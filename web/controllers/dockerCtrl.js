@@ -34,10 +34,8 @@ module.exports = {
                         stdout: true,
                         stderr: true
                       }, function handler(err, stream) {
-                        //...
                         container.modem.demuxStream(stream, process.stdout, process.stderr);
-                        //...
-                      });
+                      })
                     await container.start()
                     res.status(200).json({id: container.id, name: req.body.name})
                 } catch(e) {
