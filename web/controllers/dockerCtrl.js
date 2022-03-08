@@ -97,6 +97,8 @@ module.exports = {
 
         //trade --logfile /freqtrade/user_data/logs/freqtrade.log --db-url sqlite:////freqtrade/user_data/tradesv3.sqlite --config /freqtrade/user_data/config.json --strategy SampleStrategy
         let docker = new Dockerode()
+
+        /*
         let container = null
         let containers = await docker.listContainers()
         containers = containers.filter( container => container.Names.includes(`/${req.body.name}`) )
@@ -130,7 +132,7 @@ module.exports = {
             }
         } else {
             res.status(200).json({id: containers[0].Id, name: ctrlCreateOptions.name})
-        }   
+        }  */
     },
 
     
