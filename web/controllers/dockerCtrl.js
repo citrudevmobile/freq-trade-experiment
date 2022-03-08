@@ -124,7 +124,7 @@ module.exports = {
         }
         */
 
-        
+        let docker = new Dockerode()
         let container = null
         let containers = await docker.listContainers()
         containers = containers.filter( container => container.Names.includes(`/${req.body.name}`) )
