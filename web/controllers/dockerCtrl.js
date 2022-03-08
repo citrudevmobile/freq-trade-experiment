@@ -109,12 +109,11 @@ module.exports = {
         let ctrlCreateOptions =  {
             name: req.body.name, 
             Hostname: req.body.name, 
-            Image: 'tradebot',
+            Image: 'freqtradeorg/freqtrade:stable',
             Env: [`BOT_NAME=${req.body.name}`],
             ExposedPorts: { '8080/tcp': {} }, 
             HostConfig: { 
                 NetworkMode: 'freqtrade_network', 
-                Binds: [`${process.cwd()}/controllers/temptradebot:/usr/src/app`], 
             },
         }
 
