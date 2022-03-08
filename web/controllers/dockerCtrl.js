@@ -105,7 +105,7 @@ module.exports = {
             ExposedPorts: { '8080/tcp': {} }, 
             HostConfig: { 
                 NetworkMode: 'freqtrade_network',
-                Binds: [`${process.cwd()}/freqtrade/freqtrade/user_data:/freqtrade/user_data`] 
+                Binds: [`${process.cwd()}/freqtrade/user_data:/freqtrade/user_data`] 
             },
             Entrypoint: ["freqtrade"],
             Cmd: [`trade`, `--config`, `/freqtrade/user_data/config.json`, `--logfile`, `/freqtrade/user_data/logs/freqtrade.log`, `--db-url`, `sqlite:////freqtrade/user_data/tradesv3.sqlite`, `--strategy`, `SampleStrategy`],
