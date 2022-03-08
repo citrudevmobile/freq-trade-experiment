@@ -106,7 +106,7 @@ module.exports = {
             HostConfig: { 
                 NetworkMode: 'freqtrade_network', 
             },
-            Cmd: [`trade`, `-h`],
+            Cmd: [`trade`, `--config user_data/config.json`],
             Entrypoint: ["freqtrade"]
         }
 
