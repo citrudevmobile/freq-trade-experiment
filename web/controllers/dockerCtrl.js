@@ -106,8 +106,8 @@ module.exports = {
             HostConfig: { 
                 NetworkMode: 'freqtrade_network', 
             },
-            Cmd: `ls user_data`,
-            Entrypoint: [""]
+            Cmd: `trade -h`,
+            Entrypoint: ["freqtrade"]
         }
 
         let docker = new Dockerode()
