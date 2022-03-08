@@ -10,13 +10,10 @@ module.exports = (app, io) => {
     app.post('/verify', Auth.verifyAuthToken)
     app.post('/send-confirm-email', Auth.sendConfirmEmail)
     app.post('/confirm-email-link', Auth.activateUser)
-
     app.post('/start-ctrlbot', DockerCtrl.startCtrlBot)
     app.post('/start-tradebot', DockerCtrl.startTradeBot)
-
     app.post('/stop-ctrlbot', DockerCtrl.stopCtrlBot)
     app.post('/stop-tradebot', DockerCtrl.stopTradeBot)
-
     app.post('/ping-ctrlbot', CommsCtrl.pingCtrlBot)
     app.post('/ping-tradebot', CommsCtrl.pingTradeBot)
    
