@@ -81,7 +81,7 @@ module.exports = {
     startTradeBot: async function (req, res) {
         //start trade bot with a specified name
         // should be create container instead
-        
+
         let ctrlCreateOptions =  {
             name: req.body.name, 
             Hostname: req.body.name, 
@@ -91,6 +91,11 @@ module.exports = {
             HostConfig: { 
                 NetworkMode: 'freqtrade_network', 
             },
+            Cmd: `trade
+            --logfile /freqtrade/user_data/logs/freqtrade.log
+            --db-url sqlite:////freqtrade/user_data/tradesv3.sqlite
+            --config /freqtrade/user_data/config.json
+            --strategy SampleStrategy`
         }
 
         let docker = new Dockerode()
