@@ -1,4 +1,5 @@
 let Dockerode = require('dockerode')
+let Task = require('../models/task.model')
 
 module.exports = {
 
@@ -78,15 +79,8 @@ module.exports = {
     },
 
     createTradeBot: async function (req, res) {
-
-        
-    },
-
-
-    startTradeBot: async function (req, res) {
         //start trade bot with a specified name
         // should be create container instead
-
         let ctrlCreateOptions =  {
             name: req.body.name, 
             Hostname: req.body.name, 
@@ -116,6 +110,8 @@ module.exports = {
             Cmd: [`trade`, `--config`, `/freqtrade/user_data/config.json`, `--logfile`, `/freqtrade/user_data/logs/freqtrade.log`, `--db-url`, `sqlite:////freqtrade/user_data/tradesv3.sqlite`, `--strategy`, `Strategy005`, `--strategy-path`, `/freqtrade/user_data/strategies`],
         }
 
+        
+
         let docker = new Dockerode()
         let container = null
         let containers = await docker.listContainers()
@@ -137,8 +133,17 @@ module.exports = {
                       }, function handler(err, stream) {
                         container.modem.demuxStream(stream, process.stdout, process.stderr)
                       })
-                    await container.start()
-                    res.status(200).json({id: container.id, name: req.body.name})
+                    try {
+                        let newTask = new Task()
+                        newTask.user = req.user
+                        newTask.config = ctrlCreateOptions
+                        newTask.taskId = container.id
+                        await newTask.save()
+                        res.status(200).json({id: container.id, name: req.body.name})
+                    } catch (e) {
+                        console.log(e)
+                        res.status(500).json({id: container.id, name: req.body.name})
+                    }
                 } catch(e) {
                     console.log(e)
                     res.status(500).json({})
@@ -153,8 +158,17 @@ module.exports = {
         } 
     },
 
+
+    startTradeBot: async function (req, res) {
+    
+    },
+
     
     stopTradeBot: async function (req, res) {
+        
+    },
+
+    deleteTradeBot: async function (req, res) {
         // stop tradebot with a specified name
         let docker = new Dockerode()
         try {
@@ -175,9 +189,5 @@ module.exports = {
         } catch (e) {
             res.status(500).json({message: 'Internal server error'})
         }
-    },
-
-    deleteTradeBot: async function (req, res) {
-
     }
 }

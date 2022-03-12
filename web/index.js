@@ -10,7 +10,7 @@ const server = require('http').Server(app)
 const io = require('socket.io')(server)
 
 global.__basedir = __dirname
-
+// vuTgeYC8WVM3wxzjLAn7
 mongoose.connect(process.env.MONGODB, {
   useNewUrlParser: true,
   useUnifiedTopology: true
