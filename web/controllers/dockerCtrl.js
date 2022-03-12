@@ -77,6 +77,11 @@ module.exports = {
         }
     },
 
+    createTradeBot: async function (req, res) {
+
+        
+    },
+
 
     startTradeBot: async function (req, res) {
         //start trade bot with a specified name
@@ -170,5 +175,9 @@ module.exports = {
         } catch (e) {
             res.status(500).json({message: 'Internal server error'})
         }
+    },
+
+    deleteTradeBot: async function (req, res) {
+
     }
 }
