@@ -106,7 +106,7 @@ function Sidebar({
             <ul className="mt-3">
               {/* Dashboard */}
               <li className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname === '/' && 'bg-slate-900'}`}>
-                <NavLink end to="/" className={`block text-slate-200 hover:text-white truncate transition duration-150 ${pathname === '/' && 'hover:text-slate-200'}`}>
+                <NavLink end to="/dashboard" className={`block text-slate-200 hover:text-white truncate transition duration-150 ${pathname === '/' && 'hover:text-slate-200'}`}>
                   <div className="flex items-center">
                     <svg className="shrink-0 h-6 w-6" viewBox="0 0 24 24">
                       <path className={`fill-current text-slate-400 ${pathname === '/' && '!text-indigo-500'}`} d="M12 0C5.383 0 0 5.383 0 12s5.383 12 12 12 12-5.383 12-12S18.617 0 12 0z" />
@@ -119,7 +119,7 @@ function Sidebar({
               </li>
               {/* Analytics */}
               <li className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname.includes('analytics') && 'bg-slate-900'}`}>
-                <NavLink end to="/" className={`block text-slate-200 hover:text-white truncate transition duration-150 ${pathname.includes('analytics') && 'hover:text-slate-200'}`}>
+                <NavLink end to="/analytics" className={`block text-slate-200 hover:text-white truncate transition duration-150 ${pathname.includes('analytics') && 'hover:text-slate-200'}`}>
                   <div className="flex items-center">
                     <svg className="shrink-0 h-6 w-6" viewBox="0 0 24 24">
                       <path className={`fill-current text-slate-600 ${pathname.includes('analytics') && 'text-indigo-500'}`} d="M0 20h24v2H0z" />

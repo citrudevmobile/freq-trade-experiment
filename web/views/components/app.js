@@ -63,7 +63,18 @@ const App = () => {
             />
 
             <Route path="/dashboard" 
-              element={ localStorage.getItem('auth') == 'true' ? ( localStorage.getItem('active') == 'true'  ? <Dashboard logout={logout} /> : <SendConfirmEmail logout={logout} /> ) : <Navigate to="/"/> } 
+              element={ <Dashboard logout={logout} /> } 
+              //element={ localStorage.getItem('auth') == 'true' ? ( localStorage.getItem('active') == 'true'  ? <Dashboard logout={logout} /> : <SendConfirmEmail logout={logout} /> ) : <Navigate to="/"/> } 
+            />
+
+            <Route path="/trade-history" 
+              element={ <Dashboard logout={logout} /> } 
+              //element={ localStorage.getItem('auth') == 'true' ? ( localStorage.getItem('active') == 'true'  ? <Dashboard logout={logout} /> : <SendConfirmEmail logout={logout} /> ) : <Navigate to="/"/> } 
+            />
+
+            <Route path="/dashboard" 
+              element={ <Dashboard logout={logout} /> } 
+              //element={ localStorage.getItem('auth') == 'true' ? ( localStorage.getItem('active') == 'true'  ? <Dashboard logout={logout} /> : <SendConfirmEmail logout={logout} /> ) : <Navigate to="/"/> } 
             />
 
             <Route path="*" element={<Navigate to={ localStorage.getItem('auth') == 'true' ? "/dashboard": "/" }/>}  />
