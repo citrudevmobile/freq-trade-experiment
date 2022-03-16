@@ -57,6 +57,7 @@ module.exports = {
     stopCtrlBot: async function (req, res) {
         // stop controller bot
         let docker = new Dockerode()
+        let container = null
         try {
             let containers = await docker.listContainers()
             containers = containers.filter( container => container.Names.includes(`/ctrl`) )
@@ -181,24 +182,41 @@ module.exports = {
 
 
     startTradeBot: async function (req, res) {
-    
+         // stop tradebot with a specified name
+         let docker = new Dockerode()
+         let container = null
+         try {
+            container = docker.getContainer(req.body.taskId)
+            res.status(200).json({})
+         } catch (e) {
+             res.status(500).json({message: 'Internal server error'})
+         }
     },
 
     
     stopTradeBot: async function (req, res) {
-        
+         // stop tradebot with a specified name
+         let docker = new Dockerode()
+         let container = null
+         try {
+            container = docker.getContainer(req.body.taskId)
+            res.status(200).json({})
+         } catch (e) {
+             res.status(500).json({message: 'Internal server error'})
+         }
     },
 
     deleteTradeBot: async function (req, res) {
         // stop tradebot with a specified name
         let docker = new Dockerode()
+        let container = null
         try {
                 container = docker.getContainer(req.body.taskId)
                 container.remove({
                     force: true
                 }, function(err) {
                     if (err) return res.status(500).json({})
-                    Task.findOneAndDelete({taskId: req.body.taskId }, function (err, docs) {
+                    Task.findOneAndDelete({taskId: req.body.taskId }, function (err) {
                         if (err) return res.status(500).json({})
                         res.status(200).json({})
                     })
