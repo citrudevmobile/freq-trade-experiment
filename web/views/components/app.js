@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import Home from "./home";
 import Dashboard from "./dashboard";
+import CreateBot from "./create-bot"
 import Register from './register';
 import SendConfirmEmail from './sendConfirmEmail';
 import ConfirmEmail from './confirmEmail';
@@ -72,7 +73,12 @@ const App = () => {
               //element={ localStorage.getItem('auth') == 'true' ? ( localStorage.getItem('active') == 'true'  ? <Dashboard logout={logout} /> : <SendConfirmEmail logout={logout} /> ) : <Navigate to="/"/> } 
             />
 
-            <Route path="/dashboard" 
+            <Route path="/create-bot" 
+              element={ <CreateBot  logout={logout} /> } 
+              //element={ localStorage.getItem('auth') == 'true' ? ( localStorage.getItem('active') == 'true'  ? <Dashboard logout={logout} /> : <SendConfirmEmail logout={logout} /> ) : <Navigate to="/"/> } 
+            />
+
+            <Route path="/edit-bot" 
               element={ <Dashboard logout={logout} /> } 
               //element={ localStorage.getItem('auth') == 'true' ? ( localStorage.getItem('active') == 'true'  ? <Dashboard logout={logout} /> : <SendConfirmEmail logout={logout} /> ) : <Navigate to="/"/> } 
             />

@@ -11,15 +11,15 @@ module.exports = (app, io) => {
     app.post('/send-confirm-email', Auth.sendConfirmEmail)
     app.post('/confirm-email-link', Auth.activateUser)
     // Endpoints For Controll Bot
-    app.post('/start-ctrlbot', DockerCtrl.startCtrlBot)
-    app.post('/stop-ctrlbot', DockerCtrl.stopCtrlBot)
-    app.post('/ping-ctrlbot', CommsCtrl.pingCtrlBot)
+    app.post('/start-ctrlbot', Auth.verifyAuthTokenSession, DockerCtrl.startCtrlBot)
+    app.post('/stop-ctrlbot', Auth.verifyAuthTokenSession, DockerCtrl.stopCtrlBot)
+    app.post('/ping-ctrlbot', Auth.verifyAuthTokenSession, CommsCtrl.pingCtrlBot)
     // Endpoints For Tradebot
-    app.post('/create-tradebot', DockerCtrl.createTradeBot)
-    app.post('/delete-tradebot', DockerCtrl.deleteTradeBot)
-    app.post('/start-tradebot', DockerCtrl.startTradeBot)
-    app.post('/stop-tradebot', DockerCtrl.stopTradeBot)
-    app.post('/ping-tradebot', CommsCtrl.pingTradeBot)
+    app.post('/create-tradebot', Auth.verifyAuthTokenSession, DockerCtrl.createTradeBot)
+    app.post('/delete-tradebot', Auth.verifyAuthTokenSession, DockerCtrl.deleteTradeBot)
+    app.post('/start-tradebot', Auth.verifyAuthTokenSession, DockerCtrl.startTradeBot)
+    app.post('/stop-tradebot', Auth.verifyAuthTokenSession, DockerCtrl.stopTradeBot)
+    app.post('/ping-tradebot', Auth.verifyAuthTokenSession, CommsCtrl.pingTradeBot)
    
     app.get('*', (req, res) => { res.sendFile(path.join(__basedir + '/dist/index.html')) })
     

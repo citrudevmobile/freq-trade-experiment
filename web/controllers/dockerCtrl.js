@@ -81,7 +81,9 @@ module.exports = {
     createTradeBot: async function (req, res) {
         //start trade bot with a specified name
         // should be create container instead
-        let ctrlCreateOptions =  {
+        let task = null
+
+        let config =  {
             name: req.body.name, 
             Hostname: req.body.name, 
             Image: 'freqtradeorg/freqtrade:stable',
@@ -110,22 +112,22 @@ module.exports = {
             Cmd: [`trade`, `--config`, `/freqtrade/user_data/config.json`, `--logfile`, `/freqtrade/user_data/logs/freqtrade.log`, `--db-url`, `sqlite:////freqtrade/user_data/tradesv3.sqlite`, `--strategy`, `Strategy005`, `--strategy-path`, `/freqtrade/user_data/strategies`],
         }
 
-        
+        let createContainer = function (name, config, req, res) {
 
         let docker = new Dockerode()
         let container = null
         let containers = await docker.listContainers()
-        containers = containers.filter( container => container.Names.includes(`/${req.body.name}`) )
+        containers = containers.filter( container => container.Names.includes(`/${name}`) )
         if (!(containers.length > 0)) { 
             try {
-                let networkName = ctrlCreateOptions.HostConfig.NetworkMode
+                let networkName = config.HostConfig.NetworkMode
                 let networks = await docker.listNetworks()
                 let network = networks.filter( network => network.Name == networkName )
                 if (!(network.length > 0)) {
                     await docker.createNetwork({ 'Name': networkName, 'CheckDuplicate': true })
                 } 
                 try {
-                    container = await docker.createContainer(ctrlCreateOptions)
+                    container = await docker.createContainer(config)
                     await container.attach({
                         stream: true,
                         stdout: true,
@@ -133,29 +135,41 @@ module.exports = {
                       }, function handler(err, stream) {
                         container.modem.demuxStream(stream, process.stdout, process.stderr)
                       })
-                    try {
-                        let newTask = new Task()
-                        newTask.user = req.user
-                        newTask.config = ctrlCreateOptions
-                        newTask.taskId = container.id
-                        await newTask.save()
-                        res.status(200).json({id: container.id, name: req.body.name})
-                    } catch (e) {
+                        try {
+                            let newTask = new Task()
+                            newTask.user = req.user
+                            newTask.name = name
+                            newTask.config = config
+                            newTask.taskId = container.id
+                            await newTask.save()
+                            res.status(200).json({})
+                        } catch (e) {
+                            console.log(e)
+                            res.status(500).json({})
+                        }
+                    } catch(e) {
                         console.log(e)
-                        res.status(500).json({id: container.id, name: req.body.name})
+                        res.status(500).json({})
                     }
-                } catch(e) {
+                } catch (e) {
+                    console.log('Error occured while creating bot network...')
                     console.log(e)
                     res.status(500).json({})
                 }
-            } catch (e) {
-                console.log('Error occured while creating bot network...')
-                console.log(e)
-                res.status(500).json({message: 'Internal server error'})
+            } else {
+                res.status(200).json({})
+            } 
+        }
+        try {
+            task = await Task.findOne({name: req.body.name})
+            if (!task) {
+               createContainer(req.body.name, config, req, res)
+            } else {
+                res.status(200).json({})
             }
-        } else {
-            res.status(200).json({id: containers[0].Id, name: ctrlCreateOptions.name})
-        } 
+        } catch (err) {
+            res.status(500).json({})
+        }
     },
 
 
