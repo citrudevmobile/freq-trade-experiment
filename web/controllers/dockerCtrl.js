@@ -172,6 +172,13 @@ module.exports = {
         }
     },
 
+    getUserBots: async function (req, res) {
+        Task.find({user: req.user}, function (err, tasks) {
+            if (err) return res.status(500).json({})
+            res.status(200).json({})
+        })
+    },
+
 
     startTradeBot: async function (req, res) {
     
@@ -186,20 +193,17 @@ module.exports = {
         // stop tradebot with a specified name
         let docker = new Dockerode()
         try {
-            let containers = await docker.listContainers()
-            containers = containers.filter( container => container.Names.includes(`/${req.body.name}`) )
-            console.log(containers)
-            if (containers.length > 0) {
-                container = docker.getContainer(containers[0].Id)
+                container = docker.getContainer(req.body.taskId)
                 container.remove({
                     force: true
                 }, function(err) {
                     if (err) return res.status(500).json({})
-                    res.status(200).json({message: `container ${req.body.name} has been shut down`})
+                    Task.findOneAndDelete({taskId: req.body.taskId }, function (err, docs) {
+                        if (err) return res.status(500).json({})
+                        res.status(200).json({})
+                    })
                 })
-            } else {
-                res.status(200).json({ message: `container ${req.body.name} not found. Already shut down` })
-            }
+            
         } catch (e) {
             res.status(500).json({message: 'Internal server error'})
         }
