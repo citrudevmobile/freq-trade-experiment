@@ -79,6 +79,7 @@ module.exports = {
         }
     },
 
+    
     createTradeBot: async function (req, res) {
         //start trade bot with a specified name
         // should be create container instead
@@ -173,6 +174,7 @@ module.exports = {
         }
     },
 
+
     getUserBots: async function (req, res) {
         Task.find({user: req.user}, function (err, tasks) {
             if (err) return res.status(500).json({})
@@ -187,6 +189,7 @@ module.exports = {
          let container = null
          try {
             container = docker.getContainer(req.body.taskId)
+            container.start()
             res.status(200).json({})
          } catch (e) {
              res.status(500).json({message: 'Internal server error'})
@@ -200,11 +203,13 @@ module.exports = {
          let container = null
          try {
             container = docker.getContainer(req.body.taskId)
+            container.stop()
             res.status(200).json({})
          } catch (e) {
              res.status(500).json({message: 'Internal server error'})
          }
     },
+
 
     deleteTradeBot: async function (req, res) {
         // stop tradebot with a specified name
