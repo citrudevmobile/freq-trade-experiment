@@ -114,6 +114,7 @@ module.exports = {
             Cmd: [`trade`, `--config`, `/freqtrade/user_data/config.json`, `--logfile`, `/freqtrade/user_data/logs/freqtrade.log`, `--db-url`, `sqlite:////freqtrade/user_data/tradesv3.sqlite`, `--strategy`, `Strategy005`, `--strategy-path`, `/freqtrade/user_data/strategies`],
         }
 
+        
         let createContainer = function (name, config, req, res) {
 
         let docker = new Dockerode()
@@ -162,6 +163,7 @@ module.exports = {
                 res.status(200).json({})
             } 
         }
+
         try {
             task = await Task.findOne({name: req.body.name})
             if (!task) {
@@ -172,16 +174,15 @@ module.exports = {
         } catch (err) {
             res.status(500).json({})
         }
-    },
 
+    },
 
     getUserBots: async function (req, res) {
-        Task.find({user: req.user}, function (err, tasks) {
+        Task.find({user: req.user}, { config: 0 }, function (err, tasks) {
             if (err) return res.status(500).json({})
-            res.status(200).json({})
+            res.status(200).json(tasks)
         })
     },
-
 
     startTradeBot: async function (req, res) {
          // stop tradebot with a specified name

@@ -20,23 +20,27 @@ function Dashboard ({logout}) {
   let createBot = async function () {
     let token = localStorage.getItem('token')
     if (token) {
-      try {
-        await axios({
-          method: "post",
-          url: "/create-tradebot",
-          headers: { "x-access-token": token },
-          data: { 
-            name: botName 
-          }
-        })
-        navigate('/dashboard')
-      } catch (error) {
-        console.log(error)
+      if (botName) {
+        try {
+          await axios({
+            method: "post",
+            url: "/create-tradebot",
+            headers: { "x-access-token": token },
+            data: { 
+              name: botName 
+            }
+          })
+          navigate('/dashboard')
+        } catch (error) {
+          console.log(error)
+        }
+      } else {
+        alert('Please input a name for the bot')
       }
     } else {
       navigate('/')
     }
-}
+  }
 
   return (
     <div className="flex h-screen overflow-hidden">
@@ -89,6 +93,7 @@ function Dashboard ({logout}) {
         <button onClick={createBot} type="button" class="py-2 px-4 text-sm bg-blue-500 font-medium text-white bg-white rounded-r-md border border-gray-200 hover:bg-gray-100 hover:text-black focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
           Create Bot
         </button>
+
       </div>
 
           </div>

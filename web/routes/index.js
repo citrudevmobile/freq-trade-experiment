@@ -15,6 +15,7 @@ module.exports = (app, io) => {
     app.post('/stop-ctrlbot', Auth.verifyAuthTokenSession, DockerCtrl.stopCtrlBot)
     app.post('/ping-ctrlbot', Auth.verifyAuthTokenSession, CommsCtrl.pingCtrlBot)
     // Endpoints For Tradebot
+    app.post('/get-tradebots', Auth.verifyAuthTokenSession, DockerCtrl.getUserBots)
     app.post('/create-tradebot', Auth.verifyAuthTokenSession, DockerCtrl.createTradeBot)
     app.post('/delete-tradebot', Auth.verifyAuthTokenSession, DockerCtrl.deleteTradeBot)
     app.post('/start-tradebot', Auth.verifyAuthTokenSession, DockerCtrl.startTradeBot)
