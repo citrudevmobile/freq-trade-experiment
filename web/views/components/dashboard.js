@@ -6,6 +6,7 @@ import WelcomeBanner from './dashboard/WelcomeBanner';
 import DashboardCard05 from './dashboard/Dashboard05';
 import swap from '../images/swap.svg';
 import clock from '../images/clock1.svg';
+import axios from 'axios';
 
 
 function Dashboard ({logout}) {
