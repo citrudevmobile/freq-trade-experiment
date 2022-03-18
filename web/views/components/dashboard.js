@@ -14,7 +14,7 @@ function Dashboard ({logout}) {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [listOfBots, setlistOfBots] = useState([]);
   let navigate = useNavigate()
-
+  
   let getTradeBots = async function () {
     let token = localStorage.getItem('token')
         if (token) {
@@ -124,8 +124,9 @@ function Dashboard ({logout}) {
                     </thead>
                         <tbody>
                        
-                           {listOfBots.map(( val, index ) => { 
-                                <tr key={index} tabindex="0" class="focus:outline-none h-16 border border-gray-100 rounded">
+                           { listOfBots.map(( val, index ) => {
+                                return (
+                                <tr key={index} tabindex="0" class="mb-3 focus:outline-none h-16 border border-gray-100 rounded">
                                 <td>
                                     <div class="ml-5">
                                         <div class="bg-white rounded-sm w-5 h-5 flex flex-shrink-0 justify-center items-center relative">
@@ -185,7 +186,7 @@ function Dashboard ({logout}) {
                                     <button class="focus:ring-2 focus:ring-offset-2 focus:ring-red-300 text-sm leading-none text-green-600 py-3 px-5 bg-gray-100 rounded hover:bg-gray-200 focus:outline-none">Active</button>
                                 </td>
                                 <td class="pl-1 flex items-center justify-center">
-                                    <button class="">
+                                    <button onClick={() => {startAndStop(val.taskId)}} class="">
                                         <i class="fas fa-play"></i>
                                     </button>
                                 </td>
@@ -209,6 +210,7 @@ function Dashboard ({logout}) {
                                     </div>
                                 </td>
                             </tr>
+                                )
                             })}
                             
                             
