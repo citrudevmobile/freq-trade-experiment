@@ -69,7 +69,7 @@ const App = () => {
             />
 
             <Route path="/trade-history" 
-              element={ <Dashboard logout={logout} /> } 
+              //element={ <Dashboard logout={logout} /> } 
               //element={ localStorage.getItem('auth') == 'true' ? ( localStorage.getItem('active') == 'true'  ? <Dashboard logout={logout} /> : <SendConfirmEmail logout={logout} /> ) : <Navigate to="/"/> } 
             />
 
@@ -79,7 +79,7 @@ const App = () => {
             />
 
             <Route path="/edit-bot" 
-              element={ <Dashboard logout={logout} /> } 
+              //element={ <Dashboard logout={logout} /> } 
               //element={ localStorage.getItem('auth') == 'true' ? ( localStorage.getItem('active') == 'true'  ? <Dashboard logout={logout} /> : <SendConfirmEmail logout={logout} /> ) : <Navigate to="/"/> } 
             />
 
