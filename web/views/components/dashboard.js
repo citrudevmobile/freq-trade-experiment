@@ -12,6 +12,7 @@ import axios from 'axios';
 function Dashboard ({logout}) {
 
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [listOfBots, setlistOfBots] = useState([]);
   let navigate = useNavigate()
 
   let getTradeBots = async function () {
@@ -24,6 +25,7 @@ function Dashboard ({logout}) {
                     headers: { "x-access-token": token }
                 })
                 console.log(response.data)
+                setlistOfBots(response.data)
             } catch (error) {
                 console.log(error)
             }
@@ -32,8 +34,12 @@ function Dashboard ({logout}) {
         }
     }
 
+    let startAndStop = async function (taskId) {
+        console.log(taskId)
+    }
+
   useEffect(() => {
-    getTradeBots()
+    //getTradeBots()
   }, [])
 
   return (
@@ -109,7 +115,7 @@ function Dashboard ({logout}) {
                                 Status
                             </th>
                             <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                Options
+                                Start
                             </th>
                             <th scope="col" class="relative py-3 px-6">
                                 <span class="sr-only">Edit</span>
@@ -118,7 +124,8 @@ function Dashboard ({logout}) {
                     </thead>
                         <tbody>
                        
-                            <tr tabindex="0" class="focus:outline-none h-16 border border-gray-100 rounded">
+                           {listOfBots.map(( val, index ) => { 
+                                <tr key={index} tabindex="0" class="focus:outline-none h-16 border border-gray-100 rounded">
                                 <td>
                                     <div class="ml-5">
                                         <div class="bg-white rounded-sm w-5 h-5 flex flex-shrink-0 justify-center items-center relative">
@@ -177,6 +184,11 @@ function Dashboard ({logout}) {
                                 <td class="pl-4">
                                     <button class="focus:ring-2 focus:ring-offset-2 focus:ring-red-300 text-sm leading-none text-green-600 py-3 px-5 bg-gray-100 rounded hover:bg-gray-200 focus:outline-none">Active</button>
                                 </td>
+                                <td class="pl-1 flex items-center justify-center">
+                                    <button onClick={startAndStop(val.taskId)} class="">
+                                        <i class="fas fa-play"></i>
+                                    </button>
+                                </td>
                                 <td>
                                     <div class="relative px-5 pt-2">
                                         <button class="focus:ring-2 rounded-md focus:outline-none" onclick="dropdownFunction(this)" role="button" aria-label="option">
@@ -197,6 +209,7 @@ function Dashboard ({logout}) {
                                     </div>
                                 </td>
                             </tr>
+                        })}
                             <tr class="h-3"></tr>
                             
                         </tbody>
