@@ -185,7 +185,7 @@ function Dashboard ({logout}) {
                                     <button class="focus:ring-2 focus:ring-offset-2 focus:ring-red-300 text-sm leading-none text-green-600 py-3 px-5 bg-gray-100 rounded hover:bg-gray-200 focus:outline-none">Active</button>
                                 </td>
                                 <td class="pl-1 flex items-center justify-center">
-                                    <button onClick={startAndStop(val.taskId)} class="">
+                                    <button class="">
                                         <i class="fas fa-play"></i>
                                     </button>
                                 </td>
@@ -209,8 +209,8 @@ function Dashboard ({logout}) {
                                     </div>
                                 </td>
                             </tr>
-                        })}
-                            <tr class="h-3"></tr>
+                            })}
+                            
                             
                         </tbody>
                     </table>
