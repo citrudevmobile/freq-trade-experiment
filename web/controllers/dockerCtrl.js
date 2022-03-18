@@ -115,7 +115,7 @@ module.exports = {
         }
 
         
-        let createContainer = function (name, config, req, res) {
+        let createContainer = async function (name, config, req, res) {
 
         let docker = new Dockerode()
         let container = null
@@ -167,7 +167,7 @@ module.exports = {
         try {
             task = await Task.findOne({name: req.body.name})
             if (!task) {
-               createContainer(req.body.name, config, req, res)
+               await createContainer(req.body.name, config, req, res)
             } else {
                 res.status(200).json({})
             }
