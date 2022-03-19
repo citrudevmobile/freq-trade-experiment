@@ -131,13 +131,7 @@ module.exports = {
                 } 
                 try {
                     container = await docker.createContainer(config)
-                    await container.attach({
-                        stream: true,
-                        stdout: true,
-                        stderr: true
-                      }, function handler(err, stream) {
-                        container.modem.demuxStream(stream, process.stdout, process.stderr)
-                      })
+                   
                         try {
                             let newTask = new Task()
                             newTask.user = req.user
@@ -150,6 +144,7 @@ module.exports = {
                             console.log(e)
                             res.status(500).json({})
                         }
+
                     } catch(e) {
                         console.log(e)
                         res.status(500).json({})
@@ -192,6 +187,13 @@ module.exports = {
             if (err) return res.status(500).json({})
             try {
                 container = await docker.getContainer(req.body.taskId)
+                await container.attach({
+                    stream: true,
+                    stdout: true,
+                    stderr: true
+                  }, function handler(err, stream) {
+                    container.modem.demuxStream(stream, process.stdout, process.stderr)
+                  })
                 await container.start()
                 task.status = true
                 task.save(function (err) {
