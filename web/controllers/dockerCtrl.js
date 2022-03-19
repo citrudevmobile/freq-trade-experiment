@@ -185,32 +185,48 @@ module.exports = {
     },
 
     startTradeBot: async function (req, res) {
-         // stop tradebot with a specified name
+         // start tradebot with a specified name
          let docker = new Dockerode()
          let container = null
-         try {
-            container = docker.getContainer(req.body.taskId)
-            container.start()
-            res.status(200).json({})
-         } catch (e) {
-             res.status(500).json({message: 'Internal server error'})
-         }
+         Task.findOne({taskId: req.body.taskId}, async function (err, task) {
+            if (err) return res.status(500).json({})
+            try {
+                container = await docker.getContainer(req.body.taskId)
+                await container.start()
+                task.status = true
+                task.save(function (err) {
+                    if (err) return res.status(500).json({})
+                    res.status(200).json({})
+                })
+             } catch (e) {
+                 res.status(500).json({message: 'Internal server error'})
+             }
+        })
+         
+        
     },
+
+    stopTradeBot: async function (req, res) {
+        // start tradebot with a specified name
+        let docker = new Dockerode()
+        let container = null
+        Task.findOne({taskId: req.body.taskId}, async function (err, task) {
+           if (err) return res.status(500).json({})
+           try {
+               container = await docker.getContainer(req.body.taskId)
+               await container.stop()
+               task.status = false
+               task.save(function (err) {
+                   if (err) return res.status(500).json({})
+                   res.status(200).json({})
+               })
+            } catch (e) {
+                res.status(500).json({message: 'Internal server error'})
+            }
+       })
+   },
 
     
-    stopTradeBot: async function (req, res) {
-         // stop tradebot with a specified name
-         let docker = new Dockerode()
-         let container = null
-         try {
-            container = docker.getContainer(req.body.taskId)
-            container.stop()
-            res.status(200).json({})
-         } catch (e) {
-             res.status(500).json({message: 'Internal server error'})
-         }
-    },
-
 
     deleteTradeBot: async function (req, res) {
         // stop tradebot with a specified name

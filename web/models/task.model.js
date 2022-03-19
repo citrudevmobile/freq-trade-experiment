@@ -4,7 +4,8 @@ const taskSchema = mongoose.Schema({
     user: { type: mongoose.Schema.ObjectId, ref: 'user' },
     name: { type: String, trim: true, unique: true, sparse: true },
     config: { type: mongoose.Schema.Types.Mixed },
-    taskId: { type: String, trim: true, unique: true, sparse: true }
+    taskId: { type: String, trim: true, unique: true, sparse: true },
+    status: { type: Boolean, default: false}
 })
 
 module.exports = mongoose.model('task', taskSchema) 
