@@ -103,7 +103,8 @@ module.exports = {
             'PYTHONDONTWRITEBYTECODE=1',
             'PYTHONFAULTHANDLER=1',
             'FT_APP_ENV=docker',
-            'LD_LIBRARY_PATH=/usr/local/lib'
+            'LD_LIBRARY_PATH=/usr/local/lib',
+            ''
             ],
             ExposedPorts: { '8080/tcp': {} }, 
             HostConfig: { 
