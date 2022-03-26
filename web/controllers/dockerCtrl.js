@@ -104,7 +104,7 @@ module.exports = {
             'PYTHONFAULTHANDLER=1',
             'FT_APP_ENV=docker',
             'LD_LIBRARY_PATH=/usr/local/lib',
-            ''
+            'FREQTRADE__STAKE_AMOUNT=0.03'
             ],
             ExposedPorts: { '8080/tcp': {} }, 
             HostConfig: { 
