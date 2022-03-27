@@ -74,8 +74,10 @@
     },
     "bot_name": "freqtrade",
     "initial_state": "running",
+    "user_data_dir": "",
+    
     "forcebuy_enable": false,
     "internals": {
         "process_throttle_secs": 5
-    }
+    } 
 }

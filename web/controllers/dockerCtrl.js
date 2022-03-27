@@ -90,7 +90,7 @@ module.exports = {
             Hostname: req.body.name, 
             Image: 'freqtradeorg/freqtrade:stable',
             Env: [
-            `BOT_NAME=${req.body.name}`, 
+            `FREQTRADE__BOT_NAME=${req.body.name}`, 
             'PATH=/home/ftuser/.local/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
             'LANG=C.UTF-8',
             'GPG_KEY=E3FF2839C048B25C084DEBE9B26995E310250568',
@@ -104,12 +104,12 @@ module.exports = {
             'PYTHONFAULTHANDLER=1',
             'FT_APP_ENV=docker',
             'LD_LIBRARY_PATH=/usr/local/lib',
-            'FREQTRADE__STAKE_AMOUNT=0.03'
+            `FREQTRADE__STAKE_AMOUNT=0.03`
             ],
             ExposedPorts: { '8080/tcp': {} }, 
             HostConfig: { 
                 NetworkMode: 'freqtrade_network',
-                Binds: [`${process.cwd()}/freqtrade/user_data:/freqtrade/user_data`] 
+                /*Binds: [`${process.cwd()}/freqtrade/user_data:/freqtrade/user_data`] */
             },
             Entrypoint: ["freqtrade"],
             Cmd: [`trade`, `--config`, `/freqtrade/user_data/config.json`, `--logfile`, `/freqtrade/user_data/logs/freqtrade.log`, `--db-url`, `sqlite:////freqtrade/user_data/tradesv3.sqlite`, `--strategy`, `Strategy005`, `--strategy-path`, `/freqtrade/user_data/strategies`],
