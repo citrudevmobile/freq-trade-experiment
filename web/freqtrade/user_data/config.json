@@ -34,10 +34,9 @@
         "ccxt_async_config": {
         },
         "pair_whitelist": [
-            "ETH/BTC"
+            "BTC/ETH"
         ],
         "pair_blacklist": [
-            "BNB/BTC"
         ]
     },
     "pairlists": [
@@ -74,8 +73,6 @@
     },
     "bot_name": "freqtrade",
     "initial_state": "running",
-    "user_data_dir": "",
-    
     "forcebuy_enable": false,
     "internals": {
         "process_throttle_secs": 5

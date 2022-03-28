@@ -104,12 +104,17 @@ module.exports = {
             'PYTHONFAULTHANDLER=1',
             'FT_APP_ENV=docker',
             'LD_LIBRARY_PATH=/usr/local/lib',
-            `FREQTRADE__STAKE_AMOUNT=0.03`
+            `FREQTRADE__MAX_OPEN_TRADES=${req.body.maxOpenTrades || 5}`,
+            `FREQTRADE__STAKE_CURRENCY=${req.body.stakeCurrency || "BTC"}`,
+            `FREQTRADE__STAKE_AMOUNT=${req.body.stakeAmount || 0.05}`,
+            `FREQTRADE__TIMEFRAME=${req.body.timeframe || "5m"}`,
+            `FREQTRADE__AVAILABLE_CAPITAL=${req.body.availableCapital || null}`,
+            `FREQTRADE__DRY_RUN=${req.body.dryRun || true}`,
             ],
             ExposedPorts: { '8080/tcp': {} }, 
             HostConfig: { 
                 NetworkMode: 'freqtrade_network',
-                /*Binds: [`${process.cwd()}/freqtrade/user_data:/freqtrade/user_data`] */
+                Binds: [`${process.cwd()}/freqtrade/user_data:/freqtrade/user_data`] 
             },
             Entrypoint: ["freqtrade"],
             Cmd: [`trade`, `--config`, `/freqtrade/user_data/config.json`, `--logfile`, `/freqtrade/user_data/logs/freqtrade.log`, `--db-url`, `sqlite:////freqtrade/user_data/tradesv3.sqlite`, `--strategy`, `Strategy005`, `--strategy-path`, `/freqtrade/user_data/strategies`],
