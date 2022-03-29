@@ -110,6 +110,7 @@ module.exports = {
             `FREQTRADE__TIMEFRAME=${req.body.timeframe || "5m"}`,
             `FREQTRADE__AVAILABLE_CAPITAL=${req.body.availableCapital || 2 }`,
             `FREQTRADE__DRY_RUN=${req.body.dryRun || true}`,
+            `FREQTRADE__DRY_RUN=${req.body.dryRun || true}`,
             ],
             ExposedPorts: { '8080/tcp': {} }, 
             HostConfig: { 
