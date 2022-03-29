@@ -110,6 +110,9 @@ module.exports = {
             `FREQTRADE__TIMEFRAME=${req.body.timeframe || "1m"}`,
             `FREQTRADE__AVAILABLE_CAPITAL=${req.body.availableCapital || 2 }`,
             `FREQTRADE__DRY_RUN=${req.body.dryRun || true}`,
+            `FREQTRADE__EXCHANGE.NAME=${req.body.exchangeName || 'binance'}`,
+            `FREQTRADE__EXCHANGE.KEY=${req.body.exchangeKey || 'zLqPHbEBGRXigIjRcANw0xRqXus1hDnt4prZbzQeEAWNjE5df0wV9bMTr2sLiE79'}`,
+            `FREQTRADE__EXCHANGE.SECRET=${req.body.exchangeSecret || 'grYKHq2QG5J1S3VF4kJg5OceOJeY97E8BmN6omBlMneY1dcHMS5e25QLTI7v7Pbu'}`,
             `FREQTRADE__EXCHANGE.PAIR_WHITELIST=["${req.body.quoteCurrency || 'USDT'}/${req.body.stakeCurrency || 'BTC'}"]`,
             exchange.pair_whitelist
             ],
