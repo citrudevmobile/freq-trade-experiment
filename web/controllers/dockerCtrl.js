@@ -107,10 +107,11 @@ module.exports = {
             `FREQTRADE__MAX_OPEN_TRADES=${req.body.maxOpenTrades || 3}`,
             `FREQTRADE__STAKE_CURRENCY=${req.body.stakeCurrency || "BTC"}`,
             `FREQTRADE__STAKE_AMOUNT=${req.body.stakeAmount || 0.05}`,
-            `FREQTRADE__TIMEFRAME=${req.body.timeframe || "5m"}`,
+            `FREQTRADE__TIMEFRAME=${req.body.timeframe || "1m"}`,
             `FREQTRADE__AVAILABLE_CAPITAL=${req.body.availableCapital || 2 }`,
             `FREQTRADE__DRY_RUN=${req.body.dryRun || true}`,
-            `FREQTRADE__DRY_RUN=${req.body.dryRun || true}`,
+            `FREQTRADE__EXCHANGE.PAIR_WHITELIST=["${req.body.quoteCurrency || 'USDT'}/${req.body.stakeCurrency || 'BTC'}"]`,
+            exchange.pair_whitelist
             ],
             ExposedPorts: { '8080/tcp': {} }, 
             HostConfig: { 
