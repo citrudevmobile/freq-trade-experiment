@@ -84,6 +84,8 @@ module.exports = {
         //start trade bot with a specified name
         // should be create container instead
         let task = null
+        let tradePair  = []
+        tradePair.push(`${req.body.quoteCurrency || 'USDT'}/${req.body.stakeCurrency || 'BTC'}`)
 
         let config =  {
             name: req.body.name, 
@@ -113,7 +115,7 @@ module.exports = {
             `FREQTRADE__EXCHANGE__NAME=${req.body.exchangeName || 'binance'}`,
             `FREQTRADE__EXCHANGE__KEY=${req.body.exchangeKey || 'zLqPHbEBGRXigIjRcANw0xRqXus1hDnt4prZbzQeEAWNjE5df0wV9bMTr2sLiE79'}`,
             `FREQTRADE__EXCHANGE__SECRET=${req.body.exchangeSecret || 'grYKHq2QG5J1S3VF4kJg5OceOJeY97E8BmN6omBlMneY1dcHMS5e25QLTI7v7Pbu'}`,
-            `FREQTRADE__EXCHANGE__PAIR_WHITELIST=${[req.body.quoteCurrency || 'USDT'/req.body.stakeCurrency || 'BTC']}`,
+            `FREQTRADE__EXCHANGE__PAIR_WHITELIST=${tradePair}`,
             ],
             ExposedPorts: { '8080/tcp': {} }, 
             HostConfig: {
