@@ -34,7 +34,7 @@
         "ccxt_async_config": {
         },
         "pair_whitelist": [
-            "ETH/BTC"
+            "USDT/BTC"
         ],
         "pair_blacklist": [
         ]
