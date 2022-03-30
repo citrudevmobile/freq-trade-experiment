@@ -108,7 +108,7 @@ module.exports = {
                 Binds: [`${process.cwd()}/freqtrade/user_data:/freqtrade/user_data`] 
             },
             Entrypoint: ["/bin/bash"],
-            Cmd: [`echo -e "hello world" >> myconfig.json && freqtrade trade --config /freqtrade/user_data/config.json`],
+            Cmd: [`echo -e "hello world" >>  /freqtrade/user_data/myconfig.json && freqtrade trade --config /freqtrade/user_data/config.json`],
         }
 
         
