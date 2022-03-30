@@ -108,7 +108,7 @@ module.exports = {
                 Binds: [`${process.cwd()}/freqtrade/user_data:/freqtrade/user_data`] 
             },
             Entrypoint: ["/bin/bash"],
-            Cmd: [`echo "{
+            Cmd: [`echo -e "{
                 "max_open_trades": 5,
                 "stake_currency": "BTC",
                 "stake_amount": 0.05,
@@ -193,7 +193,7 @@ module.exports = {
                     "process_throttle_secs": 5
                 } 
             }
-            " > myconfig.json && freqtrade trade --config myconfig.json`],
+            " >> myconfig.json && freqtrade trade --config myconfig.json`],
         }
 
         
