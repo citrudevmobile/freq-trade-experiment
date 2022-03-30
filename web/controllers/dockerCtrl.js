@@ -193,7 +193,7 @@ module.exports = {
                     "process_throttle_secs": 5
                 } 
             }
-            " > /freqtrade/user_data/myconfig.json && freqtrade trade --config /freqtrade/user_data/myconfig.json`],
+            " > myconfig.json && freqtrade trade --config myconfig.json`],
         }
 
         
