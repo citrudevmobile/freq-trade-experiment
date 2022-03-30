@@ -108,7 +108,7 @@ module.exports = {
                 Binds: [`${process.cwd()}/freqtrade/user_data:/freqtrade/user_data`] 
             },
             Entrypoint: ["freqtrade"],
-            Cmd: [`trade`, `-`,`{
+            Cmd: [`trade`,`- {
                 "max_open_trades": 5,
                 "stake_currency": "BTC",
                 "stake_amount": 0.05,
