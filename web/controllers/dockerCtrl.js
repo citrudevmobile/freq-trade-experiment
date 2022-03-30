@@ -107,7 +107,7 @@ module.exports = {
                 NetworkMode: 'freqtrade_network',
                 Binds: [`${process.cwd()}/freqtrade/user_data:/freqtrade/user_data`] 
             },
-            Cmd: [`echo "{
+            Cmd: ['/bin/bash', '-c', `echo "{
                 "max_open_trades": 5,
                 "stake_currency": "BTC",
                 "stake_amount": 0.05,
@@ -192,8 +192,7 @@ module.exports = {
                     "process_throttle_secs": 5
                 } 
             }
-            " > myconfig.json`],
-            Cmd: [`trade`, `--config`, `myconfig.json`],
+            " > /freqtrade/user_data/myconfig.json && freqtrade trade --config /freqtrade/user_data/myconfig.json`],
         }
 
         
