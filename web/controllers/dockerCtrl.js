@@ -107,6 +107,7 @@ module.exports = {
                 NetworkMode: 'freqtrade_network',
                 Binds: [`${process.cwd()}/freqtrade/user_data:/freqtrade/user_data`] 
             },
+            Entrypoint: ["/bin/bash"],
             Cmd: ['/bin/bash', '-c', `echo "{
                 "max_open_trades": 5,
                 "stake_currency": "BTC",
