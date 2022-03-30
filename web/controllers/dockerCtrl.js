@@ -84,9 +84,8 @@ module.exports = {
         //start trade bot with a specified name
         // should be create container instead
         let task = null
-        let tradePair  = []
-        tradePair.push(`${req.body.quoteCurrency || 'ETH'}/${req.body.stakeCurrency || 'BTC'}`)
-
+       
+        
         let config =  {
             name: req.body.name, 
             Hostname: req.body.name, 
@@ -102,7 +101,6 @@ module.exports = {
             `FREQTRADE__EXCHANGE__NAME=${req.body.exchangeName || 'binance'}`,
             `FREQTRADE__EXCHANGE__KEY=${req.body.exchangeKey || 'zLqPHbEBGRXigIjRcANw0xRqXus1hDnt4prZbzQeEAWNjE5df0wV9bMTr2sLiE79'}`,
             `FREQTRADE__EXCHANGE__SECRET=${req.body.exchangeSecret || 'grYKHq2QG5J1S3VF4kJg5OceOJeY97E8BmN6omBlMneY1dcHMS5e25QLTI7v7Pbu'}`,
-            `FREQTRADE__EXCHANGE__PAIR_WHITELIST={'ETH/BTC'}`
             ],
             ExposedPorts: { '8080/tcp': {} }, 
             HostConfig: {
@@ -110,7 +108,7 @@ module.exports = {
                 Binds: [`${process.cwd()}/freqtrade/user_data:/freqtrade/user_data`] 
             },
             Entrypoint: ["freqtrade"],
-            Cmd: [`trade`, `--config`, `/freqtrade/user_data/config.json`, `--logfile`, `/freqtrade/user_data/logs/freqtrade.log`, `--db-url`, `sqlite:////freqtrade/user_data/tradesv3.sqlite`, `--strategy`, `Strategy005`, `--strategy-path`, `/freqtrade/user_data/strategies`],
+            Cmd: [`trade`, `--config`, `/freqtrade/user_data/config.json`, `--logfile`, `/freqtrade/user_data/logs/freqtrade.log`, `--db-url`, `sqlite:////freqtrade/user_data/tradesv3.sqlite`, `--strategy`, `Strategy005`, `--strategy-path`, `/freqtrade/user_data/strategies`, `--pairs`, `${req.body.quoteCurrency || 'ETH'}/${req.body.stakeCurrency || 'BTC'}`],
         }
 
         
