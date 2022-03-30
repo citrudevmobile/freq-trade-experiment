@@ -108,7 +108,7 @@ module.exports = {
                 Binds: [`${process.cwd()}/freqtrade/user_data:/freqtrade/user_data`] 
             },
             Entrypoint: ["/bin/bash"],
-            Cmd: ['/bin/bash', '-c', `echo "{
+            Cmd: [`echo "{
                 "max_open_trades": 5,
                 "stake_currency": "BTC",
                 "stake_amount": 0.05,
