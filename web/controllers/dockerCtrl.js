@@ -114,7 +114,7 @@ module.exports = {
                 Binds: [`${process.cwd()}/freqtrade/user_data:/freqtrade/user_data`] 
             },
             Entrypoint: [],
-            Cmd: ``,
+            Cmd: `ls`,
         }
 
         
