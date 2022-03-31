@@ -91,6 +91,8 @@ module.exports = {
             Hostname: req.body.name,
             WorkingDir: "/freqtrade",
             Image: 'freqtradeorg/freqtrade:stable',
+            Tty: false,
+            OpenStdin: false,
             Env: [
             `FREQTRADE__BOT_NAME=${req.body.name}`, 
             `FREQTRADE__MAX_OPEN_TRADES=${req.body.maxOpenTrades || 3}`,
