@@ -109,10 +109,10 @@ module.exports = {
             ExposedPorts: { '8080/tcp': {} }, 
             HostConfig: {
                 NetworkMode: 'freqtrade_network',
-                //Binds: [`${process.cwd()}/freqtrade/user_data:/freqtrade/user_data`] 
+                Binds: [`${process.cwd()}/freqtrade/user_data:/freqtrade/user_data`] 
             },
-            Entrypoint: [ "/bin/bash", "-l", "-c" ],
-            Cmd: ['ls', './docker'],
+            Entrypoint: ["/bin/bash", "-l", "-c" ],
+            RUN: 'ls ./docs',
         }
 
         
