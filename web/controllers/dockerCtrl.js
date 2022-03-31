@@ -102,6 +102,9 @@ module.exports = {
             `FREQTRADE__EXCHANGE__KEY=${req.body.exchangeKey || 'zLqPHbEBGRXigIjRcANw0xRqXus1hDnt4prZbzQeEAWNjE5df0wV9bMTr2sLiE79'}`,
             `FREQTRADE__EXCHANGE__SECRET=${req.body.exchangeSecret || 'grYKHq2QG5J1S3VF4kJg5OceOJeY97E8BmN6omBlMneY1dcHMS5e25QLTI7v7Pbu'}`,
             ],
+            Volumes: {
+                '/freqtrade': {}
+            },
             ExposedPorts: { '8080/tcp': {} }, 
             HostConfig: {
                 NetworkMode: 'freqtrade_network',
