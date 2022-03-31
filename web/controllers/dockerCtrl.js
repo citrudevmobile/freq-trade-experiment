@@ -111,7 +111,7 @@ module.exports = {
                 //Binds: [`${process.cwd()}/freqtrade/user_data:/freqtrade/user_data`] 
             },
             Entrypoint: [],
-            Cmd: `ls`,
+            Cmd: `sudo lshw`,
         }
 
         
