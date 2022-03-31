@@ -11,8 +11,8 @@ const io = require('socket.io')(server)
 
 global.__basedir = __dirname
 // vuTgeYC8WVM3wxzjLAn7
-// yimiw58048@f1xm.com
-// real
+// sistavorti@vusra.com
+// sure
 //echo -e "hello world" >>  /freqtrade/user_data/myconfig.json && freqtrade trade --config /freqtrade/user_data/config.json
 mongoose.connect(process.env.MONGODB, {
   useNewUrlParser: true,
