@@ -111,8 +111,8 @@ module.exports = {
                 NetworkMode: 'freqtrade_network',
                 //Binds: [`${process.cwd()}/freqtrade/user_data:/freqtrade/user_data`] 
             },
-            Entrypoint: [ "/bin/bash", "-l" ],
-            Cmd: ['ls', '/user_data'],
+            Entrypoint: [ "/bin/bash", "-l", "-c" ],
+            Cmd: ['ping', 'localhost'],
         }
 
         
