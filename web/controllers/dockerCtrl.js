@@ -88,8 +88,11 @@ module.exports = {
         
         let config =  {
             name: req.body.name, 
-            Hostname: req.body.name, 
+            Hostname: req.body.name,
+            WorkingDir: "/freqtrade",
             Image: 'freqtradeorg/freqtrade:stable',
+            Tty: true,
+            OpenStdin: true,
             Env: [
             `FREQTRADE__BOT_NAME=${req.body.name}`, 
             `FREQTRADE__MAX_OPEN_TRADES=${req.body.maxOpenTrades || 3}`,
@@ -108,10 +111,10 @@ module.exports = {
             ExposedPorts: { '8080/tcp': {} }, 
             HostConfig: {
                 NetworkMode: 'freqtrade_network',
-                //Binds: [`${process.cwd()}/freqtrade/user_data:/freqtrade/user_data`] 
+                Binds: [`${process.cwd()}/freqtrade/user_data:/freqtrade/user_data`] 
             },
             Entrypoint: [],
-            Cmd: `sudo lshw`,
+            Cmd: ``,
         }
 
         

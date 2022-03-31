@@ -13,7 +13,7 @@ global.__basedir = __dirname
 // vuTgeYC8WVM3wxzjLAn7
 // sistavorti@vusra.com
 // sure
-//echo -e "hello world" >>  /freqtrade/user_data/myconfig.json && freqtrade trade --config /freqtrade/user_data/config.json
+// echo -e "hello world" >>  /freqtrade/user_data/myconfig.json && freqtrade trade --config /freqtrade/user_data/config.json
 mongoose.connect(process.env.MONGODB, {
   useNewUrlParser: true,
   useUnifiedTopology: true
