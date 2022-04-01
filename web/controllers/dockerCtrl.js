@@ -93,8 +93,8 @@ module.exports = {
         const logFile = `${process.cwd()}/freqtrade/user_data/logs/${req.body.name}_freqtrade.log`
         const dbUrl = `${process.cwd()}/freqtrade/user_data/${req.body.name}_tradesv3.sqlite`
     
-        fs.write(logFile)
-        fs.write(dbUrl)
+        fs.write(logFile, '')
+        fs.write(dbUrl, '')
         
         writeJson.sync(configFile, JSON.parse(`{
             "max_open_trades": 5,
