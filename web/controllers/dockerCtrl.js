@@ -2,6 +2,7 @@ let Dockerode = require('dockerode')
 let Task = require('../models/task.model')
 const writeJson = require('write')
 const fs = require('fs-sync')
+const fsPerm = require('fs');
 
 
 module.exports = {
@@ -84,7 +85,7 @@ module.exports = {
 
     
     createTradeBot: async function (req, res) {
-        //start trade bot with a specified name
+        // start trade bot with a specified name
         // should be create container instead
         
         let task = null
@@ -181,7 +182,11 @@ module.exports = {
                 "process_throttle_secs": 5
             } 
         }
-        `);
+        `)
+
+        await fsPerm.chmodSync(configFile, 0o600)
+        await fsPerm.chmodSync(logFile, 0o600)
+        await fsPerm.chmodSync(dbUrl, 0o600)
         
         let config =  {
             name: req.body.name, 
