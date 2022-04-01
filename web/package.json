@@ -32,6 +32,7 @@
     "dotenv": "^14.2.0",
     "email-validator": "^2.0.4",
     "express": "^4.17.2",
+    "fs-sync": "^1.0.6",
     "helmet": "^5.0.1",
     "http": "^0.0.1-security",
     "jsonwebtoken": "^8.5.1",
@@ -45,6 +46,7 @@
     "react-router": "^6.2.1",
     "react-router-dom": "^6.2.1",
     "react-transition-group": "^4.4.2",
-    "socket.io": "^4.4.1"
+    "socket.io": "^4.4.1",
+    "write": "^2.0.0"
   }
 }

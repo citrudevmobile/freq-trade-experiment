@@ -86,7 +86,7 @@ module.exports = {
     createTradeBot: async function (req, res) {
         //start trade bot with a specified name
         // should be create container instead
-        // Cmd: [`trade`, `--config`, `/freqtrade/user_data/config.json`, `--logfile`, `/freqtrade/user_data/logs/freqtrade.log`, `--db-url`, `sqlite:////freqtrade/user_data/tradesv3.sqlite`, `--strategy`, `Strategy005`, `--strategy-path`, `/freqtrade/user_data/strategies`],
+        
         let task = null
 
         const configFile = `${process.cwd()}/freqtrade/user_data/${req.body.name}_config.json`
