@@ -5,7 +5,10 @@ const taskSchema = mongoose.Schema({
     name: { type: String, trim: true, unique: true, sparse: true },
     config: { type: mongoose.Schema.Types.Mixed },
     taskId: { type: String, trim: true, unique: true, sparse: true },
-    status: { type: Boolean, default: false}
+    status: { type: Boolean, default: false},
+    configFile: {type: String},
+    logFile: {type: String},
+    botDB: {type: String}
 })
 
 module.exports = mongoose.model('task', taskSchema) 
