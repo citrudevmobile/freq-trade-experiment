@@ -96,7 +96,7 @@ module.exports = {
         fs.write(logFile, '')
         fs.write(dbUrl, '')
         
-        writeJson.sync(configFile, JSON.parse(`{
+        writeJson.sync(configFile,`{
             "max_open_trades": 5,
             "stake_currency": "BTC",
             "stake_amount": 0.05,
@@ -181,7 +181,7 @@ module.exports = {
                 "process_throttle_secs": 5
             } 
         }
-        `));
+        `);
         
         let config =  {
             name: req.body.name, 
