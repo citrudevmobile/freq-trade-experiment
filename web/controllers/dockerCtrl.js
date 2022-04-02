@@ -93,11 +93,17 @@ module.exports = {
         const configFile = `${process.cwd()}/freqtrade/user_data/${req.body.name}_config.json`
         const logFile = `${process.cwd()}/freqtrade/user_data/logs/${req.body.name}_freqtrade.log`
         const dbUrl = `${process.cwd()}/freqtrade/user_data/${req.body.name}_tradesv3.sqlite`
-    
-        fs.write(logFile, '')
-        fs.write(dbUrl, '')
-        
-        writeJson.sync(configFile,`{
+
+        const dbUrlStream = fsPerm.createWriteStream(dbUrl, { mode: 0o755 })
+        dbUrlStream.write('')
+        dbUrlStream.end()
+
+        const logFileStream = fsPerm.createWriteStream(logFile, { mode: 0o755 })
+        logFileStream.write('')
+        logFileStream.end()
+
+        const configFileStream = fsPerm.createWriteStream(configFile, { mode: 0o755 })
+        configFileStream.write(`{
             "max_open_trades": 5,
             "stake_currency": "BTC",
             "stake_amount": 0.05,
@@ -183,10 +189,7 @@ module.exports = {
             } 
         }
         `)
-
-        await fsPerm.chmodSync(configFile, 0o600)
-        await fsPerm.chmodSync(logFile, 0o600)
-        await fsPerm.chmodSync(dbUrl, 0o600)
+        configFileStream.end()
         
         let config =  {
             name: req.body.name, 

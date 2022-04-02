@@ -14,6 +14,7 @@ global.__basedir = __dirname
 // sistavorti@vusra.com
 // sure
 // echo -e "hello world" >>  /freqtrade/user_data/myconfig.json && freqtrade trade --config /freqtrade/user_data/config.json
+
 mongoose.connect(process.env.MONGODB, {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -45,9 +46,11 @@ User.findOne({ email: process.env.ADMIN_EMAIL_ADDRESS }, function (err, admin) {
 
 
 app.use(morgan('combined'))
+
 app.use(helmet({
   contentSecurityPolicy: false,
 }))
+
 app.use(compression())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
