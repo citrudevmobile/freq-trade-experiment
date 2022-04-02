@@ -93,17 +93,7 @@ module.exports = {
         const configFile = `${process.cwd()}/freqtrade/user_data/${req.body.name}_config.json`
         const logFile = `${process.cwd()}/freqtrade/user_data/${req.body.name}_freqtrade.log`
         const dbUrl = `${process.cwd()}/freqtrade/user_data/${req.body.name}_tradesv3.sqlite`
-
-        const dbUrlStream = fsPerm.createWriteStream(dbUrl, { mode: 0o755 })
-        dbUrlStream.write('')
-        dbUrlStream.end()
-
-        const logFileStream = fsPerm.createWriteStream(logFile, { mode: 0o755 })
-        logFileStream.write('')
-        logFileStream.end()
-
-        const configFileStream = fsPerm.createWriteStream(configFile, { mode: 0o755 })
-        configFileStream.write(`{
+        let recipe = `{
             "max_open_trades": 5,
             "stake_currency": "BTC",
             "stake_amount": 0.05,
@@ -180,7 +170,7 @@ module.exports = {
             "initial_state": "running",
             "forcebuy_enable": false,
             "db_url": "sqlite:////freqtrade/user_data/${req.body.name}_tradesv3.sqlite",
-            "logfile": "/freqtrade/user_data/logs/${req.body.name}_freqtrade.log",
+            "logfile": "/freqtrade/user_data/${req.body.name}_freqtrade.log",
             "user_data_dir": "/freqtrade/user_data",
             "strategy": "Strategy005",
             "strategy-path": "/freqtrade/user_data/strategies",
@@ -188,7 +178,18 @@ module.exports = {
                 "process_throttle_secs": 5
             } 
         }
-        `)
+        `
+
+        const dbUrlStream = fsPerm.createWriteStream(dbUrl, { mode: 0o755 })
+        dbUrlStream.write('')
+        dbUrlStream.end()
+
+        const logFileStream = fsPerm.createWriteStream(logFile, { mode: 0o755 })
+        logFileStream.write('')
+        logFileStream.end()
+
+        const configFileStream = fsPerm.createWriteStream(configFile, { mode: 0o755 })
+        configFileStream.write(recipe)
         configFileStream.end()
         
         let config =  {
@@ -209,7 +210,7 @@ module.exports = {
         }
 
         
-        let createContainer = async function (name, config, botConfigFile, botLogFile, botDB, req, res) {
+        let createContainer = async function (name, config, configRecipe, botConfigFile, botLogFile, botDB, req, res) {
 
             let docker = new Dockerode()
             let container = null
@@ -234,6 +235,7 @@ module.exports = {
                                 newTask.configFile = botConfigFile
                                 newTask.logFile = botLogFile
                                 newTask.botDB = botDB
+                                newTask.recipe = JSON.parse(configRecipe)
                                 await newTask.save()
                                 res.status(200).json({})
                             } catch (e) {
@@ -258,7 +260,7 @@ module.exports = {
         try {
             task = await Task.findOne({name: req.body.name})
             if (!task) {
-               await createContainer(req.body.name, config, configFile, logFile, dbUrl, req, res)
+               await createContainer(req.body.name, config, recipe, configFile, logFile, dbUrl, req, res)
             } else {
                 res.status(200).json({})
             }
