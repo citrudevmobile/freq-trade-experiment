@@ -91,7 +91,7 @@ module.exports = {
         let task = null
 
         const configFile = `${process.cwd()}/freqtrade/user_data/${req.body.name}_config.json`
-        const logFile = `${process.cwd()}/freqtrade/user_data/logs/${req.body.name}_freqtrade.log`
+        const logFile = `${process.cwd()}/freqtrade/user_data/${req.body.name}_freqtrade.log`
         const dbUrl = `${process.cwd()}/freqtrade/user_data/${req.body.name}_tradesv3.sqlite`
 
         const dbUrlStream = fsPerm.createWriteStream(dbUrl, { mode: 0o755 })
