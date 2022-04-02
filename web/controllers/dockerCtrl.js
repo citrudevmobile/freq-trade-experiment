@@ -170,7 +170,7 @@ module.exports = {
             "initial_state": "running",
             "forcebuy_enable": false,
             "db_url": "sqlite:////freqtrade/user_data/${req.body.name}_tradesv3.sqlite",
-            "logfile": "/freqtrade/user_data/${req.body.name}_freqtrade.log",
+            "logfile": "/freqtrade/user_data/logs/${req.body.name}_freqtrade.log",
             "user_data_dir": "/freqtrade/user_data",
             "strategy": "Strategy005",
             "strategy-path": "/freqtrade/user_data/strategies",
