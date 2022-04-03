@@ -180,19 +180,19 @@ module.exports = {
         }
         `
 
-        const dbUrlStream = fsPerm.createWriteStream(dbUrl, { mode: 0o755 })
+        const dbUrlStream = fsPerm.createWriteStream(dbUrl, { mode: 0o777  })
         dbUrlStream.write('')
         dbUrlStream.end()
 
-        const dbUrlSimulateStream = fsPerm.createWriteStream(dbUrlSimulate, { mode: 0o755 })
+        const dbUrlSimulateStream = fsPerm.createWriteStream(dbUrlSimulate, { mode: 0o777 })
         dbUrlSimulateStream.write('')
         dbUrlSimulateStream.end()
 
-        const logFileStream = fsPerm.createWriteStream(logFile, { mode: 0o755 })
+        const logFileStream = fsPerm.createWriteStream(logFile, { mode: 0o777 })
         logFileStream.write('')
         logFileStream.end()
 
-        const configFileStream = fsPerm.createWriteStream(configFile, { mode: 0o755 })
+        const configFileStream = fsPerm.createWriteStream(configFile, { mode: 0o777 })
         configFileStream.write(recipe)
         configFileStream.end()
 
