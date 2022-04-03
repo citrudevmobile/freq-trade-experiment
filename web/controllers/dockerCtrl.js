@@ -170,7 +170,7 @@ module.exports = {
             "initial_state": "running",
             "forcebuy_enable": false,
             "db_url": "${req.body.dryRun ? `sqlite:////freqtrade/user_data/${req.body.name}_tradesv3.sqlite` : `sqlite:////freqtrade/user_data/${req.body.name}_simulate_tradesv3.sqlite`}",
-            "logfile": "/freqtrade/user_data/${req.body.name}_freqtrade.log",
+            
             "user_data_dir": "/freqtrade/user_data",
             "strategy": "Strategy005",
             "strategy-path": "/freqtrade/user_data/strategies",
@@ -179,7 +179,7 @@ module.exports = {
             } 
         }
         `
-
+        //"logfile": "/freqtrade/user_data/${req.body.name}_freqtrade.log",
         const dbUrlStream = fsPerm.createWriteStream(dbUrl, { mode: 0o777  })
         dbUrlStream.write('')
         dbUrlStream.end()
