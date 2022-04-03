@@ -11,9 +11,9 @@ module.exports = (app, io) => {
     app.post('/send-confirm-email', Auth.sendConfirmEmail)
     app.post('/confirm-email-link', Auth.activateUser)
     // Endpoints For Controll Bot
-    app.post('/start-ctrlbot', Auth.verifyAuthTokenSession, DockerCtrl.startCtrlBot)
-    app.post('/stop-ctrlbot', Auth.verifyAuthTokenSession, DockerCtrl.stopCtrlBot)
-    app.post('/ping-ctrlbot', Auth.verifyAuthTokenSession, CommsCtrl.pingCtrlBot)
+    app.post('/start-ctrlbot',DockerCtrl.startCtrlBot)
+    app.post('/stop-ctrlbot', DockerCtrl.stopCtrlBot)
+    app.post('/ping-ctrlbot', CommsCtrl.pingCtrlBot)
     // Endpoints For Tradebot
     app.post('/get-tradebots', Auth.verifyAuthTokenSession, DockerCtrl.getUserBots)
     app.post('/create-tradebot', Auth.verifyAuthTokenSession, DockerCtrl.createTradeBot)
