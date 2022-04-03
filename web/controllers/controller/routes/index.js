@@ -16,4 +16,17 @@ module.exports = (app, io) => {
             res.status(500).json({message: 'Unable to reach tradebot'})
           }
     })
+
+    app.post('/login-tradebot', async (req, res) => {
+        try {
+          const response = await axios.post(`http://${req.body.name}:8080/api/v1/token/login`, {
+            name: req.body.name,
+            username: req.body.username,
+            password: req.body.password
+          })
+          res.status(200).json(response.data)
+        } catch (error) {
+          res.status(500).json(error)
+        }
+    })
 }

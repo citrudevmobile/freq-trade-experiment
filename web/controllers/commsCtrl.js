@@ -23,5 +23,19 @@ module.exports = {
         } catch (error) {
           res.status(500).json({message: 'Unable to reach tradebot'})
         }
-  }
+    },
+
+    loginTradeBot: async function (req, res) {
+      try {
+        const response = await axios.post('http://localhost:8080/login-tradebot', {
+          name: req.body.name,
+          username: "freqtrader",
+          password: "SuperSecurePassword"
+        })
+        res.status(200).json(response.data)
+      } catch (error) {
+        res.status(500).json(error)
+      }
+
+    }
 }

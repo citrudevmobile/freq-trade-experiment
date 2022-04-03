@@ -31,7 +31,7 @@ User.findOne({ email: process.env.ADMIN_EMAIL_ADDRESS }, function (err, admin) {
       newAdmin.active = true
       newAdmin.save((err, admin) => {
         if (!err) {
-         console.log('Created default admin user')
+          console.log('Created default admin user')
         } else {
           console.log('Failed to create default admin user: %o', err)
         }

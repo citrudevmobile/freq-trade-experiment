@@ -85,7 +85,7 @@ module.exports = {
 
 
     createTradeBot: async function (req, res) {
-        
+
         let task = null
 
         const configFile = `${process.cwd()}/user_data/${req.body.name}_config.json`
@@ -179,7 +179,7 @@ module.exports = {
         }
         `
         //"logfile": "/freqtrade/user_data/${req.body.name}_freqtrade.log",
-        const dbUrlStream = fsPerm.createWriteStream(dbUrl, { mode: 0o777  })
+        const dbUrlStream = fsPerm.createWriteStream(dbUrl, { mode: 0o777 })
         dbUrlStream.write('')
         dbUrlStream.end()
 
