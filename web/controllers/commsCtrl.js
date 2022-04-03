@@ -28,9 +28,7 @@ module.exports = {
     loginTradeBot: async function (req, res) {
       try {
         const response = await axios.post('http://localhost:8080/login-tradebot', {
-          name: req.body.name,
-          username: "freqtrader",
-          password: "SuperSecurePassword"
+          name: req.body.name
         })
         res.status(200).json(response.data)
       } catch (error) {
