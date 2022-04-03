@@ -89,7 +89,7 @@ module.exports = {
         let task = null
 
         const configFile = `${process.cwd()}/user_data/${req.body.name}_config.json`
-        const logFile = `${process.cwd()}/user_data/logs/${req.body.name}_freqtrade.log`
+        const logFile = `${process.cwd()}/user_data/${req.body.name}_freqtrade.log`
         const dbUrl = `${process.cwd()}/user_data/${req.body.name}_tradesv3.sqlite`
         const dbUrlSimulate = `${process.cwd()}/user_data/${req.body.name}_simulate_tradesv3.sqlite`
 
@@ -170,7 +170,7 @@ module.exports = {
             "initial_state": "running",
             "forcebuy_enable": false,
             "db_url": "${req.body.dryRun ? `sqlite:////freqtrade/user_data/${req.body.name}_tradesv3.sqlite` : `sqlite:////freqtrade/user_data/${req.body.name}_simulate_tradesv3.sqlite`}",
-            "logfile": "/freqtrade/user_data/logs/${req.body.name}_freqtrade.log",
+            "logfile": "/freqtrade/user_data/${req.body.name}_freqtrade.log",
             "user_data_dir": "/freqtrade/user_data",
             "strategy": "Strategy005",
             "strategy-path": "/freqtrade/user_data/strategies",
