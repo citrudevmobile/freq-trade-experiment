@@ -93,6 +93,8 @@ module.exports = {
         const configFile = `${process.cwd()}/freqtrade/user_data/${req.body.name}_config.json`
         const logFile = `${process.cwd()}/freqtrade/user_data/${req.body.name}_freqtrade.log`
         const dbUrl = `${process.cwd()}/freqtrade/user_data/${req.body.name}_tradesv3.sqlite`
+        const dbUrlSimulate = `${process.cwd()}/freqtrade/user_data/${req.body.name}_simulate_tradesv3.sqlite`
+
         let recipe = `{
             "max_open_trades": 5,
             "stake_currency": "BTC",
@@ -169,7 +171,7 @@ module.exports = {
             "bot_name": "freqtrade",
             "initial_state": "running",
             "forcebuy_enable": false,
-            "db_url": "sqlite:////freqtrade/user_data/${req.body.name}_tradesv3.sqlite",
+            "db_url": "${req.body.dryRun ? `sqlite:////freqtrade/user_data/${req.body.name}_tradesv3.sqlite` : `sqlite:////freqtrade/user_data/${req.body.name}_simulate_tradesv3.sqlite`}",
             "logfile": "/freqtrade/user_data/${req.body.name}_freqtrade.log",
             "user_data_dir": "/freqtrade/user_data",
             "strategy": "Strategy005",
