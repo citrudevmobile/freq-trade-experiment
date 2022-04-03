@@ -20,7 +20,7 @@ module.exports = (app, io) => {
     app.post('/delete-tradebot', Auth.verifyAuthTokenSession, DockerCtrl.deleteTradeBot)
     app.post('/start-tradebot', Auth.verifyAuthTokenSession, DockerCtrl.startTradeBot)
     app.post('/stop-tradebot', Auth.verifyAuthTokenSession, DockerCtrl.stopTradeBot)
-    app.post('/ping-tradebot', Auth.verifyAuthTokenSession, CommsCtrl.pingTradeBot)
+    app.post('/ping-tradebot', CommsCtrl.pingTradeBot)
     app.post('/login-tradebot', CommsCtrl.loginTradeBot)
     app.get('*', (req, res) => { res.sendFile(path.join(__basedir + '/dist/index.html')) })
     
