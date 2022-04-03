@@ -172,8 +172,7 @@ module.exports = {
             "db_url": "${req.body.dryRun ? `sqlite:////freqtrade/user_data/${req.body.name}_tradesv3.sqlite` : `sqlite:////freqtrade/user_data/${req.body.name}_simulate_tradesv3.sqlite`}",
             
             "user_data_dir": "/freqtrade/user_data",
-            "strategy": "Strategy005",
-            "strategy-path": "/freqtrade/user_data/strategies",
+            
             "internals": {
                 "process_throttle_secs": 5
             } 
