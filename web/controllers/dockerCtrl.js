@@ -100,7 +100,7 @@ module.exports = {
             "tradable_balance_ratio": 0.99,
             "fiat_display_currency": "USD",
             "timeframe": "5m",
-            "dry_run": ${req.body.dryRun || false},
+            "dry_run": ${req.body.dryRun || true},
             "cancel_open_orders_on_exit": true,
             "unfilledtimeout": {
                 "buy": 10,
