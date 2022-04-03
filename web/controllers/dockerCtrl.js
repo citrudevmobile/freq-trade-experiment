@@ -343,6 +343,7 @@ module.exports = {
                         fs.remove(task.configFile)
                         fs.remove(task.logFile)
                         fs.remove(task.botDB)
+                        fs.remove(task.botSimulateDB)
                         res.status(200).json({})
                     } catch (e) {
                         res.status(500).json({})
