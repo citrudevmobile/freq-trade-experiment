@@ -171,7 +171,7 @@ module.exports = {
                 "jwt_secret_key": "somethingrandom",
                 "CORS_origins": [],
                 "username": "freqtrader",
-                "password": "SuperSecurePassword"
+                "password": ""
             },
             "bot_name": "freqtrade",
             "initial_state": "running",
