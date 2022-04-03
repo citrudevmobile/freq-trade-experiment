@@ -14,7 +14,8 @@ global.__basedir = __dirname
 // sistavorti@vusra.com
 // sure
 // echo -e "hello world" >>  /freqtrade/user_data/myconfig.json && freqtrade trade --config /freqtrade/user_data/config.json
-
+//"strategy": "Strategy005",
+//"strategy-path": "/freqtrade/user_data/strategies",
 mongoose.connect(process.env.MONGODB, {
   useNewUrlParser: true,
   useUnifiedTopology: true
