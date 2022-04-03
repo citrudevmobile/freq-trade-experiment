@@ -40,6 +40,13 @@ module.exports = {
                 }
                 try {
                     container = await docker.createContainer(ctrlCreateOptions)
+                    await container.attach({
+                        stream: true,
+                        stdout: true,
+                        stderr: true
+                    }, function handler(err, stream) {
+                        container.modem.demuxStream(stream, process.stdout, process.stderr)
+                    })
 
                     await container.start()
                     res.status(200).json({ id: container.id, name: ctrlCreateOptions.name })

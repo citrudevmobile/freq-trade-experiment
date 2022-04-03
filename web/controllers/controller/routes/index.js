@@ -26,6 +26,7 @@ module.exports = (app, io) => {
           console.log(response.data)
           res.status(200).json(response.data)
         } catch (error) {
+          console.log('error connecting to bot')
           console.log(error)
           res.status(500).json(error)
         }
