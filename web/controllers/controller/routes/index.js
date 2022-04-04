@@ -19,9 +19,14 @@ module.exports = (app, io) => {
 
     app.post('/login-tradebot', async (req, res) => {
         try {
-          const response = await axios.post(`http://${req.body.name}:8080/api/v1/token/login`, {
-            "username": "freqtrader",
-            "password": ""
+          let bodyFormData = new FormData()
+          bodyFormData.append("username", "freqtrader")
+          bodyFormData.append("password", "")
+          const response = await axios({
+            method: "post",
+            url: `http://${req.body.name}:8080/api/v1/token/login`,
+            data: bodyFormData,
+            headers: { "Content-Type": "multipart/form-data" },
           })
           console.log('attemping login to bot...')
           console.log(response.data)
