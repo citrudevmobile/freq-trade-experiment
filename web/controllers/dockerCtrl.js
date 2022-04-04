@@ -135,7 +135,7 @@ module.exports = {
                 "ccxt_async_config": {
                 },
                 "pair_whitelist": [
-                    "ETH/BTC"
+                    "${req.body.quoteCurrency || 'ETH'}/${req.body.stakeCurrency || 'BTC'}"
                 ],
                 "pair_blacklist": [
                 ]
