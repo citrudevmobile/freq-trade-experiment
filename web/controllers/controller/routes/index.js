@@ -1,4 +1,5 @@
 const axios = require('axios')
+let FormData = require('form-data')
 
 module.exports = (app, io) => {
   
