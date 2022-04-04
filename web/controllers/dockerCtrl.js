@@ -105,7 +105,7 @@ module.exports = {
             "stake_currency":"${req.body.stakeCurrency || 'BTC'}",
             "stake_amount":${req.body.stakeAmount ||0.05},
             "tradable_balance_ratio":${req.body.tradableBalanceRatio ||0.99},
-            "timeframe":"${req.body.fiatDisplayCurrency || '5m'}",
+            "timeframe":"${req.body.timeFrame || '5m'}",
             "dry_run":${req.body.dryRun || true},
             "cancel_open_orders_on_exit":${req.body.cancelOpenOrdersOnExit || true},
             "unfilledtimeout": {
@@ -186,7 +186,7 @@ module.exports = {
         `
 
         console.log(recipe)
-        //"logfile": "/freqtrade/user_data/${req.body.name}_freqtrade.log",
+        
         const dbUrlStream = fsPerm.createWriteStream(dbUrl, { mode: 0o777 })
         dbUrlStream.write('')
         dbUrlStream.end()

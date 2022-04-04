@@ -74,8 +74,8 @@ const App = () => {
             />
 
             <Route path="/create-bot" 
-              // element={ <CreateBot  logout={logout} /> } 
-              element={ localStorage.getItem('auth') == 'true' ? ( localStorage.getItem('active') == 'true'  ? <CreateBot  logout={logout} /> : <SendConfirmEmail logout={logout} /> ) : <Navigate to="/"/> } 
+              element={ <CreateBot  logout={logout} /> } 
+              //element={ localStorage.getItem('auth') == 'true' ? ( localStorage.getItem('active') == 'true'  ? <CreateBot  logout={logout} /> : <SendConfirmEmail logout={logout} /> ) : <Navigate to="/"/> } 
             />
 
             <Route path="/edit-bot" 
