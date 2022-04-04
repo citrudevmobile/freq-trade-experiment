@@ -129,8 +129,8 @@ module.exports = {
             },
             "exchange": {
                 "name": "${req.body.exchangeName || 'binance'}",
-                "key": "${req.body.exchangeKey || "zLqPHbEBGRXigIjRcANw0xRqXus1hDnt4prZbzQeEAWNjE5df0wV9bMTr2sLiE79"}",
-                "secret": "${req.body.exchangeSecret ||  "grYKHq2QG5J1S3VF4kJg5OceOJeY97E8BmN6omBlMneY1dcHMS5e25QLTI7v7Pbu"}",
+                "key": "${req.body.exchangeKey || 'zLqPHbEBGRXigIjRcANw0xRqXus1hDnt4prZbzQeEAWNjE5df0wV9bMTr2sLiE79'}",
+                "secret": "${req.body.exchangeSecret ||  'grYKHq2QG5J1S3VF4kJg5OceOJeY97E8BmN6omBlMneY1dcHMS5e25QLTI7v7Pbu'}",
                 "ccxt_config": {},
                 "ccxt_async_config": {
                 },
@@ -184,6 +184,8 @@ module.exports = {
             } 
         }
         `
+
+        console.log(recipe)
         //"logfile": "/freqtrade/user_data/${req.body.name}_freqtrade.log",
         const dbUrlStream = fsPerm.createWriteStream(dbUrl, { mode: 0o777 })
         dbUrlStream.write('')
