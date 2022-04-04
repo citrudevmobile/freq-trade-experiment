@@ -102,11 +102,10 @@ module.exports = {
 
         let recipe = `{
             "max_open_trades":${req.body.maxOpenTrades || 5},
-            "stake_currency": ${req.body.stakeCurrency || "BTC"},
+            "stake_currency": ${req.body.stakeCurrency || 'BTC'},
             "stake_amount": ${req.body.stakeAmount ||0.05},
             "tradable_balance_ratio": ${req.body.tradableBalanceRatio ||0.99},
-            "fiat_display_currency": ${req.body.fiatDisplayCurrency || "USD"},
-            "timeframe": ${req.body.fiatDisplayCurrency || "5m"},
+            "timeframe": ${req.body.fiatDisplayCurrency || '5m'},
             "dry_run": ${req.body.dryRun || true},
             "cancel_open_orders_on_exit": ${req.body.cancelOpenOrdersOnExit || true},
             "unfilledtimeout": {
@@ -129,7 +128,7 @@ module.exports = {
                 "order_book_top": 1
             },
             "exchange": {
-                "name": "binance",${req.body.exchangeName || 'binance'}
+                "name": ${req.body.exchangeName || 'binance'},
                 "key": ${req.body.exchangeKey || "zLqPHbEBGRXigIjRcANw0xRqXus1hDnt4prZbzQeEAWNjE5df0wV9bMTr2sLiE79"},
                 "secret": ${req.body.exchangeSecret ||  "grYKHq2QG5J1S3VF4kJg5OceOJeY97E8BmN6omBlMneY1dcHMS5e25QLTI7v7Pbu"},
                 "ccxt_config": {},
@@ -244,7 +243,7 @@ module.exports = {
                             newTask.logFile = botLogFile
                             newTask.botDB = botDB
                             newTask.botSimulateDB = botSimulateDB
-                            newTask.recipe = configRecipe
+                            newTask.recipe = JSON.parse(configRecipe)
                             await newTask.save()
                             res.status(200).json({})
                         } catch (e) {
