@@ -244,7 +244,7 @@ module.exports = {
                             newTask.logFile = botLogFile
                             newTask.botDB = botDB
                             newTask.botSimulateDB = botSimulateDB
-                            newTask.recipe = JSON.parse(configRecipe)
+                            newTask.recipe = configRecipe
                             await newTask.save()
                             res.status(200).json({})
                         } catch (e) {
