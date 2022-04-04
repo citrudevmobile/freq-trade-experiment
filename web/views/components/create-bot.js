@@ -57,7 +57,8 @@ function Dashboard ({logout}) {
         <main>
           <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
             
-            <div class="p-4 m-4 max-w-4xl bg-white rounded-lg border shadow-md sm:p-6 dark:bg-gray-800 dark:border-gray-700">
+          <div class="p-4 m-4 max-w-4xl bg-white rounded-lg border shadow-md sm:p-6 dark:bg-gray-800 dark:border-gray-700">
+            
             <h5 class="mb-3 text-base font-semibold text-gray-900 lg:text-xl dark:text-white">
                 General
             </h5>
@@ -78,6 +79,13 @@ function Dashboard ({logout}) {
                 <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Paper Trade</span>
               </label>
             </div>
+
+              <div class="mt-6"></div>
+                <span class="bg-blue-100 text-blue-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800">
+                  <svg class="mr-1 w-3 h-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path></svg>
+                  2 minutes ago
+                </span>
+              </div>
             
               <div class="mt-6">
                 <div class="grid xl:grid-cols-2 xl:gap-6">
@@ -92,6 +100,7 @@ function Dashboard ({logout}) {
                   </div>
                 </div>
               </div>
+
             </div>
 
           <div class="p-4 m-4 max-w-4xl bg-white rounded-lg border shadow-md sm:p-6 dark:bg-gray-800 dark:border-gray-700">
