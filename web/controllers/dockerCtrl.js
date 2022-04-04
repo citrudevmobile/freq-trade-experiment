@@ -102,13 +102,13 @@ module.exports = {
 
         let recipe = `{
             "max_open_trades":${req.body.maxOpenTrades || 5},
-            "stake_currency": "BTC",
-            "stake_amount": 0.05,
-            "tradable_balance_ratio": 0.99,
-            "fiat_display_currency": "USD",
-            "timeframe": "5m",
+            "stake_currency": ${req.body.stakeCurrency || "BTC"},
+            "stake_amount": ${req.body.stakeAmount ||0.05},
+            "tradable_balance_ratio": ${req.body.tradableBalanceRatio ||0.99},
+            "fiat_display_currency": ${req.body.fiatDisplayCurrency || "USD"},
+            "timeframe": ${req.body.fiatDisplayCurrency || "5m"},
             "dry_run": ${req.body.dryRun || true},
-            "cancel_open_orders_on_exit": true,
+            "cancel_open_orders_on_exit": ${req.body.cancelOpenOrdersOnExit || true},
             "unfilledtimeout": {
                 "buy": 10,
                 "sell": 10,
@@ -129,14 +129,14 @@ module.exports = {
                 "order_book_top": 1
             },
             "exchange": {
-                "name": "binance",
-                "key": "zLqPHbEBGRXigIjRcANw0xRqXus1hDnt4prZbzQeEAWNjE5df0wV9bMTr2sLiE79",
-                "secret": "grYKHq2QG5J1S3VF4kJg5OceOJeY97E8BmN6omBlMneY1dcHMS5e25QLTI7v7Pbu",
+                "name": "binance",${req.body.exchangeName || 'binance'}
+                "key": ${req.body.exchangeKey || "zLqPHbEBGRXigIjRcANw0xRqXus1hDnt4prZbzQeEAWNjE5df0wV9bMTr2sLiE79"},
+                "secret": ${req.body.exchangeSecret ||  "grYKHq2QG5J1S3VF4kJg5OceOJeY97E8BmN6omBlMneY1dcHMS5e25QLTI7v7Pbu"},
                 "ccxt_config": {},
                 "ccxt_async_config": {
                 },
                 "pair_whitelist": [
-                    "ETH/BTC"
+                    "${req.body.quoteCurrency || 'ETH'}/${req.body.stakeCurrency || 'BTC'}"
                 ],
                 "pair_blacklist": [
                 ]
@@ -173,7 +173,7 @@ module.exports = {
                 "username": "freqtrader",
                 "password": ""
             },
-            "bot_name": "freqtrade",
+            "bot_name": ${req.body.name},
             "initial_state": "running",
             "forcebuy_enable": false,
             "db_url": "${req.body.dryRun ? `sqlite:////freqtrade/user_data/${req.body.name}_tradesv3.sqlite` : `sqlite:////freqtrade/user_data/${req.body.name}_simulate_tradesv3.sqlite`}",
