@@ -15,6 +15,8 @@ function Dashboard ({logout}) {
   let [selectedTimeFrame, setSelectedTimeFrame] = useState("5m");
   let [quoteCurrency, setQuoteCurrency] = useState("")
   let [baseCurrency, setBaseCurrency] = useState("")
+  let [stakeAmount, setStakeAmount] = useState(0)
+  let [availableCapital, setAvailableCapital] = useState(0)
   const toggleClass = "transform translate-x-6 bg-red-300";
 
   let navigate = useNavigate()
@@ -32,7 +34,7 @@ function Dashboard ({logout}) {
     let token = localStorage.getItem('token')
     let botNameVal = botName.split(" ").join("-")
     if (token) {
-      if (botNameVal && quoteCurrency && baseCurrency && selectedTimeFrame) {
+      if (botNameVal && quoteCurrency && baseCurrency && selectedTimeFrame && stakeAmount && availableCapital) {
         try {
           await axios({
             method: "post",
@@ -142,13 +144,13 @@ function Dashboard ({logout}) {
 
 
               <div class="relative z-0 mb-6 w-full group">
-                  <input type="number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="floating_phone" id="floating_phone" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                  <label for="floating_phone" class="absolute text-xs text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Stake Amount ( Amount of crypto-currency your bot will use for each trade )</label>
+                  <input type="number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value={stakeAmount} onChange={e => setStakeAmount(e.target.value)} name="stake_amount" id="stake_amount" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder="" required />
+                  <label for="stake_amount" class="absolute text-xs text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Stake Amount ( Amount of crypto-currency your bot will use for each trade )</label>
               </div>
 
               <div class="relative z-0 mb-6 w-full group">
-                  <input type="number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="floating_phone" id="floating_phone" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                  <label for="floating_phone" class="absolute text-xs text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Available Capital ( Available starting capital for the bot. )</label>
+                  <input type="number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value={availableCapital} onChange={e => setAvailableCapital(e.target.value)} name="available_capital" id="available_capital" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder="" required />
+                  <label for="available_capital" class="absolute text-xs text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Available Capital ( Available starting capital for the bot. )</label>
               </div>
 
               <div class="flex justify-start">

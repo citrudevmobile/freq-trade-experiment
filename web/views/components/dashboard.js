@@ -149,7 +149,7 @@ function Dashboard ({logout}) {
                                 Pair
                             </th>
                             <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                Value
+                                Capital
                             </th>
                             <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
                                 Change
@@ -201,12 +201,12 @@ function Dashboard ({logout}) {
                                             <path d="M9.16667 2.5L16.6667 10C17.0911 10.4745 17.0911 11.1922 16.6667 11.6667L11.6667 16.6667C11.1922 17.0911 10.4745 17.0911 10 16.6667L2.5 9.16667V5.83333C2.5 3.99238 3.99238 2.5 5.83333 2.5H9.16667" stroke="#52525B" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></path>
                                             <circle cx="7.50004" cy="7.49967" r="1.66667" stroke="#52525B" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></circle>
                                         </svg>
-                                        <p class="text-sm leading-none text-gray-600 ml-2">$1000</p>
+                                        <p class="text-sm leading-none text-gray-600 ml-2">{val.recipe.available_capital}</p>
                                     </div>
                                 </td>
                                 <td class="pl-5">
                                     <div class="flex items-center">
-                                        <p class="text-sm leading-none text-green-600 ml-2">0.35%</p>
+                                        <p class="text-sm leading-none text-green-600 ml-2">N/A</p>
                                     </div>
                                 </td>
                                 <td class="pl-5">

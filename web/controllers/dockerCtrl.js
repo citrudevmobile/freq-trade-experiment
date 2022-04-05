@@ -103,11 +103,13 @@ module.exports = {
         let recipe = `{
             "max_open_trades":${req.body.maxOpenTrades || 5},
             "stake_currency":"${req.body.quoteCurrency}",
-            "stake_amount":${req.body.stakeAmount ||0.05},
+            "stake_amount":${req.body.stakeAmount},
             "tradable_balance_ratio":${req.body.tradableBalanceRatio ||0.99},
             "timeframe":"${req.body.timeFrame}",
             "dry_run":${req.body.dryRun || true},
-            "cancel_open_orders_on_exit":${req.body.cancelOpenOrdersOnExit || true},
+            "available_capital":${req.body.availableCapital},
+            "dry_run_wallet": 100000,
+            "cancel_open_orders_on_exit": true,
             "unfilledtimeout": {
                 "buy": 10,
                 "sell": 10,
