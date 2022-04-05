@@ -228,11 +228,11 @@ function Dashboard ({logout}) {
                                                 stroke-linejoin="round"
                                             ></path>
                                         </svg>
-                                        <p class="text-sm leading-none text-gray-600 ml-2" ><span class="text-black">$1000</span><span class="text-green-700 mx-1">(+6.16%)</span></p>
+                                        <p class="text-sm leading-none text-gray-600 ml-2" ><span class="text-black">N/A</span></p>
                                     </div>
                                 </td>
                                 <td class="pl-5 flex justify-center items-center">
-                                    <button class="py-3 px-3 mt-3 text-sm focus:outline-none leading-none text-red-700 bg-red-100 rounded">{val.trades.length}</button>
+                                    <button class="py-3 px-3 mt-3 text-sm focus:outline-none leading-none text-black rounded">{val.trades.length}</button>
                                 </td>
                                 <td class="pl-4">
                                     <button class="focus:ring-2 focus:ring-offset-2 focus:ring-red-300 text-sm leading-none text-green-600 py-3 px-5 bg-gray-100 rounded hover:bg-gray-200 focus:outline-none">{ val.status ? 'Running': 'Stopped' }</button>
