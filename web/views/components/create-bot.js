@@ -33,6 +33,7 @@ function Dashboard ({logout}) {
   let createBot = async function () {
     let token = localStorage.getItem('token')
     let botNameVal = botName.split(" ").join("-")
+    console.log('showing values...')
     console.log(quoteCurrency)
     console.log(baseCurrency)
     console.log(selectedTimeFrame)
