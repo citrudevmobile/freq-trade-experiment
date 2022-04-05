@@ -22,6 +22,8 @@ module.exports = (app, io) => {
     app.post('/stop-tradebot', Auth.verifyAuthTokenSession, DockerCtrl.stopTradeBot)
     app.post('/ping-tradebot', CommsCtrl.pingTradeBot)
     app.post('/login-tradebot', CommsCtrl.loginTradeBot)
+    app.post('/login-tradebot', CommsCtrl.loginTradeBot)
+    app.post('/notify-tradebot', DockerCtrl.notifyTradeBot)
     app.get('*', (req, res) => { res.sendFile(path.join(__basedir + '/dist/index.html')) })
     
 }
