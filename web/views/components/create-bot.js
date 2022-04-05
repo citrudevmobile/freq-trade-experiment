@@ -33,6 +33,11 @@ function Dashboard ({logout}) {
   let createBot = async function () {
     let token = localStorage.getItem('token')
     let botNameVal = botName.split(" ").join("-")
+    console.log(quoteCurrency)
+    console.log(baseCurrency)
+    console.log(selectedTimeFrame)
+    console.log(stakeAmount)
+    console.log(availableCapital)
     if (token) {
       if (botNameVal && quoteCurrency && baseCurrency && selectedTimeFrame && stakeAmount && availableCapital) {
         try {
