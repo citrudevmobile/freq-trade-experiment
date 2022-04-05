@@ -94,7 +94,7 @@ module.exports = {
     createTradeBot: async function (req, res) {
 
         let task = null
-
+        console.log(req.body)
         const configFile = `${process.cwd()}/user_data/${req.body.name}_config.json`
         const logFile = `${process.cwd()}/user_data/${req.body.name}_freqtrade.log`
         const dbUrl = `${process.cwd()}/user_data/${req.body.name}_tradesv3.sqlite`
