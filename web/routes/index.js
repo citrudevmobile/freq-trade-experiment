@@ -23,7 +23,7 @@ module.exports = (app, io) => {
     app.post('/ping-tradebot', CommsCtrl.pingTradeBot)
     app.post('/login-tradebot', CommsCtrl.loginTradeBot)
     app.post('/login-tradebot', CommsCtrl.loginTradeBot)
-    app.post('/notify-tradebot', DockerCtrl.notifyTradeBot)
+    app.post('/notify-tradebot/:botname/:username', DockerCtrl.notifyTradeBot)
     app.get('*', (req, res) => { res.sendFile(path.join(__basedir + '/dist/index.html')) })
     
 }
