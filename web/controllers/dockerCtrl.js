@@ -163,7 +163,40 @@ module.exports = {
                 "retries": 3,
                 "retry_delay": 0.2,
                 "webhookstatus": {
-                    "status": "Status: {status}"
+                    "status": "{status}"
+                },
+                "webhookbuy": {
+                    "trade_id" : "{trade_id}",
+                    "exchange" : "{exchange}",
+                    "pair" : "{pair}",
+                    "open_rate" : "{open_rate}",
+                    "amount" : "{amount}",
+                    "open_date" : "{open_date}",
+                    "stake_amount" : "{stake_amount}",
+                    "stake_currency" : "{stake_currency}",
+                    "base_currency" : "{base_currency}",
+                    "fiat_currency" : "{fiat_currency}",
+                    "order_type" : "{order_type}",
+                    "current_rate": "{current_rate}",
+                    "buy_tag" : "{buy_tag}"
+                },
+                "webhooksell": {
+                    "trade_id": "{trade_id}",
+                    "exchange": "{exchange}",
+                    "pair": "{pair}",
+                    "gain": "{gain}",
+                    "limit": "{limit}",
+                    "amount": "{amount}",
+                    "open_rate": "{open_rate}",
+                    "profit_amount": "{profit_amount}",
+                    "profit_ratio": "{profit_ratio}",
+                    "stake_currency": "{stake_currency}",
+                    "base_currency": "{base_currency}",
+                    "fiat_currency" : "{fiat_currency}",
+                    "sell_reason" : "{sell_reason}",
+                    "order_type" : "{order_type}",
+                    "open_date" : "{open_date}",
+                    "close_date" : "{close_date}"
                 }
             },
             "bot_name": "${req.body.name}",
@@ -356,9 +389,22 @@ module.exports = {
     },
 
     notifyTradeBot: async function (req, res) {
-        console.log(req.params.botname)
-        console.log(req.params.username)
-        console.log(req.body)
-        res.status(200).json()
+        //req.body
+        Task.findOne({ user: req.params.username, name: req.params.botname }, async function (err, task) {
+            if (err) return res.status(500).json({})
+            try {
+               if (req.body.trade_id) {
+                task.trades.push(req.body)
+                task.save(function (err) {
+                    if (err) return res.status(500).json({})
+                    res.status(200).json({})
+                })
+               } else {
+                    res.status(200).json({})
+               }
+            } catch (e) {
+                res.status(500).json({})
+            }
+        })
     },
 }

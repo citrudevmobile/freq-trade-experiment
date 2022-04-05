@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 
 const taskSchema = mongoose.Schema({
+
     user: { type: mongoose.Schema.ObjectId, ref: 'user' },
     name: { type: String, trim: true, unique: true, sparse: true },
     config: { type: mongoose.Schema.Types.Mixed },
@@ -10,7 +11,9 @@ const taskSchema = mongoose.Schema({
     logFile: { type: String },
     botDB: { type: String },
     botSimulateDB: { type: String },
-    recipe: { type: mongoose.Schema.Types.Mixed }
+    recipe: { type: mongoose.Schema.Types.Mixed },
+    trades: [{ type: mongoose.Schema.Types.Mixed }]
+    
 })
 
 module.exports = mongoose.model('task', taskSchema) 
