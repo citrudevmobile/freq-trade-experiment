@@ -22,8 +22,12 @@ function Dashboard ({logout}) {
   let navigate = useNavigate()
 
   useEffect(() => {
-    
-  }, [])
+    console.log(quoteCurrency)
+    console.log(baseCurrency)
+    console.log(selectedTimeFrame)
+    console.log(stakeAmount)
+    console.log(availableCapital)
+  }, [quoteCurrency, baseCurrency, selectedTimeFrame, stakeAmount, availableCapital])
 
   function handleSelectChange(event) {
     setSelectedTimeFrame(event.target.value)
