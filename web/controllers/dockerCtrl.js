@@ -163,7 +163,8 @@ module.exports = {
                 "retries": 3,
                 "retry_delay": 0.2,
                 "webhookstatus": {
-                    "status": "Status: {status}"
+                    "status": "Status: {status}",
+                    "botName": "${req.body.name}",
                 }
             },
             "bot_name": "${req.body.name}",
