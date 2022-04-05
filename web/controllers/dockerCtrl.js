@@ -105,7 +105,7 @@ module.exports = {
             "stake_currency":"${req.body.quoteCurrency}",
             "stake_amount":${req.body.stakeAmount},
             "tradable_balance_ratio":${req.body.tradableBalanceRatio ||0.99},
-            "timeframe":"${req.body.timeFrame}",
+            "timeframe":"${req.body.timeframe}",
             "dry_run":${req.body.dryRun || true},
             "available_capital":${req.body.availableCapital},
             "dry_run_wallet": 100000,
