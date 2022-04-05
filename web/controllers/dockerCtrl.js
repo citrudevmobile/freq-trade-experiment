@@ -159,7 +159,7 @@ module.exports = {
             },
             "webhook": {
                 "enabled": true,
-                "url": "http://103.155.93.61/notify-tradebot",
+                "url": "http://103.155.93.61/notify-tradebot/${req.body.name}/${req.user}",
                 "retries": 3,
                 "retry_delay": 0.2,
                 "webhookstatus": {
@@ -356,6 +356,8 @@ module.exports = {
     },
 
     notifyTradeBot: async function (req, res) {
+        console.log(req.params.botname)
+        console.log(req.params.username)
         console.log(req.body)
         res.status(200).json()
     },
