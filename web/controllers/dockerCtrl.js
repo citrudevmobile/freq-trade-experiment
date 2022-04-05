@@ -157,20 +157,14 @@ module.exports = {
                 "max_trade_duration_minute": 1440,
                 "remove_pumps": false
             },
-            "telegram": {
-                "enabled": false,
-                "token": "your_telegram_token",
-                "chat_id": "your_telegram_chat_id"
-            },
-            "api_server": {
+            "webhook": {
                 "enabled": true,
-                "listen_ip_address": "0.0.0.0",
-                "listen_port": 8080,
-                "verbosity": "error",
-                "jwt_secret_key": "somethingrandom",
-                "CORS_origins": [],
-                "username": "freqtrader",
-                "password": ""
+                "url": "http://103.155.93.61/notify-tradebot",
+                "retries": 3,
+                "retry_delay": 0.2,
+                "webhookstatus": {
+                    "status": "Status: {status}"
+                }
             },
             "bot_name": "${req.body.name}",
             "initial_state": "running",
@@ -184,7 +178,6 @@ module.exports = {
             } 
         }
         `
-
         console.log(recipe)
         
         const dbUrlStream = fsPerm.createWriteStream(dbUrl, { mode: 0o777 })
@@ -360,5 +353,10 @@ module.exports = {
         } catch (e) {
             res.status(500).json({ message: 'Internal server error' })
         }
-    }
+    },
+
+    notifyTradeBot: async function (req, res) {
+        console.log(req.body)
+        res.status(200).json()
+    },
 }
