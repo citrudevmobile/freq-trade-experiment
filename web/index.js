@@ -20,7 +20,7 @@ mongoose.connect(process.env.MONGODB, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
-`AUD, BIDR, BKRW, BNB, BRL, BTC, BUSD, BVND, DAI, DOGE, DOT, ETH, EUR, GBP, GYEN, IDRT, NGN, PAX, RUB, TRX, TRY, TUSD, UAH, USDC, USDP, USDS, USDT, UST, VAI, XRP, ZAR`
+//`AUD, BIDR, BKRW, BNB, BRL, BTC, BUSD, BVND, DAI, DOGE, DOT, ETH, EUR, GBP, GYEN, IDRT, NGN, PAX, RUB, TRX, TRY, TUSD, UAH, USDC, USDP, USDS, USDT, UST, VAI, XRP, ZAR`
 User.findOne({ email: process.env.ADMIN_EMAIL_ADDRESS }, function (err, admin) {
   if (!(!err && admin)) {
     try {
