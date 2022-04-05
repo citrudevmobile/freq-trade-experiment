@@ -12,7 +12,7 @@ function Dashboard ({logout}) {
   let [sidebarOpen, setSidebarOpen] = useState(false);
   let [botName, setBotName] = useState("")
   let [paperTrade, setPaperTrade] = useState(true);
-  let [selectedTimeFrame, setSelectedTimeFrame] = useState("5m");
+  let [selectedTimeFrame, setSelectedTimeFrame] = useState("");
   let [quoteCurrency, setQuoteCurrency] = useState("")
   let [baseCurrency, setBaseCurrency] = useState("")
   let [stakeAmount, setStakeAmount] = useState(0)
