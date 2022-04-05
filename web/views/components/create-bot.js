@@ -11,6 +11,8 @@ function Dashboard ({logout}) {
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [botName, setBotName] = useState("")
+  const [paperTrade, setPaperTrade] = useState(true);
+  const toggleClass = "transform translate-x-6 bg-red-300";
 
   let navigate = useNavigate()
 
@@ -72,29 +74,43 @@ function Dashboard ({logout}) {
               </div>
             </div>
 
-            <div class="mt-6">
-              <label for="toggle-example-checked" class="flex relative items-center mb-4 cursor-pointer">
-                <input type="checkbox" id="toggle-example-checked" class="sr-only" checked/>
-                <div class="w-11 h-6 bg-gray-200 rounded-full border border-gray-200 toggle-bg dark:bg-gray-700 dark:border-gray-600"></div>
-                <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Paper Trade</span>
-              </label>
-            </div>
-
+                  <div class="mt-6">
+                    <div className="flex items-center justify-start ">
+                    <label for="toggleB" class="flex items-center cursor-pointer">
+                        {/*   Switch Container */}
+                        <div
+                          className="w-14 h-8 flex items-center bg-gray-600 rounded-full p-1 cursor-pointer"
+                          onClick={() => {
+                            setPaperTrade(!paperTrade);
+                          }}
+                        >
+                          {/* Switch */}
+                          <div
+                            className={
+                              "bg-white md:w-6 md:h-6 h-5 w-5 rounded-full shadow-md transform duration-300 ease-in-out" +
+                              (paperTrade ? toggleClass : null)
+                            }
+                          ></div>
+                        </div>
+                        <div class="ml-3 text-gray-700 font-medium" >
+                            Paper Trade
+                          </div>
+                        </label>
+                    </div>
+                </div>
               <div class="mt-6">
                     <div class="dropdown inline-block relative">
                       <button class="bg-gray-300 text-gray-700 text-sm py-2 px-4 rounded inline-flex items-center">
+                        <svg class="mr-1 w-3 h-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path></svg>
                           Time Frame:
-                          <span class="bg-blue-100 mx-2 text-blue-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800">
-                            <svg class="mr-1 w-3 h-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path></svg>
-                                5m
-                          </span>
-                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/> </svg>
+                        <select class="bg-gray-300 text-gray-700 text-sm mx-2 px-8 rounded inline-flex items-center">
+                          <option value="1m" selected>1m</option>
+                          <option value="5m">5m</option>
+                          <option value="15m">15m</option>
+                          <option value="30m">30m</option>
+                          <option value="1h">1hr</option>
+                        </select>
                       </button>
-                      <ul class="dropdown-menu absolute hidden text-gray-700 pt-1">
-                        <li class=""><a class="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="#">One</a></li>
-                        <li class=""><a class="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="#">Two</a></li>
-                        <li class=""><a class="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="#">Three is the magic number</a></li>
-                      </ul>
                     </div>
               </div>
             
