@@ -102,10 +102,10 @@ module.exports = {
 
         let recipe = `{
             "max_open_trades":${req.body.maxOpenTrades || 5},
-            "stake_currency":"${req.body.quoteCurrency || 'BTC'}",
+            "stake_currency":"${req.body.quoteCurrency}",
             "stake_amount":${req.body.stakeAmount ||0.05},
             "tradable_balance_ratio":${req.body.tradableBalanceRatio ||0.99},
-            "timeframe":"${req.body.timeFrame || '5m'}",
+            "timeframe":"${req.body.timeFrame}",
             "dry_run":${req.body.dryRun || true},
             "cancel_open_orders_on_exit":${req.body.cancelOpenOrdersOnExit || true},
             "unfilledtimeout": {
@@ -135,7 +135,7 @@ module.exports = {
                 "ccxt_async_config": {
                 },
                 "pair_whitelist": [
-                    "${req.body.baseCurrency || 'ETH'}/${req.body.quoteCurrency || 'BTC'}"
+                    "${req.body.baseCurrency}/${req.body.quoteCurrency}"
                 ],
                 "pair_blacklist": [
                 ]
