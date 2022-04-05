@@ -12,6 +12,7 @@ function Dashboard ({logout}) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [botName, setBotName] = useState("")
   const [paperTrade, setPaperTrade] = useState(true);
+  const [selectedTimeFrame, setSelectedTimeFrame] = useState("5m");
   const toggleClass = "transform translate-x-6 bg-red-300";
 
   let navigate = useNavigate()
@@ -20,17 +21,23 @@ function Dashboard ({logout}) {
     
   }, [])
 
+  function handleSelectChange(event) {
+    setSelectedTimeFrame(event.target.value)
+    console.log(selectedTimeFrame)
+  }
+
   let createBot = async function () {
     let token = localStorage.getItem('token')
+    let botNameVal = botName.split(" ").join("-")
     if (token) {
-      if (botName) {
+      if (botNameVal) {
         try {
           await axios({
             method: "post",
             url: "/create-tradebot",
             headers: { "x-access-token": token },
             data: { 
-              name: botName 
+              name: botNameVal 
             }
           })
           navigate('/dashboard')
@@ -103,7 +110,7 @@ function Dashboard ({logout}) {
                       <button class="bg-gray-300 text-gray-700 text-sm py-2 px-4 rounded inline-flex items-center">
                         <svg class="mr-1 w-3 h-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path></svg>
                           Time Frame:
-                        <select class="bg-gray-300 text-gray-700 text-sm mx-2 px-8 rounded inline-flex items-center">
+                        <select value={selectedTimeFrame} onChange={handleSelectChange} class="bg-gray-300 text-gray-700 text-sm mx-2 px-8 rounded inline-flex items-center">
                           <option value="1m" selected>1m</option>
                           <option value="5m">5m</option>
                           <option value="15m">15m</option>
@@ -117,13 +124,13 @@ function Dashboard ({logout}) {
               <div class="mt-8">
                 <div class="grid xl:grid-cols-2 xl:gap-6">
                   <div class="relative z-0 mb-6 w-full group">
-                      <input type="text" name="floating_first_name" id="floating_first_name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                      <label for="floating_first_name" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Base Crypto Currency</label>
+                      <input type="text" name="base_currency" id="base_currency" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                      <label for="base_currency" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Base Currency</label>
                   </div>
                   
                   <div class="relative z-0 mb-6 w-full group">
-                      <input type="text" name="floating_last_name" id="floating_last_name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                      <label for="floating_last_name" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Quote Crypto Currency</label>
+                      <input type="text" name="quote_currency"  id="quote_currency" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                      <label for="quote_currency" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Quote Currency</label>
                   </div>
                 </div>
               </div>
@@ -131,7 +138,12 @@ function Dashboard ({logout}) {
 
               <div class="relative z-0 mb-6 w-full group">
                   <input type="number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="floating_phone" id="floating_phone" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                  <label for="floating_phone" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Stake Amount</label>
+                  <label for="floating_phone" class="absolute text-xs text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Stake Amount ( Amount of crypto-currency your bot will use for each trade )</label>
+              </div>
+
+              <div class="relative z-0 mb-6 w-full group">
+                  <input type="number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="floating_phone" id="floating_phone" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                  <label for="floating_phone" class="absolute text-xs text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Available Capital ( Available starting capital for the bot. )</label>
               </div>
 
               <div class="flex justify-start">
@@ -139,7 +151,7 @@ function Dashboard ({logout}) {
                 <select class="form-select appearance-none
                   block
                   w-full
-                  px-3
+                  px-10
                   py-1.5
                   text-base
                   font-normal
