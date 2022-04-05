@@ -119,7 +119,7 @@ function Dashboard ({logout}) {
                           ></div>
                         </div>
                         <div class="ml-3 text-gray-700 font-medium" >
-                            Paper Trade
+                            Simulated Trade (100000 play money)
                           </div>
                         </label>
                     </div>
