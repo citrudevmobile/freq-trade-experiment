@@ -44,7 +44,9 @@ function Dashboard ({logout}) {
               name: botNameVal,
               quoteCurrency: quoteCurrency,
               baseCurrency: baseCurrency,
-              timeFrame: selectedTimeFrame,
+              timeframe: selectedTimeFrame,
+              stakeAmount: stakeAmount,
+              availableCapital: availableCapital,
             }
           })
           navigate('/dashboard')
