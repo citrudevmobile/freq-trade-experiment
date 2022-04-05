@@ -9,10 +9,12 @@ import axios from 'axios';
 
 function Dashboard ({logout}) {
 
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [botName, setBotName] = useState("")
-  const [paperTrade, setPaperTrade] = useState(true);
-  const [selectedTimeFrame, setSelectedTimeFrame] = useState("5m");
+  let [sidebarOpen, setSidebarOpen] = useState(false);
+  let [botName, setBotName] = useState("")
+  let [paperTrade, setPaperTrade] = useState(true);
+  let [selectedTimeFrame, setSelectedTimeFrame] = useState("5m");
+  let [quoteCurrency, setQuoteCurrency] = useState("")
+  let [baseCurrency, setBaseCurrency] = useState("")
   const toggleClass = "transform translate-x-6 bg-red-300";
 
   let navigate = useNavigate()
@@ -30,14 +32,17 @@ function Dashboard ({logout}) {
     let token = localStorage.getItem('token')
     let botNameVal = botName.split(" ").join("-")
     if (token) {
-      if (botNameVal) {
+      if (botNameVal && quoteCurrency && baseCurrency && selectedTimeFrame) {
         try {
           await axios({
             method: "post",
             url: "/create-tradebot",
             headers: { "x-access-token": token },
             data: { 
-              name: botNameVal 
+              name: botNameVal,
+              quoteCurrency: quoteCurrency,
+              baseCurrency: baseCurrency,
+              timeFrame: selectedTimeFrame,
             }
           })
           navigate('/dashboard')
@@ -45,7 +50,7 @@ function Dashboard ({logout}) {
           console.log(error)
         }
       } else {
-        alert('Please input a name for the bot')
+        alert('Please input valid values for the bot')
       }
     } else {
       navigate('/')
@@ -124,12 +129,12 @@ function Dashboard ({logout}) {
               <div class="mt-8">
                 <div class="grid xl:grid-cols-2 xl:gap-6">
                   <div class="relative z-0 mb-6 w-full group">
-                      <input type="text" name="base_currency" id="base_currency" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                      <input type="text" value={baseCurrency} onChange={e => setBaseCurrency(e.target.value)} name="base_currency" id="base_currency" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
                       <label for="base_currency" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Base Currency</label>
                   </div>
                   
                   <div class="relative z-0 mb-6 w-full group">
-                      <input type="text" name="quote_currency"  id="quote_currency" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                      <input type="text" value={quoteCurrency} onChange={e => setQuoteCurrency(e.target.value)} name="quote_currency"  id="quote_currency" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
                       <label for="quote_currency" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Quote Currency</label>
                   </div>
                 </div>
