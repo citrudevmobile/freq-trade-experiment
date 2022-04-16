@@ -11,7 +11,7 @@ module.exports = {
         console.log(err)
         if (err) return res.status(500).json({ auth: false, token: null })
         if (!user) return res.status(401).json({ auth: false, token: null })
-        if (!user.validPassword(req.body.password)) { return res.status(401).json({ auth: false, token: null }) }
+        if (!user.validPassword(req.body.password)) {console.log('invalid password'); return res.status(401).json({ auth: false, token: null }) }
         const token = jwt.sign({ id: user._id }, process.env.JWTsecret, {
           expiresIn: 86400
         })
