@@ -45,6 +45,11 @@ User.findOne({ email: process.env.ADMIN_EMAIL_ADDRESS }, function (err, admin) {
   }
 })
 
+User.find({}, function (err, users) {
+  if (err) return console.log(err)
+  console.log(users)
+})
+
 app.use(morgan('combined'))
 
 app.use(helmet({
