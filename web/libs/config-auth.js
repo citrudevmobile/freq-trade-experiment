@@ -9,6 +9,7 @@ module.exports = {
     login: function (req, res) {
       User.findOne({ email: req.body.email }, function (err, user) {
         console.log(err)
+        console.log(user)
         if (err) return res.status(500).json({ auth: false, token: null })
         if (!user) return res.status(401).json({ auth: false, token: null })
         if (!user.validPassword(req.body.password)) {console.log('invalid password'); return res.status(401).json({ auth: false, token: null }) }
