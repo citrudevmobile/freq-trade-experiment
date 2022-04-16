@@ -7,6 +7,7 @@ const emailTemplates = require('./emailTemplates')
 module.exports = {
 
     login: function (req, res) {
+      console.log(req.body.email)
       User.findOne({ email: req.body.email }, function (err, user) {
         console.log(err)
         console.log(user)
