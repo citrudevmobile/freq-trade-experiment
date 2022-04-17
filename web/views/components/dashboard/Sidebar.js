@@ -75,7 +75,7 @@ function Sidebar({
             </svg>
           </button>
           {/* Logo */}
-          <NavLink end to="/" className="block">
+          <NavLink end to="/dashboard" className="block">
             <svg width="32" height="32" viewBox="0 0 32 32">
               <defs>
                 <linearGradient x1="28.538%" y1="20.229%" x2="100%" y2="108.156%" id="logo-a">
@@ -104,26 +104,28 @@ function Sidebar({
               <span className="lg:hidden lg:sidebar-expanded:block 2xl:block">Best-Crypto-Bot-Ever</span>
             </h3>
             <ul className="mt-3">
+
               {/* Dashboard */}
-              <li className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname === '/' && 'bg-slate-900'}`}>
+              <li className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname === '/dashboard' && 'bg-slate-900'}`}>
                 <NavLink end to="/dashboard" className={`block text-slate-200 hover:text-white truncate transition duration-150 ${pathname === '/' && 'hover:text-slate-200'}`}>
                   <div className="flex items-center">
                     <svg className="shrink-0 h-6 w-6" viewBox="0 0 24 24">
-                      <path className={`fill-current text-slate-400 ${pathname === '/' && '!text-indigo-500'}`} d="M12 0C5.383 0 0 5.383 0 12s5.383 12 12 12 12-5.383 12-12S18.617 0 12 0z" />
-                      <path className={`fill-current text-slate-600 ${pathname === '/' && 'text-indigo-600'}`} d="M12 3c-4.963 0-9 4.037-9 9s4.037 9 9 9 9-4.037 9-9-4.037-9-9-9z" />
-                      <path className={`fill-current text-slate-400 ${pathname === '/' && 'text-indigo-200'}`} d="M12 15c-1.654 0-3-1.346-3-3 0-.462.113-.894.3-1.285L6 6l4.714 3.301A2.973 2.973 0 0112 9c1.654 0 3 1.346 3 3s-1.346 3-3 3z" />
+                      <path className={`fill-current text-slate-400 ${pathname === '/dashboard' && '!text-indigo-500'}`} d="M12 0C5.383 0 0 5.383 0 12s5.383 12 12 12 12-5.383 12-12S18.617 0 12 0z" />
+                      <path className={`fill-current text-slate-600 ${pathname === '/dashboard' && 'text-indigo-600'}`} d="M12 3c-4.963 0-9 4.037-9 9s4.037 9 9 9 9-4.037 9-9-4.037-9-9-9z" />
+                      <path className={`fill-current text-slate-400 ${pathname === '/dashboard' && 'text-indigo-200'}`} d="M12 15c-1.654 0-3-1.346-3-3 0-.462.113-.894.3-1.285L6 6l4.714 3.301A2.973 2.973 0 0112 9c1.654 0 3 1.346 3 3s-1.346 3-3 3z" />
                     </svg>
                     <span className="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Bots</span>
                   </div>
                 </NavLink>
               </li>
+
               {/* Analytics */}
-              <li className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname.includes('analytics') && 'bg-slate-900'}`}>
-                <NavLink end to="/trade" className={`block text-slate-200 hover:text-white truncate transition duration-150 ${pathname.includes('analytics') && 'hover:text-slate-200'}`}>
+              <li className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname.includes('trade') && 'bg-slate-900'}`}>
+                <NavLink end to="/trade" className={`block text-slate-200 hover:text-white truncate transition duration-150 ${pathname.includes('trade') && 'hover:text-slate-200'}`}>
                   <div className="flex items-center">
                     <svg className="shrink-0 h-6 w-6" viewBox="0 0 24 24">
-                      <path className={`fill-current text-slate-600 ${pathname.includes('analytics') && 'text-indigo-500'}`} d="M0 20h24v2H0z" />
-                      <path className={`fill-current text-slate-400 ${pathname.includes('analytics') && 'text-indigo-300'}`} d="M4 18h2a1 1 0 001-1V8a1 1 0 00-1-1H4a1 1 0 00-1 1v9a1 1 0 001 1zM11 18h2a1 1 0 001-1V3a1 1 0 00-1-1h-2a1 1 0 00-1 1v14a1 1 0 001 1zM17 12v5a1 1 0 001 1h2a1 1 0 001-1v-5a1 1 0 00-1-1h-2a1 1 0 00-1 1z" />
+                      <path className={`fill-current text-slate-600 ${pathname.includes('trade') && 'text-indigo-500'}`} d="M0 20h24v2H0z" />
+                      <path className={`fill-current text-slate-400 ${pathname.includes('trade') && 'text-indigo-300'}`} d="M4 18h2a1 1 0 001-1V8a1 1 0 00-1-1H4a1 1 0 00-1 1v9a1 1 0 001 1zM11 18h2a1 1 0 001-1V3a1 1 0 00-1-1h-2a1 1 0 00-1 1v14a1 1 0 001 1zM17 12v5a1 1 0 001 1h2a1 1 0 001-1v-5a1 1 0 00-1-1h-2a1 1 0 00-1 1z" />
                     </svg>
                     <span className="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Trade</span>
                   </div>
@@ -131,63 +133,51 @@ function Sidebar({
               </li>
              
               {/* Calendar */}
-              <li className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname.includes('calendar') && 'bg-slate-900'}`}>
-                <NavLink end to="/trade-history" className={`block text-slate-200 hover:text-white truncate transition duration-150 ${pathname.includes('calendar') && 'hover:text-slate-200'}`}>
+              <li className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname.includes('history') && 'bg-slate-900'}`}>
+                <NavLink end to="/history" className={`block text-slate-200 hover:text-white truncate transition duration-150 ${pathname.includes('history') && 'hover:text-slate-200'}`}>
                   <div className="flex items-center">
                     <svg className="shrink-0 h-6 w-6" viewBox="0 0 24 24">
-                      <path className={`fill-current text-slate-600 ${pathname.includes('calendar') && 'text-indigo-500'}`} d="M1 3h22v20H1z" />
-                      <path className={`fill-current text-slate-400 ${pathname.includes('calendar') && 'text-indigo-300'}`} d="M21 3h2v4H1V3h2V1h4v2h10V1h4v2Z" />
+                      <path className={`fill-current text-slate-600 ${pathname.includes('history') && 'text-indigo-500'}`} d="M1 3h22v20H1z" />
+                      <path className={`fill-current text-slate-400 ${pathname.includes('history') && 'text-indigo-300'}`} d="M21 3h2v4H1V3h2V1h4v2h10V1h4v2Z" />
                     </svg>
                     <span className="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">History</span>
                   </div>
                 </NavLink>
               </li>
               
-              {/* Settings */}
-              <SidebarLinkGroup activecondition={pathname.includes('settings')}>
-                {(handleClick, open) => {
-                  return (
-                    <React.Fragment>
-                      <a href="#0" className={`block text-slate-200 hover:text-white truncate transition duration-150 ${pathname.includes('settings') && 'hover:text-slate-200'}`} onClick={(e) => { e.preventDefault(); sidebarExpanded ? handleClick() : setSidebarExpanded(true) }}>
+              {/* Strategies */}
+                <li className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname.includes('strategies') && 'bg-slate-900'}`}>
+                       <NavLink end to="/strategies"  className={`block text-slate-200 hover:text-white truncate transition duration-150 ${pathname.includes('strategies') && 'hover:text-slate-200'}`} >
                         <div className="flex items-center justify-between">
                           <div className="flex items-center">
                             <svg className="shrink-0 h-6 w-6" viewBox="0 0 24 24">
-                              <path className={`fill-current text-slate-600 ${pathname.includes('settings') && 'text-indigo-500'}`} d="M19.714 14.7l-7.007 7.007-1.414-1.414 7.007-7.007c-.195-.4-.298-.84-.3-1.286a3 3 0 113 3 2.969 2.969 0 01-1.286-.3z" />
-                              <path className={`fill-current text-slate-400 ${pathname.includes('settings') && 'text-indigo-300'}`} d="M10.714 18.3c.4-.195.84-.298 1.286-.3a3 3 0 11-3 3c.002-.446.105-.885.3-1.286l-6.007-6.007 1.414-1.414 6.007 6.007z" />
-                              <path className={`fill-current text-slate-600 ${pathname.includes('settings') && 'text-indigo-500'}`} d="M5.7 10.714c.195.4.298.84.3 1.286a3 3 0 11-3-3c.446.002.885.105 1.286.3l7.007-7.007 1.414 1.414L5.7 10.714z" />
-                              <path className={`fill-current text-slate-400 ${pathname.includes('settings') && 'text-indigo-300'}`} d="M19.707 9.292a3.012 3.012 0 00-1.415 1.415L13.286 5.7c-.4.195-.84.298-1.286.3a3 3 0 113-3 2.969 2.969 0 01-.3 1.286l5.007 5.006z" />
+                              <path className={`fill-current text-slate-600 ${pathname.includes('strategies') && 'text-indigo-500'}`} d="M19.714 14.7l-7.007 7.007-1.414-1.414 7.007-7.007c-.195-.4-.298-.84-.3-1.286a3 3 0 113 3 2.969 2.969 0 01-1.286-.3z" />
+                              <path className={`fill-current text-slate-400 ${pathname.includes('strategies') && 'text-indigo-300'}`} d="M10.714 18.3c.4-.195.84-.298 1.286-.3a3 3 0 11-3 3c.002-.446.105-.885.3-1.286l-6.007-6.007 1.414-1.414 6.007 6.007z" />
+                              <path className={`fill-current text-slate-600 ${pathname.includes('strategies') && 'text-indigo-500'}`} d="M5.7 10.714c.195.4.298.84.3 1.286a3 3 0 11-3-3c.446.002.885.105 1.286.3l7.007-7.007 1.414 1.414L5.7 10.714z" />
+                              <path className={`fill-current text-slate-400 ${pathname.includes('strategies') && 'text-indigo-300'}`} d="M19.707 9.292a3.012 3.012 0 00-1.415 1.415L13.286 5.7c-.4.195-.84.298-1.286.3a3 3 0 113-3 2.969 2.969 0 01-.3 1.286l5.007 5.006z" />
                             </svg>
                             <span className="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Strategies</span>
                           </div>
                         </div>
-                      </a>
-                    </React.Fragment>
-                  );
-                }}
-              </SidebarLinkGroup>
+                        </NavLink>
+                   </li>
               {/* Utility */}
-              <SidebarLinkGroup activecondition={pathname.includes('utility')}>
-                {(handleClick, open) => {
-                  return (
-                    <React.Fragment>
-                      <a href="#0" className={`block text-slate-200 hover:text-white truncate transition duration-150 ${pathname.includes('utility') && 'hover:text-slate-200'}`} onClick={(e) => { e.preventDefault(); sidebarExpanded ? handleClick() : setSidebarExpanded(true) }}>
+                  <li className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname.includes('settings') && 'bg-slate-900'}`}>
+                       <NavLink end to="/settings" className={`block text-slate-200 hover:text-white truncate transition duration-150 ${pathname.includes('settings') && 'hover:text-slate-200'}`} >
                         <div className="flex items-center justify-between">
                           <div className="flex items-center">
                             <svg className="shrink-0 h-6 w-6" viewBox="0 0 24 24">
-                              <circle className={`fill-current text-slate-400 ${pathname.includes('utility') && 'text-indigo-300'}`} cx="18.5" cy="5.5" r="4.5" />
-                              <circle className={`fill-current text-slate-600 ${pathname.includes('utility') && 'text-indigo-500'}`} cx="5.5" cy="5.5" r="4.5" />
-                              <circle className={`fill-current text-slate-600 ${pathname.includes('utility') && 'text-indigo-500'}`} cx="18.5" cy="18.5" r="4.5" />
-                              <circle className={`fill-current text-slate-400 ${pathname.includes('utility') && 'text-indigo-300'}`} cx="5.5" cy="18.5" r="4.5" />
+                              <circle className={`fill-current text-slate-400 ${pathname.includes('settings') && 'text-indigo-300'}`} cx="18.5" cy="5.5" r="4.5" />
+                              <circle className={`fill-current text-slate-600 ${pathname.includes('settings') && 'text-indigo-500'}`} cx="5.5" cy="5.5" r="4.5" />
+                              <circle className={`fill-current text-slate-600 ${pathname.includes('settings') && 'text-indigo-500'}`} cx="18.5" cy="18.5" r="4.5" />
+                              <circle className={`fill-current text-slate-400 ${pathname.includes('settings') && 'text-indigo-300'}`} cx="5.5" cy="18.5" r="4.5" />
                             </svg>
                             <span className="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Settings</span>
                           </div>
                          
                         </div>
-                      </a>
-                    </React.Fragment>
-                  );
-                }}
-              </SidebarLinkGroup>
+                        </NavLink>
+                    </li>
             </ul>
           </div>
         </div>
