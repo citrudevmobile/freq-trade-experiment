@@ -12,7 +12,7 @@ const io = require('socket.io')(server)
 global.__basedir = __dirname
 
 // vuTgeYC8WVM3wxzjLAn7
-// sistavorti@vusra.com
+// sapipa7648@arpizol.com
 // sure
 // echo -e "hello world" >>  /freqtrade/user_data/myconfig.json && freqtrade trade --config /freqtrade/user_data/config.json
 
