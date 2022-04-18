@@ -278,6 +278,9 @@ function Dashboard ({logout}) {
                                                 <path d="M10 10.8332C10.4602 10.8332 10.8333 10.4601 10.8333 9.99984C10.8333 9.5396 10.4602 9.1665 10 9.1665C9.53976 9.1665 9.16666 9.5396 9.16666 9.99984C9.16666 10.4601 9.53976 10.8332 10 10.8332Z" stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></path>
                                                 <path d="M15.8333 10.8332C16.2936 10.8332 16.6667 10.4601 16.6667 9.99984C16.6667 9.5396 16.2936 9.1665 15.8333 9.1665C15.3731 9.1665 15 9.5396 15 9.99984C15 10.4601 15.3731 10.8332 15.8333 10.8332Z" stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></path>
                                             </svg>
+                                                
+                                        </button>
+
                                                 <Modal
                                                     isOpen={modalIsOpen}
                                                     onAfterOpen={afterOpenModal}
@@ -296,10 +299,6 @@ function Dashboard ({logout}) {
                                                     <button>the modal</button>
                                                     </form>
                                                 </Modal>
-                                        </button>
-     
-                            
-
 
                                     </div>
                                 </td>
