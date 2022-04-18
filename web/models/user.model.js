@@ -9,7 +9,7 @@ const userSchema = mongoose.Schema({
   fullname: { type: String },
   admin: { type: Boolean, default: false },
   active: { type: Boolean, default: false },
-  settings: { type: mongoose.Schema.Types.Mixed, defualt: {exchanges: []} }
+  settings: { type: mongoose.Schema.Types.Mixed, defualt: {exchanges: []}
 })
 
 userSchema.methods.generateHash = function (password) {
