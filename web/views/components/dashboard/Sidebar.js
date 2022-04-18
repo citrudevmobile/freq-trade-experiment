@@ -3,10 +3,13 @@ import { NavLink, useLocation } from 'react-router-dom';
 
 import SidebarLinkGroup from './SidebarLinkGroup';
 
-function Sidebar({
-  sidebarOpen,
-  setSidebarOpen
-}) {
+function Sidebar(
+  {
+    sidebarOpen,
+    setSidebarOpen,
+    
+  }
+) {
 
   const location = useLocation();
   const { pathname } = location;
@@ -185,7 +188,7 @@ function Sidebar({
         {/* Expand / collapse button */}
         <div className="pt-3 hidden lg:inline-flex 2xl:hidden justify-end mt-auto">
           <div className="px-3 py-2">
-            <button onClick={() => {setSidebarExpanded(!sidebarExpanded)} }>
+            <button onClick={() => setSidebarOpen(!sidebarOpen)}>
               <span className="sr-only">Expand / collapse sidebar</span>
               <svg className="w-6 h-6 fill-current sidebar-expanded:rotate-180" viewBox="0 0 24 24">
                 <path className="text-slate-400" d="M19.586 11l-5-5L16 4.586 23.414 12 16 19.414 14.586 18l5-5H7v-2z" />

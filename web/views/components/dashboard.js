@@ -91,7 +91,7 @@ function Dashboard ({logout}) {
     }
 
   useEffect(() => {
-    getTradeBots()
+    //getTradeBots()
   }, [])
 
   return (
