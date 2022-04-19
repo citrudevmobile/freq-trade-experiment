@@ -110,7 +110,7 @@ function Dashboard ({logout}) {
 
             <div class="sm:px-6 w-full">
 
-                <h1>Strategy Page</h1>
+                <h1>Recipies Page</h1>
             </div>
     
           </div>
