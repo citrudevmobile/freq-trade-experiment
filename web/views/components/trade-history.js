@@ -103,20 +103,20 @@ function Dashboard ({logout}) {
                                     </thead>
                                     <tbody>
                                         <tr class="bg-white dark:bg-gray-800">
-                                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                                               Buy
-                                            </th>
-                                            <td class="px-6 py-4">
-                                                {val.exchange}
+                                            <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
+                                            Buy
                                             </td>
-                                            <td class="px-6 py-4">
-                                                {val.pair}
+                                            <td class="px-4 py-4">
+                                            {val.exchange}
                                             </td>
-                                            <td class="px-6 py-4">
-                                            {val.stake_currency}: {val.stake_amount}
+                                            <td class="px-4 py-4">
+                                            {val.pair}
                                             </td>
-                                            <td class="px-6 py-4 text-right">
-                                            {val.base_currency}: {val.amount}
+                                            <td class="px-4 py-4">
+                                            {val.stake_amount} {val.stake_currency}
+                                            </td>
+                                            <td class="px-4 py-4">
+                                            {val.amount} {val.base_currency}
                                             </td>
                                         </tr>
                                     </tbody>
