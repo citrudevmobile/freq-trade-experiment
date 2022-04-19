@@ -95,6 +95,7 @@ function Dashboard ({logout}) {
                         }
                     })
                     await getTradeBots()
+                    window.location.reload();
                 } catch (error) {
                     console.log(error)
                 }
