@@ -97,6 +97,9 @@ function Dashboard ({logout}) {
                                                 TRADED AMOUNT
                                             </th>
                                             <th scope="col" class="px-4 py-3">
+                                                PROFIT
+                                            </th>
+                                            <th scope="col" class="px-4 py-3">
                                                 PROFIT RATIO
                                             </th>
                                         </tr>
@@ -104,7 +107,7 @@ function Dashboard ({logout}) {
                                     <tbody>
                                         <tr class="bg-white dark:bg-gray-800">
                                             <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                                            Buy
+                                            {val['buy_tag'] == undefined ? 'Sell' : 'Buy'}
                                             </td>
                                             <td class="px-4 py-4">
                                             {val.exchange}
@@ -117,6 +120,12 @@ function Dashboard ({logout}) {
                                             </td>
                                             <td class="px-4 py-4">
                                             {val.amount} {val.base_currency}
+                                            </td>
+                                            <td class="px-4 py-4">
+                                            
+                                            </td>
+                                            <td class="px-4 py-4">
+                                            
                                             </td>
                                         </tr>
                                     </tbody>
