@@ -11,7 +11,7 @@ import ConfirmEmail from './confirmEmail';
 import TradeHistory from './trade-history'
 import Settings from './settings'
 import Trade from './trade'
-import Strategies from './strategies'
+import Recipies from './recipies'
 
 const App = () => {
   
@@ -87,8 +87,8 @@ const App = () => {
               //element={ localStorage.getItem('auth') == 'true' ? ( localStorage.getItem('active') == 'true'  ? <Trade logout={logout} /> : <SendConfirmEmail logout={logout} /> ) : <Navigate to="/"/> } 
             />
 
-            <Route path="/strategies" 
-              element={ <Strategies logout={logout} /> } 
+            <Route path="/recipies" 
+              element={ <Recipies logout={logout} /> } 
               //element={ localStorage.getItem('auth') == 'true' ? ( localStorage.getItem('active') == 'true'  ? <Strategies logout={logout} /> : <SendConfirmEmail logout={logout} /> ) : <Navigate to="/"/> } 
             />
 
