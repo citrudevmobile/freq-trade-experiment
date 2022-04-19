@@ -95,7 +95,6 @@ function Dashboard({ logout }) {
                         }
                     })
                     await getTradeBots()
-                    window.location.reload()
                 } catch (error) {
                     console.log(error)
                 }
@@ -308,8 +307,8 @@ function Dashboard({ logout }) {
                                                         </td>
                                                         <td class="pl-1 flex items-center justify-center">
                                                             <button onClick={() => { startAndStop(val.taskId, val.status) }} class="">
-                                                                <span className={ val.status ? 'hidden' : '' }>{ <i class="fas fa-stop"></i> }</span>
-                                                                <span className={ val.status ? '' : 'hidden' }>{ <i class="fas fa-play"></i> }</span>
+                                                                <span className={ val.status ? 'hidden' : '' }>{ <i class="fas fa-play"></i> }</span>
+                                                                <span className={ val.status ? '' : 'hidden' }>{ <i class="fas fa-stop"></i> }</span>
                                                             </button>
                                                         </td>
                                                         <td>
