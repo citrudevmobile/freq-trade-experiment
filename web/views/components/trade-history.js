@@ -25,7 +25,7 @@ function Dashboard ({logout}) {
                 let trades = []
                 for (let bot of allTradeBots) {
                     bot.trades.map(trade => {
-                        trade = bot.name
+                        trade.bot_name = bot.name
                         return trade 
                     })
                     trades = trades.concat(bot.trades)
