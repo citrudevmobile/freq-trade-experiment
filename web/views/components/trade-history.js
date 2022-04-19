@@ -24,11 +24,11 @@ function Dashboard ({logout}) {
                 let allTradeBots = response.data
                 let trades = []
                 for (let bot of allTradeBots) {
-                    bot.trades.map(trade => {
-                        trade.bot_name = bot.name
-                        return trade 
+                    let _trades = bot.trades.map(_trade => {
+                        _trade.bot_name = bot.name
+                        return _trade 
                     })
-                    trades = trades.concat(bot.trades)
+                    trades = trades.concat(_trades)
                 }
                 trades = trades.sort(function(a, b) {
                     return new Date(b.open_date) - new Date(a.open_date);
