@@ -82,7 +82,7 @@ function Dashboard ({logout}) {
                                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                         <tr>
                                             <th scope="col" class="px-4 py-3">
-                                                TRADE
+                                                TRADE TYPE
                                             </th>
                                             <th scope="col" class="px-4 py-3">
                                                 Exchange
@@ -94,7 +94,7 @@ function Dashboard ({logout}) {
                                                 STAKE AMOUNT
                                             </th>
                                             <th scope="col" class="px-4 py-3">
-                                                PROFIT
+                                                TRADED AMOUNT
                                             </th>
                                             <th scope="col" class="px-4 py-3">
                                                 PROFIT RATIO
@@ -104,19 +104,19 @@ function Dashboard ({logout}) {
                                     <tbody>
                                         <tr class="bg-white dark:bg-gray-800">
                                             <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                                                Magic Mouse 2
+                                               Buy
                                             </th>
                                             <td class="px-6 py-4">
-                                                Black
+                                                {val.exchange}
                                             </td>
                                             <td class="px-6 py-4">
-                                                Accessories
+                                                {val.pair}
                                             </td>
                                             <td class="px-6 py-4">
-                                                $99
+                                            {val.stake_currency}: {val.stake_amount}
                                             </td>
                                             <td class="px-6 py-4 text-right">
-                                            
+                                            {val.base_currency}: {val.amount}
                                             </td>
                                         </tr>
                                     </tbody>
