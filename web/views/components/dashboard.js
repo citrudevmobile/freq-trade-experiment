@@ -53,6 +53,7 @@ function Dashboard({ logout }) {
                     headers: { "x-access-token": token }
                 })
                 setlistOfBots(response.data)
+                console.log(response.data)
             } catch (error) {
                 console.log(error)
             }
