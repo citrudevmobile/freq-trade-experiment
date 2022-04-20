@@ -97,6 +97,9 @@ function Dashboard ({logout}) {
                                                 TRADED AMOUNT
                                             </th>
                                             <th scope="col" class="px-4 py-3">
+                                                OPEN RATE
+                                            </th>
+                                            <th scope="col" class="px-4 py-3">
                                                 PROFIT
                                             </th>
                                             <th scope="col" class="px-4 py-3">
@@ -122,10 +125,13 @@ function Dashboard ({logout}) {
                                             {val.amount} {val.base_currency}
                                             </td>
                                             <td class="px-4 py-4">
-                                            
+                                            {val['open_rate']}
                                             </td>
                                             <td class="px-4 py-4">
-                                            
+                                            {val['profit_amount'] == undefined ? 'N/A' : val['profit_amount']}
+                                            </td>
+                                            <td class="px-4 py-4">
+                                            {val['profit_ratio'] == undefined ? 'N/A' : val['profit_ratio']}
                                             </td>
                                         </tr>
                                     </tbody>
