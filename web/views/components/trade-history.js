@@ -69,7 +69,7 @@ function Dashboard({ logout }) {
 
                         <div class="sm:px-6 w-full">
 
-                            <div class="flex items-center space-x-2">
+                            <div class="flex items-center space-x-2 mb-4">
                                 <a class="rounded-full focus:outline-none focus:ring-2  focus:bg-indigo-50 focus:ring-indigo-800" href=" javascript:void(0)">
                                     <div class="py-2 px-8 bg-indigo-50 text-indigo-700 rounded-full">
                                         <p>All Trades: <span class="text-green-700 mx-1">{allTrades.length}</span></p>
@@ -77,7 +77,7 @@ function Dashboard({ logout }) {
                                 </a>
                                 <a class="rounded-full focus:outline-none focus:ring-2 focus:bg-indigo-50 focus:ring-indigo-800" href="javascript:void(0)">
                                     <div class="py-2 px-8 bg-indigo-50 text-indigo-700 rounded-full">
-                                        <p>Total Value: <span class="text-black mx-1">$1000</span></p>
+                                        <p>Total Profit: <span class="text-black mx-1">$0</span></p>
                                     </div>
                                 </a>
                             </div>
