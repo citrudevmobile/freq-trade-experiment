@@ -138,7 +138,7 @@ function Dashboard({ logout }) {
                                                             {val.pair}
                                                         </td>
                                                         <td class="px-4 py-4">
-                                                            {val['stake_amount'] == undefined ? (Number(val.stake_amount).toFixed(2)+' '+val.stake_currency) : 'N/A'}
+                                                            {val['stake_amount'] == undefined ? 'N/A' :  (Number(val.stake_amount).toFixed(2)+' '+val.stake_currency) }
                                                         </td>
                                                         <td class="px-4 py-4">
                                                             {Number(val.amount).toFixed(2)} {val.base_currency}
