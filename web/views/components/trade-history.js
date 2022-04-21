@@ -35,7 +35,7 @@ function Dashboard({ logout }) {
                     return new Date(b.open_date) - new Date(a.open_date);
                 })
                 
-                let closedTrades = (trades.filiter((val) => {return !(val['close_date'] == undefined)}))
+                let closedTrades = (trades.filter((val) => {return !(val['close_date'] == undefined)}))
                 closedTrades.forEach(closedTrade => {
                     setTotalProfit(totalProfit + Number(closedTrade.profit_amount))
                 });
