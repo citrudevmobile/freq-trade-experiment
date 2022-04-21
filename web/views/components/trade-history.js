@@ -138,10 +138,10 @@ function Dashboard({ logout }) {
                                                             {val.pair}
                                                         </td>
                                                         <td class="px-4 py-4">
-                                                            {val['stake_amount'] == undefined ? 'N/A' :  (Number(val.stake_amount).toFixed(2)+' '+val.stake_currency) }
+                                                            {val['stake_amount'] == undefined ? (Number(val.amount).toFixed(2)+' '+val.base_currency) :  (Number(val.stake_amount).toFixed(2)+' '+val.stake_currency) }
                                                         </td>
                                                         <td class="px-4 py-4">
-                                                            {Number(val.amount).toFixed(2)} {val.base_currency}
+                                                            {val['limit'] == undefined ? (Number(val.amount).toFixed(2)+' '+val.base_currency) : ((Number(val.amount) * Number(val['profit_ratio'])).toFixed(2)+' '+val.stake_currency)}
                                                         </td>
                                                         <td class="px-4 py-4">
                                                             {val['profit_ratio'] == undefined ? Number(val['open_rate']).toFixed(4) : Number(val['limit']).toFixed(4)}
