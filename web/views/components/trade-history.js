@@ -9,6 +9,7 @@ function Dashboard({ logout }) {
 
     const [sidebarOpen, setSidebarOpen] = useState(true);
     const [allTrades, setAllTrades] = useState([]);
+    const [totalProfit, setTotalProfit] = useState(0);
 
     let navigate = useNavigate()
 
@@ -33,6 +34,11 @@ function Dashboard({ logout }) {
                 trades = trades.sort(function (a, b) {
                     return new Date(b.open_date) - new Date(a.open_date);
                 })
+                
+                let closedTrades = (trades.filiter((val) => {return !(val['close_date'] == undefined)}))
+                closedTrades.forEach(closedTrade => {
+                    setTotalProfit(totalProfit + Number(closedTrade.profit_amount))
+                });
                 console.log(trades)
                 setAllTrades(trades)
             } catch (error) {
@@ -77,7 +83,7 @@ function Dashboard({ logout }) {
                                 </a>
                                 <a class="rounded-full focus:outline-none focus:ring-2 focus:bg-indigo-50 focus:ring-indigo-800" href="javascript:void(0)">
                                     <div class="py-2 px-8 bg-indigo-50 text-indigo-700 rounded-full">
-                                        <p>Total Profit: <span class="text-black mx-1">$0</span></p>
+                                        <p>Total Profit: <span class="text-black mx-1">${totalProfit.toFixed(0)}</span></p>
                                     </div>
                                 </a>
                             </div>
