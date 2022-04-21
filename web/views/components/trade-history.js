@@ -116,7 +116,7 @@ function Dashboard({ logout }) {
                                                             TRADED AMOUNT
                                                         </th>
                                                         <th scope="col" class="px-4 py-3">
-                                                            OPEN RATE
+                                                            OPEN/CLOSE RATE
                                                         </th>
                                                         <th scope="col" class="px-4 py-3">
                                                             PROFIT
@@ -144,7 +144,7 @@ function Dashboard({ logout }) {
                                                             {Number(val.amount).toFixed(2)} {val.base_currency}
                                                         </td>
                                                         <td class="px-4 py-4">
-                                                            {Number(val['open_rate']).toFixed(2)}
+                                                            {val['profit_ratio'] == undefined ? Number(val['open_rate']).toFixed(2) : Number(val['limit']).toFixed(2)}
                                                         </td>
                                                         <td className={"px-4 py-4 " + (val['gain'] == 'profit'? 'text-green-400' : 'text-red-400')}>
                                                             {val['profit_amount'] == undefined ? 'N/A' : (val['gain'] == 'profit'? '+':'-')+Number(val['profit_amount']).toFixed(2)}
