@@ -83,7 +83,7 @@ function Dashboard({ logout }) {
                                 </a>
                                 <a class="rounded-full focus:outline-none focus:ring-2 focus:bg-indigo-50 focus:ring-indigo-800" href="javascript:void(0)">
                                     <div class="py-2 px-8 bg-indigo-50 text-indigo-700 rounded-full">
-                                        <p>Total Profit: <span class="text-black mx-1">${totalProfit.toFixed(0)}</span></p>
+                                        <p>Total Profit: <span class="text-black mx-1">${totalProfit.toFixed(2)}</span></p>
                                     </div>
                                 </a>
                             </div>
@@ -138,19 +138,19 @@ function Dashboard({ logout }) {
                                                             {val.pair}
                                                         </td>
                                                         <td class="px-4 py-4">
-                                                            {val.stake_amount} {val.stake_currency}
+                                                            {Number(val.stake_amount).toFixed(2)} {val.stake_currency}
                                                         </td>
                                                         <td class="px-4 py-4">
-                                                            {val.amount} {val.base_currency}
+                                                            {Number(val.amount).toFixed(2)} {val.base_currency}
                                                         </td>
                                                         <td class="px-4 py-4">
-                                                            {val['open_rate']}
+                                                            {Number(val['open_rate']).toFixed(2)}
                                                         </td>
                                                         <td class="px-4 py-4">
-                                                            {val['profit_amount'] == undefined ? 'N/A' : val['profit_amount']}
+                                                            {val['profit_amount'] == undefined ? 'N/A' : Number(val['profit_amount']).toFixed(2)}
                                                         </td>
-                                                        <td class="px-4 py-4">
-                                                            {val['profit_ratio'] == undefined ? 'N/A' : val['profit_ratio']}
+                                                        <td class="px-4 py-4 ">
+                                                            {val['profit_ratio'] == undefined ? 'N/A' : Number(val['profit_ratio']).toFixed(2)}
                                                         </td>
                                                     </tr>
                                                 </tbody>
