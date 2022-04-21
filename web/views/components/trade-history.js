@@ -148,7 +148,7 @@ function Dashboard({ logout }) {
                                                             {val['limit'] == undefined ? (Number(val.amount).toFixed(2)+' '+val.base_currency) : ((Number(val.amount) * Number(val['limit'])).toFixed(2)+' '+val.stake_currency)}
                                                         </td>
                                                         <td class="px-4 py-4">
-                                                            {val['profit_ratio'] == undefined ? Number(val['open_rate']).toFixed(4) : Number(val['limit']).toFixed(4)}
+                                                            {val['profit_ratio'] == undefined ? Number(val['open_rate']) : Number(val['limit'])}
                                                         </td>
                                                         <td className={"px-4 py-4 " + (val['gain'] == 'profit'? 'text-green-400' : 'text-red-400')}>
                                                             {val['profit_amount'] == undefined ? 'N/A' : (val['gain'] == 'profit'? '+':'-')+Number(val['profit_amount']).toFixed(2)}
