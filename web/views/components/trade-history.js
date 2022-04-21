@@ -116,7 +116,7 @@ function Dashboard({ logout }) {
                                                             TRADED AMOUNT
                                                         </th>
                                                         <th scope="col" class="px-4 py-3">
-                                                            OPEN/CLOSE RATE
+                                                            RATE
                                                         </th>
                                                         <th scope="col" class="px-4 py-3">
                                                             PROFIT
