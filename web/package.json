@@ -46,6 +46,7 @@
     "react-modal": "^3.14.4",
     "react-router": "^6.2.1",
     "react-router-dom": "^6.2.1",
+    "react-tabs": "^5.1.0",
     "react-transition-group": "^4.4.2",
     "socket.io": "^4.4.1",
     "write": "^2.0.0"
