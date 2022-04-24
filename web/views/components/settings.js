@@ -15,6 +15,7 @@ function Dashboard({ logout }) {
 
     const [sidebarOpen, setSidebarOpen] = useState(true);
     const [listOfBots, setlistOfBots] = useState([]);
+    const [tabIndex, setTabIndex] = useState(0);
     let navigate = useNavigate()
 
     let getTradeBots = async function () {
@@ -132,7 +133,7 @@ function Dashboard({ logout }) {
                                 </ul>
                             </div>
 
-                            <Tabs>
+                            <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
                                 <TabList>
                                     <Tab>Title 1</Tab>
                                     <Tab>Title 2</Tab>
