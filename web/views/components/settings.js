@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, Navigate, useNavigate } from "react-router-dom";
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import 'react-tabs/style/react-tabs.css';
-import Sidebar from './dashboard/Sidebar'
+import Sidebar from './dashboard/Sidebar';
 import Header from './dashboard/Header';
 import WelcomeBanner from './dashboard/WelcomeBanner';
 import DashboardCard05 from './dashboard/Dashboard05';
@@ -133,19 +131,7 @@ function Dashboard({ logout }) {
                                 </ul>
                             </div>
 
-                            <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
-                                <TabList>
-                                    <Tab>Title 1</Tab>
-                                    <Tab>Title 2</Tab>
-                                </TabList>
-
-                                <TabPanel>
-                                    <h2>Any content 1</h2>
-                                </TabPanel>
-                                <TabPanel>
-                                    <h2>Any content 2</h2>
-                                </TabPanel>
-                            </Tabs>
+                            
 
                         </div>
 
