@@ -131,17 +131,7 @@ function Dashboard({ logout }) {
                                 </ul>
                             </div>
 
-                            <Tabs className="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400" defaultActiveKey="2" onChange={callback}>
-                                <TabPane className="inline-flex p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group" tab="tab 1" key="1">
-                                    first
-                                </TabPane>
-                                <TabPane className="inline-flex p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group" tab="tab 2" key="2">
-                                    second
-                                </TabPane>
-                                <TabPane className="inline-flex p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group" tab="tab 3" key="3">
-                                    third
-                                </TabPane>
-                            </Tabs>
+                            
 
 
                         </div>
