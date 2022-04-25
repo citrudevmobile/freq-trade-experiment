@@ -91,7 +91,7 @@ function Dashboard ({logout}) {
     }
 
   useEffect(() => {
-    getTradeBots()
+    //getTradeBots()
   }, [])
 
   return (
@@ -105,17 +105,15 @@ function Dashboard ({logout}) {
 
         {/*  Site header */}
         <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} logout={logout} />
-        <main>
-          <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
+            <main>
+                <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
 
-            <div class="sm:px-6 w-full">
-
-                <h1>Trade Page</h1>
-            </div>
-    
-          </div>
-        </main>
-
+                    <div class="sm:px-6 w-full">
+                    
+                    </div>
+            
+                </div>
+            </main>
       </div>
     </div>
   )
