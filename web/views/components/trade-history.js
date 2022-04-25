@@ -36,11 +36,11 @@ function Dashboard({ logout }) {
                 })
                 
                 let closedTrades = (trades.filter((val) => {return !(val['close_date'] == undefined)}))
-                closedTrades.forEach(closedTrade => {
-                    let currentProfit = totalProfit + Number(closedTrade.profit_amount)
-                    console.log(currentProfit)
-                    setTotalProfit(currentProfit)
-                });
+                let totalTrades = closedTrades.reduce( (accumulator, val ) => {
+                   return accumulator + Number(val['profit_amount'])
+                }, 0);
+                console.log(totalTrades)
+                setTotalProfit(totalTrades)
                 console.log(trades)
                 setAllTrades(trades)
             } catch (error) {
