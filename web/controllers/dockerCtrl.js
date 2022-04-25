@@ -104,7 +104,6 @@ module.exports = {
             "max_open_trades":${req.body.maxOpenTrades || 5},
             "stake_currency":"${req.body.quoteCurrency}",
             "stake_amount":${req.body.stakeAmount},
-            "tradable_balance_ratio":${req.body.tradableBalanceRatio ||0.99},
             "timeframe":"${req.body.timeframe}",
             "dry_run":${req.body.dryRun || true},
             "available_capital":${req.body.availableCapital},
@@ -129,6 +128,13 @@ module.exports = {
                 "use_order_book": true,
                 "order_book_top": 1
             },
+            "minimal_roi": {
+                "40":  0.0,
+                "30":  0.01,
+                "20":  0.02,
+                "0":  0.04
+            },
+            "stoploss": -0.10,
             "exchange": {
                 "name":"${req.body.exchangeName || 'binance'}",
                 "key":"${req.body.exchangeKey || 'zLqPHbEBGRXigIjRcANw0xRqXus1hDnt4prZbzQeEAWNjE5df0wV9bMTr2sLiE79'}",
