@@ -13,6 +13,7 @@ function Dashboard ({logout}) {
   let [botName, setBotName] = useState("")
   let [paperTrade, setPaperTrade] = useState(true);
   let [selectedTimeFrame, setSelectedTimeFrame] = useState("");
+  let [selectedPair, setSelectedPair] = useState("");
   let [quoteCurrency, setQuoteCurrency] = useState("")
   let [baseCurrency, setBaseCurrency] = useState("")
   let [stakeAmount, setStakeAmount] = useState(0)
@@ -31,7 +32,10 @@ function Dashboard ({logout}) {
 
   function handleSelectChange(event) {
     setSelectedTimeFrame(event.target.value)
-    console.log(selectedTimeFrame)
+  }
+
+  function handleSelectPair(event) {
+    setSelectedPair(event.target.value)
   }
 
   let createBot = async function () {
@@ -52,8 +56,7 @@ function Dashboard ({logout}) {
             headers: { "x-access-token": token },
             data: { 
               name: botNameVal,
-              quoteCurrency: quoteCurrency,
-              baseCurrency: baseCurrency,
+              pair: selectedPair,
               timeframe: selectedTimeFrame,
               stakeAmount: stakeAmount,
               availableCapital: availableCapital,
@@ -135,23 +138,47 @@ function Dashboard ({logout}) {
                           <option value="15m">15m</option>
                           <option value="30m">30m</option>
                           <option value="1h">1hr</option>
+                          
                         </select>
                       </button>
                     </div>
               </div>
-            
-              <div class="mt-8">
-                <div class="grid xl:grid-cols-2 xl:gap-6">
-                  <div class="relative z-0 mb-6 w-full group">
-                      <input type="text" value={baseCurrency} onChange={e => setBaseCurrency(e.target.value)} name="base_currency" id="base_currency" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                      <label for="base_currency" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Base Currency</label>
-                  </div>
-                  
-                  <div class="relative z-0 mb-6 w-full group">
-                      <input type="text" value={quoteCurrency} onChange={e => setQuoteCurrency(e.target.value)} name="quote_currency"  id="quote_currency" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                      <label for="quote_currency" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Quote Currency</label>
-                  </div>
-                </div>
+
+              <div class="mt-6 mb-8">
+                    <div class="dropdown inline-block relative">
+                      <button class="bg-gray-300 text-gray-700 text-sm py-2 px-6 rounded inline-flex items-center">
+                      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                          Pair:&nbsp;&nbsp;
+                        <select value={selectedPair} onChange={handleSelectPair} class="bg-gray-300 text-gray-700 text-sm mx-2 px-12 rounded inline-flex items-center">
+                          <option value="BTC/USDT" selected>BTC/USDT</option>
+                          <option value="DOGE/USDT">DOGE/USDT</option>
+                          <option value="ETH/USDT">ETH/USDT</option>
+                          <option value="BTC/BUSD">BTC/BUSD</option>
+                          <option value="BUSD/USDT">BUSD/USDT</option>
+                          <option value="APE/USDT">APE/USDT</option>
+                          <option value="BNB/USDT">BNB/USDT</option>
+                          <option value="MATIC/USDT">MATIC/USDT</option>
+                          <option value="BUSD/USDT">ETH/BTC</option>
+                          <option value="XRP/USDT">XRP/USDT</option>
+                          <option value="NEAR/USDT">NEAR/USDT</option>
+                          <option value="LUNA/BTC">LUNA/BTC</option>
+                          <option value="VET/USDT">VET/USDT</option>
+                          <option value="MANA/USDT">MANA/USDT</option>
+                          <option value="AXS/USDT">AXS/USDT</option>
+                          <option value="NEAR/BUSD">NEAR/BUSD</option>
+                          <option value="SOL/USDT">SOL/USDT</option>
+                          <option value="TUSD/USDT">TUSD/USDT</option>
+                          <option value="XMR/USDT">XMR/USDT</option>
+                          <option value="SHIB/USDT">SHIB/USDT</option>
+                          <option value="JASMY/USDT">JASMY/USDT</option>
+                          <option value="LUNA/BUSD">LUNA/BUSD</option>
+                          <option value="UST/BUSD">UST/BUSD</option>
+                          <option value="UST/USDT">UST/USDT</option>
+                          <option value="GLMR/USDT">GLMR/USDT</option>
+                          <option value="IOST/USDT">IOST/USDT</option>
+                        </select>
+                      </button>
+                    </div>
               </div>
 
 
