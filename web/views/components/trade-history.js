@@ -38,10 +38,10 @@ function Dashboard({ logout }) {
                 let closedTrades = (trades.filter((val) => {return !(val['close_date'] == undefined)}))
                 closedTrades.forEach(closedTrade => {
                     if (closedTrade['gain'] == 'profit') {
-                        console.log(`profit: ${closedTrade.profit_amount}`)
+                        console.log(`profit: ${Number(closedTrade.profit_amount)}`)
                         setTotalProfit(totalProfit + Number(closedTrade.profit_amount))
                     } else {
-                        console.log(`loss: ${closedTrade.profit_amount}`)
+                        console.log(`loss: ${Number(closedTrade.profit_amount)}`)
                         setTotalProfit(totalProfit - Number(closedTrade.profit_amount))
                     }
                 });
