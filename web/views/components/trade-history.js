@@ -147,10 +147,10 @@ function Dashboard({ logout }) {
                                                             {val['profit_ratio'] == undefined ? Number(val['open_rate']) : Number(val['limit'])}
                                                         </td>
                                                         <td className={"px-4 py-4 " + (val['gain'] == 'profit'? 'text-green-400' : 'text-red-400')}>
-                                                            {val['profit_amount'] == undefined ? 'N/A' : (val['gain'] == 'profit'? '+':'-')+Number(val['profit_amount']).toFixed(2)}
+                                                            {val['profit_amount'] == undefined ? 'N/A' : Number(val['profit_amount']).toFixed(2)}
                                                         </td>
                                                         <td className={"px-4 py-4 " + (val['gain'] == 'profit'? 'text-green-400' : 'text-red-400')}>
-                                                            {val['profit_ratio'] == undefined ? 'N/A' : (val['gain'] == 'profit'? '+':'-')+Number(val['profit_ratio']).toFixed(2)}
+                                                            {val['profit_ratio'] == undefined ? 'N/A' : Number(val['profit_ratio']).toFixed(2)}
                                                         </td>
                                                     </tr>
                                                 </tbody>
