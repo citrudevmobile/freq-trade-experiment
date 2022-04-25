@@ -83,8 +83,8 @@ const App = () => {
             />
 
             <Route path="/trade" 
-              element={ <Trade logout={logout} /> } 
-              //element={ localStorage.getItem('auth') == 'true' ? ( localStorage.getItem('active') == 'true'  ? <Trade logout={logout} /> : <SendConfirmEmail logout={logout} /> ) : <Navigate to="/"/> } 
+              //element={ <Trade logout={logout} /> } 
+              element={ localStorage.getItem('auth') == 'true' ? ( localStorage.getItem('active') == 'true'  ? <Trade logout={logout} /> : <SendConfirmEmail logout={logout} /> ) : <Navigate to="/"/> } 
             />
 
             <Route path="/recipies" 

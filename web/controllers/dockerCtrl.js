@@ -116,25 +116,31 @@ module.exports = {
                 "unit": "minutes"
             },
             "bid_strategy": {
+                "price_side": "bid",
                 "ask_last_balance": 0.0,
                 "use_order_book": true,
-                "order_book_top": 1,
+                "order_book_top": "${req.body.orderBookTopBid}",
                 "check_depth_of_market": {
-                    "enabled": false,
+                    "enabled": true,
                     "bids_to_ask_delta": 1
                 }
             },
             "ask_strategy": {
                 "use_order_book": true,
-                "order_book_top": 1
+                "order_book_top": 1,
             },
             "minimal_roi": {
-                "40":  0.0,
-                "30":  0.01,
-                "20":  0.02,
-                "0":  0.04
+                "60": ${req.body.roiSixtyMin},
+                "50": ${req.body.roiFiftyMin},
+                "40": ${req.body.roiFourtyMin},
+                "30": ${req.body.roiThirtyMin},
+                "20": ${req.body.roiTwentyMin},
+                "0": ${req.body.roiImmediate}
             },
-            "stoploss": -0.10,
+            "stoploss": ${req.body.stopLoss},
+            "trailing_stop": true,
+            "sell_profit_only": true,
+            "sell_profit_offset": 0.0,
             "exchange": {
                 "name":"${req.body.exchangeName || 'binance'}",
                 "key":"${req.body.exchangeKey || 'zLqPHbEBGRXigIjRcANw0xRqXus1hDnt4prZbzQeEAWNjE5df0wV9bMTr2sLiE79'}",
@@ -143,7 +149,7 @@ module.exports = {
                 "ccxt_async_config": {
                 },
                 "pair_whitelist": [
-                    "${req.body.baseCurrency}/${req.body.quoteCurrency}"
+                    "${req.body.pair}"
                 ],
                 "pair_blacklist": [
                 ]
@@ -151,20 +157,6 @@ module.exports = {
             "pairlists": [
                 {"method": "StaticPairList"}
             ],
-            "edge": {
-                "enabled": false,
-                "process_throttle_secs": 3600,
-                "calculate_since_number_of_days": 7,
-                "allowed_risk": 0.01,
-                "stoploss_range_min": -0.01,
-                "stoploss_range_max": -0.1,
-                "stoploss_range_step": -0.01,
-                "minimum_winrate": 0.60,
-                "minimum_expectancy": 0.20,
-                "min_trade_number": 10,
-                "max_trade_duration_minute": 1440,
-                "remove_pumps": false
-            },
             "webhook": {
                 "enabled": true,
                 "url": "http://103.155.93.61/notify-tradebot/${req.body.name}/${req.user}",
