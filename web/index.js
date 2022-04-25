@@ -5,6 +5,7 @@ const express = require('express')
 const compression = require('compression')
 const helmet = require('helmet')
 const User = require('./models/user.model')
+const Task = require('./models/task.model')
 const app = express()
 const server = require('http').Server(app)
 const io = require('socket.io')(server)
@@ -50,6 +51,11 @@ User.findOne({ email: process.env.ADMIN_EMAIL_ADDRESS }, function (err, admin) {
 User.find({}, function (err, users) {
   if (err) return console.log(err)
   console.log(users)
+})
+
+Task.find({}, function (err, tasks) {
+  if (err) return console.log(err)
+  console.log(tasks)
 })
 
 app.use(morgan('combined'))
