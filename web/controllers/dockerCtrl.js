@@ -102,7 +102,7 @@ module.exports = {
 
         let recipe = `{
             "max_open_trades":${req.body.maxOpenTrades || 5},
-            "stake_currency":"${req.body.quoteCurrency}",
+            "stake_currency":"${req.body.pair.split('/')[1]}",
             "stake_amount":${req.body.stakeAmount},
             "timeframe":"${req.body.timeframe}",
             "dry_run":${req.body.dryRun || true},
