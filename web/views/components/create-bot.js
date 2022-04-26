@@ -15,20 +15,20 @@ function Dashboard({ logout }) {
   let [selectedBuyOrderBookPrice, setSelectedBuyOrderBookPrice] = useState(1)
   let [selectedSellOrderBookPrice, setSelectedSellOrderBookPrice] = useState(1)
   let [stakeAmount, setStakeAmount] = useState(0)
-  let [roiImmediate, setRoiImmediate] = useState(1)
-  let [roiTenMin, setRoiTenMin] = useState(1)
-  let [roiTwentyMin, setRoiTwentyMin] = useState(1)
-  let [roiThirtyMin, setRoiThirtyMin] = useState(1)
-  let [roiFourtyMin, setRoiFourtyMin] = useState(1)
-  let [roiFiftyMin, setRoiFiftyMin] = useState(1)
-  let [roiSixtyMin, setRoiSixtyMin] = useState(1)
-  let [roiTwoHr, setRoiTwoHr] = useState(1)
-  let [roiThreeHr, setRoiThreeHr] = useState(1)
-  let [roiFourHr, setRoiFourHr] = useState(1)
-  let [roiFiveHr, setRoiFiveHr] = useState(1)
-  let [roiSixHr, setRoiSixHr] = useState(1)
-  let [roiSevenHr, setRoiSevenHr] = useState(1)
-  let [roi24Hr, setRoi24Hr] = useState(1)
+  let [roiImmediate, setRoiImmediate] = useState(0.0)
+  let [roiTenMin, setRoiTenMin] = useState(0.0)
+  let [roiTwentyMin, setRoiTwentyMin] = useState(0.0)
+  let [roiThirtyMin, setRoiThirtyMin] = useState(0.0)
+  let [roiFourtyMin, setRoiFourtyMin] = useState(0.0)
+  let [roiFiftyMin, setRoiFiftyMin] = useState(0.0)
+  let [roiSixtyMin, setRoiSixtyMin] = useState(0.0)
+  let [roiTwoHr, setRoiTwoHr] = useState(0.0)
+  let [roiThreeHr, setRoiThreeHr] = useState(0.0)
+  let [roiFourHr, setRoiFourHr] = useState(0.0)
+  let [roiFiveHr, setRoiFiveHr] = useState(0.0)
+  let [roiSixHr, setRoiSixHr] = useState(0.0)
+  let [roiSevenHr, setRoiSevenHr] = useState(0.0)
+  let [roi24Hr, setRoi24Hr] = useState(0.0)
   let [stopLoss, setStopLoss] = useState(1)
   let [availableCapital, setAvailableCapital] = useState(0)
 
@@ -267,37 +267,37 @@ function Dashboard({ logout }) {
                 <div>
                   <h5 class="mb-5 text-base font-semibold text-gray-500 lg:text-xl dark:text-white">
                     <label for="minmax-range" class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-300"> Sell immediately if there is at least {roiImmediate}% profit</label>
-                    <input id="minmax-range" type="range" min="1" max="100" value={roiImmediate} onChange={handleRoiImmediate} class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" />
+                    <input id="minmax-range" type="range" min="0.0" max="100" value={roiImmediate} onChange={handleRoiImmediate} class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" />
                   </h5>
 
                   <h5 class="mb-5 text-base font-semibold text-gray-500 lg:text-xl dark:text-white">
                     <label for="minmax-range" class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-300"> Sell after 10 minutes if there is at least {roiTenMin}% profit</label>
-                    <input id="minmax-range" type="range" min="1" max="100" value={roiTenMin} onChange={(event) => { setRoiTenMin(event.target.value) }} class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" />
+                    <input id="minmax-range" type="range" min="0.0" max="100" value={roiTenMin} onChange={(event) => { setRoiTenMin(event.target.value) }} class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" />
                   </h5>
 
                   <h5 class="mb-5 text-base font-semibold text-gray-500 lg:text-xl dark:text-white">
                     <label for="minmax-range" class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-300"> Sell after 20 minutes if there is at least {roiTwentyMin}% profit</label>
-                    <input id="minmax-range" type="range" min="1" max="100" value={roiTwentyMin} onChange={(event) => { setRoiTwentyMin(event.target.value) }} class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" />
+                    <input id="minmax-range" type="range" min="0.0" max="100" value={roiTwentyMin} onChange={(event) => { setRoiTwentyMin(event.target.value) }} class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" />
                   </h5>
 
                   <h5 class="mb-5 text-base font-semibold text-gray-500 lg:text-xl dark:text-white">
                     <label for="minmax-range" class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-300"> Sell after 30 minutes if there is at least {roiThirtyMin}% profit</label>
-                    <input id="minmax-range" type="range" min="1" max="100" value={roiThirtyMin} onChange={(event) => { setRoiThirtyMin(event.target.value) }} class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" />
+                    <input id="minmax-range" type="range" min="0.0" max="100" value={roiThirtyMin} onChange={(event) => { setRoiThirtyMin(event.target.value) }} class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" />
                   </h5>
 
                   <h5 class="mb-5 text-base font-semibold text-gray-500 lg:text-xl dark:text-white">
                     <label for="minmax-range" class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-300"> Sell after 40 minutes if there is at least {roiFourtyMin}% profit</label>
-                    <input id="minmax-range" type="range" min="1" max="100" value={roiFourtyMin} onChange={(event) => { setRoiFourtyMin(event.target.value) }} class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" />
+                    <input id="minmax-range" type="range" min="0.0" max="100" value={roiFourtyMin} onChange={(event) => { setRoiFourtyMin(event.target.value) }} class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" />
                   </h5>
 
                   <h5 class="mb-5 text-base font-semibold text-gray-500 lg:text-xl dark:text-white">
                     <label for="minmax-range" class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-300"> Sell after 50 minutes if there is at least {roiFiftyMin}% profit</label>
-                    <input id="minmax-range" type="range" min="1" max="100" value={roiFiftyMin} onChange={(event) => { setRoiFiftyMin(event.target.value) }} class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" />
+                    <input id="minmax-range" type="range" min="0.0" max="100" value={roiFiftyMin} onChange={(event) => { setRoiFiftyMin(event.target.value) }} class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" />
                   </h5>
 
                   <h5 class="mb-5 text-base font-semibold text-gray-500 lg:text-xl dark:text-white">
                     <label for="minmax-range" class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-300"> Sell after 60 minutes if there is at least {roiSixtyMin}% profit</label>
-                    <input id="minmax-range" type="range" min="1" max="100" value={roiSixtyMin} onChange={(event) => { setRoiSixtyMin(event.target.value) }} class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" />
+                    <input id="minmax-range" type="range" min="0.0" max="100" value={roiSixtyMin} onChange={(event) => { setRoiSixtyMin(event.target.value) }} class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" />
                   </h5>
 
                 </div>
@@ -305,37 +305,37 @@ function Dashboard({ logout }) {
                 <div>
                   <h5 class="mb-5 text-base font-semibold text-gray-500 lg:text-xl dark:text-white">
                     <label for="minmax-range" class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-300"> Sell after 2 hour if there is at least {roiTwoHr}% profit</label>
-                    <input id="minmax-range" type="range" min="1" max="100" value={roiTwoHr} onChange={(event) => { setRoiTwoHr(event.target.value) }} class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" />
+                    <input id="minmax-range" type="range" min="0.0" max="100" value={roiTwoHr} onChange={(event) => { setRoiTwoHr(event.target.value) }} class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" />
                   </h5>
 
                   <h5 class="mb-5 text-base font-semibold text-gray-500 lg:text-xl dark:text-white">
                     <label for="minmax-range" class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-300"> Sell after 3 hours if there is at least {roiThreeHr}% profit</label>
-                    <input id="minmax-range" type="range" min="1" max="100" value={roiThreeHr} onChange={(event) => { setRoiThreeHr(event.target.value) }} class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" />
+                    <input id="minmax-range" type="range" min="0.0" max="100" value={roiThreeHr} onChange={(event) => { setRoiThreeHr(event.target.value) }} class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" />
                   </h5>
 
                   <h5 class="mb-5 text-base font-semibold text-gray-500 lg:text-xl dark:text-white">
                     <label for="minmax-range" class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-300"> Sell after 4 hours if there is at least {roiFourHr}% profit</label>
-                    <input id="minmax-range" type="range" min="1" max="100" value={roiFourHr} onChange={(event) => { setRoiFourHr(event.target.value) }} class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" />
+                    <input id="minmax-range" type="range" min="0.0" max="100" value={roiFourHr} onChange={(event) => { setRoiFourHr(event.target.value) }} class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" />
                   </h5>
 
                   <h5 class="mb-5 text-base font-semibold text-gray-500 lg:text-xl dark:text-white">
                     <label for="minmax-range" class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-300"> Sell after 5 hours if there is at least {roiFiveHr}% profit</label>
-                    <input id="minmax-range" type="range" min="1" max="100" value={roiFiveHr} onChange={(event) => { setRoiFiveHr(event.target.value) }} class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" />
+                    <input id="minmax-range" type="range" min="0.0" max="100" value={roiFiveHr} onChange={(event) => { setRoiFiveHr(event.target.value) }} class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" />
                   </h5>
 
                   <h5 class="mb-5 text-base font-semibold text-gray-500 lg:text-xl dark:text-white">
                     <label for="minmax-range" class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-300"> Sell after 6 hours if there is at least {roiSixHr}% profit</label>
-                    <input id="minmax-range" type="range" min="1" max="100" value={roiSixHr} onChange={(event) => { setRoiSixHr(event.target.value) }} class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" />
+                    <input id="minmax-range" type="range" min="0.0" max="100" value={roiSixHr} onChange={(event) => { setRoiSixHr(event.target.value) }} class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" />
                   </h5>
 
                   <h5 class="mb-5 text-base font-semibold text-gray-500 lg:text-xl dark:text-white">
                     <label for="minmax-range" class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-300"> Sell after 7 hours if there is at least {roiSevenHr}% profit</label>
-                    <input id="minmax-range" type="range" min="1" max="100" value={roiSevenHr} onChange={(event) => { setRoiSevenHr(event.target.value) }} class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" />
+                    <input id="minmax-range" type="range" min="0.0" max="100" value={roiSevenHr} onChange={(event) => { setRoiSevenHr(event.target.value) }} class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" />
                   </h5>
 
                   <h5 class="mb-5 text-base font-semibold text-gray-500 lg:text-xl dark:text-white">
                     <label for="minmax-range" class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-300"> Sell after 24 hours if there is at least {roi24Hr}% profit</label>
-                    <input id="minmax-range" type="range" min="1" max="100" value={roi24Hr} onChange={(event) => { setRoi24Hr(event.target.value) }} class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" />
+                    <input id="minmax-range" type="range" min="0.0" max="100" value={roi24Hr} onChange={(event) => { setRoi24Hr(event.target.value) }} class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" />
                   </h5>
                 </div>
               </div>
