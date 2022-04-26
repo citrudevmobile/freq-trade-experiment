@@ -119,7 +119,7 @@ module.exports = {
                 "price_side": "bid",
                 "ask_last_balance": 0.0,
                 "use_order_book": true,
-                "order_book_top": "${req.body.orderBookTopBid}",
+                "order_book_top": "${req.body.buyOrderBookTopBid}",
                 "check_depth_of_market": {
                     "enabled": true,
                     "bids_to_ask_delta": 1
@@ -127,7 +127,7 @@ module.exports = {
             },
             "ask_strategy": {
                 "use_order_book": true,
-                "order_book_top": 1,
+                "order_book_top": "${req.body.sellOrderBookTopBid}",
             },
             "minimal_roi": {
                 "60": ${req.body.roiSixtyMin},
@@ -135,6 +135,7 @@ module.exports = {
                 "40": ${req.body.roiFourtyMin},
                 "30": ${req.body.roiThirtyMin},
                 "20": ${req.body.roiTwentyMin},
+                "10": ${req.body.roiTenMin},
                 "0": ${req.body.roiImmediate}
             },
             "stoploss": ${req.body.stopLoss},

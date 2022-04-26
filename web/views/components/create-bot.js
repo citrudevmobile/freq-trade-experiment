@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import { NavLink, Navigate, useNavigate } from "react-router-dom";
 import Sidebar from './dashboard/Sidebar'
 import Header from './dashboard/Header';
-import WelcomeBanner from './dashboard/WelcomeBanner';
-import DashboardCard05 from './dashboard/Dashboard05';
 import axios from 'axios';
 
 
@@ -14,21 +12,35 @@ function Dashboard ({logout}) {
   let [paperTrade, setPaperTrade] = useState(true);
   let [selectedTimeFrame, setSelectedTimeFrame] = useState("");
   let [selectedPair, setSelectedPair] = useState("");
-  let [quoteCurrency, setQuoteCurrency] = useState("")
-  let [baseCurrency, setBaseCurrency] = useState("")
+  let [selectedBuyOrderBookPrice, setSelectedBuyOrderBookPrice] = useState(1)
+  let [selectedSellOrderBookPrice, setSelectedSellOrderBookPrice] = useState(1)
   let [stakeAmount, setStakeAmount] = useState(0)
+  let [roiImmediate, setRoiImmediate] = useState(0)
+  let [roiTenMin, setRoiTenMin] = useState(0)
+  let [roiTwentyMin, setRoiTwentyMin] = useState(0)
+  let [roiThirtyMin, setRoiThirtyMin] = useState(0)
+  let [roiFourtyMin, setRoiFourtyMin] = useState(0)
+  let [roiFiftyMin, setRoiFiftyMin] = useState(0)
+  let [roiSixtyMin, setRoiSixtyMin] = useState(0)
+  let [roiTwoHr, setRoiTwoHr] = useState(0)
+  let [roiThreeHr, setRoiThreeHr] = useState(0)
+  let [roiFourHr, setRoiFourHr] = useState(0)
+  let [roiFiveHr, setRoiFiveHr] = useState(0)
+  let [roiSixHr, setRoiSixHr] = useState(0)
+  let [roiSevenHr, setRoiSevenHr] = useState(0)
+  let [roi24Hr, setRoi24Hr] = useState(0)
+  let [stopLoss, setStopLoss] = useState(0.0)
+ 
   let [availableCapital, setAvailableCapital] = useState(0)
   const toggleClass = "transform translate-x-6 bg-red-300";
 
   let navigate = useNavigate()
 
   useEffect(() => {
-    console.log(quoteCurrency)
-    console.log(baseCurrency)
-    console.log(selectedTimeFrame)
-    console.log(stakeAmount)
-    console.log(availableCapital)
-  }, [quoteCurrency, baseCurrency, selectedTimeFrame, stakeAmount, availableCapital])
+    
+    console.log(roiImmediate)
+
+  }, [roiImmediate, selectedTimeFrame, stakeAmount, availableCapital])
 
   function handleSelectChange(event) {
     setSelectedTimeFrame(event.target.value)
@@ -38,17 +50,29 @@ function Dashboard ({logout}) {
     setSelectedPair(event.target.value)
   }
 
+  function handleBuyOrderBookPrice (event) {
+    setSelectedBuyOrderBookPrice(event.target.value)
+  }
+
+  function handleSellOrderBookPrice (event) {
+    setSelectedSellOrderBookPrice(event.target.value)
+  }
+
+  function handleRoiImmediate (event) {
+    setRoiImmediate(event.target.value)
+  }
+
+  
+
+
   let createBot = async function () {
     let token = localStorage.getItem('token')
     let botNameVal = botName.split(" ").join("-")
     console.log('showing values...')
-    console.log(quoteCurrency)
-    console.log(baseCurrency)
-    console.log(selectedTimeFrame)
-    console.log(stakeAmount)
-    console.log(availableCapital)
+    
+    
     if (token) {
-      if (botNameVal && quoteCurrency && baseCurrency && selectedTimeFrame && stakeAmount && availableCapital) {
+      if (botNameVal && selectedTimeFrame && stakeAmount && availableCapital) {
         try {
           await axios({
             method: "post",
@@ -60,6 +84,23 @@ function Dashboard ({logout}) {
               timeframe: selectedTimeFrame,
               stakeAmount: stakeAmount,
               availableCapital: availableCapital,
+              buyOrderBookTopBid: selectedBuyOrderBookPrice,
+              sellOrderBookTopBid: selectedSellOrderBookPrice,
+              roiImmediate: (Number(roiImmediate) / 100),
+              roiTenMin: (Number(roiTenMin) / 100),
+              roiTwentyMin: (Number(roiTwentyMin) / 100),
+              roiThirtyMin: (Number(roiThirtyMin) / 100),
+              roiFourtyMin: (Number(roiFourtyMin) / 100),
+              roiFiftyMin: (Number(roiFiftyMin) / 100),
+              roiSixtyMin: (Number(roiSixtyMin) / 100),
+              roiTwoHr: (Number(roiTwoHr) / 100),
+              roiThreeHr: (Number(roiThreeHr) / 100),
+              roiFourHr: (Number(roiFourHr) / 100),
+              roiFiveHr: (Number(roiFiveHr) / 100),
+              roiSixHr: (Number(roiSixHr) / 100),
+              roiSevenHr: (Number(roiSevenHr) / 100),
+              roi24Hr: (Number(roi24Hr) / 100),
+              stopLoss: -(Number(stopLoss) / 100)
             }
           })
           navigate('/dashboard')
@@ -138,7 +179,6 @@ function Dashboard ({logout}) {
                           <option value="15m">15m</option>
                           <option value="30m">30m</option>
                           <option value="1h">1hr</option>
-                          
                         </select>
                       </button>
                     </div>
@@ -218,17 +258,136 @@ function Dashboard ({logout}) {
 
             </div>
 
+          <div class="p-16 m-4 max-w-4xl bg-white rounded-lg border shadow-md  dark:bg-gray-800 dark:border-gray-700">
+            <h5 class="mb-8 text-base font-semibold text-gray-900 lg:text-xl dark:text-white">
+                Minimal ROI
+            </h5>
+            <div class="grid grid-cols-2 gap-4">
+            <div>
+            <h5 class="mb-5 text-base font-semibold text-gray-500 lg:text-xl dark:text-white">
+            <label for="minmax-range" class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-300"> Sell immediately if there is at least {roiImmediate}% profit</label>
+              <input id="minmax-range" type="range" min="0" max="100" value={roiImmediate} onChange={handleRoiImmediate} class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"/>
+            </h5>
+
+            <h5 class="mb-5 text-base font-semibold text-gray-500 lg:text-xl dark:text-white">
+            <label for="minmax-range" class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-300"> Sell after 10 minutes if there is at least {roiTenMin}% profit</label>
+              <input id="minmax-range" type="range" min="0" max="100"  value={roiTenMin} onChange={(event)=>{ setRoiTenMin(event.target.value) }}  class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"/>
+            </h5>
+
+            <h5 class="mb-5 text-base font-semibold text-gray-500 lg:text-xl dark:text-white">
+            <label for="minmax-range" class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-300"> Sell after 20 minutes if there is at least {roiTwentyMin}% profit</label>
+              <input id="minmax-range" type="range" min="0" max="100" value={roiTwentyMin} onChange={(event)=>{ setRoiTwentyMin(event.target.value) }} class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"/>
+            </h5>
+
+            <h5 class="mb-5 text-base font-semibold text-gray-500 lg:text-xl dark:text-white">
+            <label for="minmax-range" class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-300"> Sell after 30 minutes if there is at least {roiThirtyMin}% profit</label>
+              <input id="minmax-range" type="range" min="0" max="100" value={roiThirtyMin} onChange={(event)=>{ setRoiThirtyMin(event.target.value) }} class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"/>
+            </h5>
+
+            <h5 class="mb-5 text-base font-semibold text-gray-500 lg:text-xl dark:text-white">
+            <label for="minmax-range" class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-300"> Sell after 40 minutes if there is at least {roiFourtyMin}% profit</label>
+              <input id="minmax-range" type="range" min="0" max="100" value={roiFourtyMin} onChange={(event)=>{ setRoiFourtyMin(event.target.value) }} class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"/>
+            </h5>
+
+            <h5 class="mb-5 text-base font-semibold text-gray-500 lg:text-xl dark:text-white">
+            <label for="minmax-range" class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-300"> Sell after 50 minutes if there is at least {roiFiftyMin}% profit</label>
+              <input id="minmax-range" type="range" min="0" max="100" value={roiFiftyMin} onChange={(event)=>{ setRoiFiftyMin(event.target.value) }} class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"/>
+            </h5>
+
+            <h5 class="mb-5 text-base font-semibold text-gray-500 lg:text-xl dark:text-white">
+            <label for="minmax-range" class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-300"> Sell after 60 minutes if there is at least {roiSixtyMin}% profit</label>
+              <input id="minmax-range" type="range" min="0" max="100" value={roiSixtyMin} onChange={(event)=>{ setRoiSixtyMin(event.target.value) }} class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"/>
+            </h5>
+
+            </div>
+
+            <div>
+              <h5 class="mb-5 text-base font-semibold text-gray-500 lg:text-xl dark:text-white">
+              <label for="minmax-range" class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-300"> Sell after 2 hour if there is at least {roiTwoHr}% profit</label>
+                <input id="minmax-range" type="range" min="0" max="100" value={roiTwoHr} onChange={(event)=>{ setRoiTwoHr(event.target.value) }} class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"/>
+              </h5>
+
+              <h5 class="mb-5 text-base font-semibold text-gray-500 lg:text-xl dark:text-white">
+              <label for="minmax-range" class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-300"> Sell after 3 hours if there is at least {roiThreeHr}% profit</label>
+                <input id="minmax-range" type="range" min="0" max="100" value={roiThreeHr} onChange={(event)=>{ setRoiThreeHr(event.target.value) }} class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"/>
+              </h5>
+
+              <h5 class="mb-5 text-base font-semibold text-gray-500 lg:text-xl dark:text-white">
+              <label for="minmax-range" class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-300"> Sell after 4 hours if there is at least {roiFourHr}% profit</label>
+                <input id="minmax-range" type="range" min="0" max="100" value={roiFourHr} onChange={(event)=>{ setRoiFourHr(event.target.value) }} class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"/>
+              </h5>
+
+              <h5 class="mb-5 text-base font-semibold text-gray-500 lg:text-xl dark:text-white">
+              <label for="minmax-range" class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-300"> Sell after 5 hours if there is at least {roiFiveHr}% profit</label>
+                <input id="minmax-range" type="range" min="0" max="100" value={roiFiveHr} onChange={(event)=>{ setRoiFiveHr(event.target.value) }} class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"/>
+              </h5>
+
+              <h5 class="mb-5 text-base font-semibold text-gray-500 lg:text-xl dark:text-white">
+              <label for="minmax-range" class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-300"> Sell after 6 hours if there is at least {roiSixHr}% profit</label>
+                <input id="minmax-range" type="range" min="0" max="100" value={roiSixHr} onChange={(event)=>{ setRoiSixHr(event.target.value) }} class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"/>
+              </h5>
+
+              <h5 class="mb-5 text-base font-semibold text-gray-500 lg:text-xl dark:text-white">
+              <label for="minmax-range" class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-300"> Sell after 7 hours if there is at least {roiSevenHr}% profit</label>
+                <input id="minmax-range" type="range" min="0" max="100" value={roiSevenHr} onChange={(event)=>{ setRoiSevenHr(event.target.value) }} class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"/>
+              </h5>
+
+              <h5 class="mb-5 text-base font-semibold text-gray-500 lg:text-xl dark:text-white">
+              <label for="minmax-range" class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-300"> Sell after 24 hours if there is at least {roi24Hr}% profit</label>
+                <input id="minmax-range" type="range" min="0" max="100" value={roi24Hr} onChange={(event)=>{ setRoi24Hr(event.target.value) }} class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"/>
+              </h5>
+            </div>
+          </div>
+          </div>
+
           <div class="p-4 m-4 max-w-4xl bg-white rounded-lg border shadow-md sm:p-6 dark:bg-gray-800 dark:border-gray-700">
             <h5 class="mb-3 text-base font-semibold text-gray-900 lg:text-xl dark:text-white">
-                Selling
+                Stop Loss
+            </h5>
+
+            <h5 class="mb-5 text-base font-semibold text-gray-500 lg:text-xl dark:text-white">
+            <label for="minmax-range" class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-300">Sell immediately if the profit dips below -{stopLoss}%</label>
+              <input id="minmax-range" type="range" min="0" max="100" value={stopLoss} onChange={(event)=>{ setStopLoss(event.target.value) }} class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"/>
             </h5>
             
           </div>
 
           <div class="p-4 m-4 max-w-4xl bg-white rounded-lg border shadow-md sm:p-6 dark:bg-gray-800 dark:border-gray-700">
             <h5 class="mb-3 text-base font-semibold text-gray-900 lg:text-xl dark:text-white">
-                Buying
+                Trade
             </h5>
+
+            <div class="mt-6 ">
+                    <div class="dropdown inline-block relative">
+                      <button class="bg-gray-300 text-gray-700 text-sm py-2 px-4 rounded inline-flex items-center">
+                        <svg class="mr-1 w-3 h-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path></svg>
+                          Sell: Orderbook Price Level
+                        <select value={selectedSellOrderBookPrice} onChange={handleSellOrderBookPrice} class="bg-gray-300 text-gray-700 text-sm mx-2 px-8 rounded inline-flex items-center">
+                          <option value="1" selected>1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                        </select>
+                      </button>
+                    </div>
+              </div>
+
+              <div class="mt-6">
+                    <div class="dropdown inline-block relative">
+                      <button class="bg-gray-300 text-gray-700 text-sm py-2 px-4 rounded inline-flex items-center">
+                        <svg class="mr-1 w-3 h-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path></svg>
+                          Buy: Orderbook Price Level
+                        <select value={selectedBuyOrderBookPrice} onChange={handleBuyOrderBookPrice} class="bg-gray-300 text-gray-700 text-sm mx-2 px-8 rounded inline-flex items-center">
+                          <option value="1" selected>1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                        </select>
+                      </button>
+                    </div>
+              </div>
             
           </div>
 
