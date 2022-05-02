@@ -124,6 +124,10 @@ module.exports = {
                     "bids_to_ask_delta": 1
                 }
             },
+            "ask_strategy": {
+                "use_order_book": true,
+                "order_book_top": ${req.body.sellOrderBookTopBid}
+            },
             "minimal_roi": {
                 "1440": ${req.body.roi24Hr},
                 "420": ${req.body.roiSevenHr},
