@@ -126,7 +126,7 @@ module.exports = {
             },
             "ask_strategy": {
                 "use_order_book": true,
-                "order_book_top": ${req.body.sellOrderBookTopBid},
+                "order_book_top": ${req.body.sellOrderBookTopBid}
             },
             "minimal_roi": {
                 "1440": ${req.body.roi24Hr},
