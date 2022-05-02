@@ -115,19 +115,7 @@ module.exports = {
                 "exit_timeout_count": 0,
                 "unit": "minutes"
             },
-            "bid_strategy": {
-                "ask_last_balance": 0.0,
-                "use_order_book": true,
-                "order_book_top": ${req.body.buyOrderBookTopBid},
-                "check_depth_of_market": {
-                    "enabled": true,
-                    "bids_to_ask_delta": 1
-                }
-            },
-            "ask_strategy": {
-                "use_order_book": true,
-                "order_book_top": ${req.body.sellOrderBookTopBid}
-            },
+           
             "minimal_roi": {
                 "1440": ${req.body.roi24Hr},
                 "420": ${req.body.roiSevenHr},
