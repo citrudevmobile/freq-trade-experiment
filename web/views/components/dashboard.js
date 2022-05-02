@@ -24,14 +24,16 @@ function Dashboard({ logout }) {
 
     const [sidebarOpen, setSidebarOpen] = useState(true);
     const [listOfBots, setlistOfBots] = useState([]);
+    const [modalInfo, setModalInfo] = useState({})
     let navigate = useNavigate()
 
     let subtitle;
     const [modalIsOpen, setIsOpen] = React.useState(false);
 
-    function openModal() {
+    function openModal(val) {
         console.log('open modal called...')
         setIsOpen(true);
+        setModalInfo(val)
     }
 
     function afterOpenModal() {
@@ -140,7 +142,8 @@ function Dashboard({ logout }) {
 
                             <div class="flex justify-between items-start p-5 rounded-t border-b dark:border-gray-600">
                                 <h3 class="text-xl font-semibold text-gray-900 lg:text-2xl dark:text-white">
-                                    Terms of Service
+                                {modalInfo.name}
+                                <p class="bg-blue-700 text-white text-sm font-semibold inline-flex items-center p-1.5 rounded">Bot</p>
                                 </h3>
                                 <button onClick={closeModal} type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="defaultModal">
                                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
@@ -324,7 +327,9 @@ function Dashboard({ logout }) {
                                                         <td>
                                                             <div class="relative px-5 pt-2">
 
-                                                                <button onClick={openModal} class="focus:ring-2 rounded-md focus:outline-none" onclick="dropdownFunction(this)" role="button" aria-label="option">
+                                                                <button onClick={() => {
+                                                                    openModal(val)
+                                                                }} class="focus:ring-2 rounded-md focus:outline-none" role="button" aria-label="option">
                                                                     <svg class="dropbtn" onclick="dropdownFunction(this)" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                                                                         <path d="M4.16667 10.8332C4.62691 10.8332 5 10.4601 5 9.99984C5 9.5396 4.62691 9.1665 4.16667 9.1665C3.70643 9.1665 3.33334 9.5396 3.33334 9.99984C3.33334 10.4601 3.70643 10.8332 4.16667 10.8332Z" stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></path>
                                                                         <path d="M10 10.8332C10.4602 10.8332 10.8333 10.4601 10.8333 9.99984C10.8333 9.5396 10.4602 9.1665 10 9.1665C9.53976 9.1665 9.16666 9.5396 9.16666 9.99984C9.16666 10.4601 9.53976 10.8332 10 10.8332Z" stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></path>
