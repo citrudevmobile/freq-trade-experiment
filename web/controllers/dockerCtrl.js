@@ -116,7 +116,6 @@ module.exports = {
                 "unit": "minutes"
             },
             "bid_strategy": {
-                "price_side": "bid",
                 "ask_last_balance": 0.0,
                 "use_order_book": true,
                 "order_book_top": ${req.body.buyOrderBookTopBid},
@@ -127,7 +126,23 @@ module.exports = {
             },
             "ask_strategy": {
                 "use_order_book": true,
-                "order_book_top": ${req.body.sellOrderBookTopBid},
+                "order_book_top": ${req.body.sellOrderBookTopBid}
+            },
+            "minimal_roi": {
+                "1440": ${req.body.roi24Hr},
+                "420": ${req.body.roiSevenHr},
+                "360": ${req.body.roiSixHr},
+                "300": ${req.body.roiFiveHr},
+                "240": ${req.body.roiFourHr},
+                "180": ${req.body.roiThreeHr},
+                "120": ${req.body.roiTwoHr},
+                "60": ${req.body.roiSixtyMin},
+                "50": ${req.body.roiFiftyMin},
+                "40": ${req.body.roiFourtyMin},
+                "30": ${req.body.roiThirtyMin},
+                "20": ${req.body.roiTwentyMin},
+                "10": ${req.body.roiTenMin},
+                "0": ${req.body.roiImmediate},
             },
             "stoploss": ${req.body.stopLoss},
             "trailing_stop": true,
