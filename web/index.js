@@ -22,7 +22,6 @@ mongoose.connect(process.env.MONGODB, {
   useUnifiedTopology: true
 })
 
-//`AUD, BIDR, BKRW, BNB, BRL, BTC, BUSD, BVND, DAI, DOGE, DOT, ETH, EUR, GBP, GYEN, IDRT, NGN, PAX, RUB, TRX, TRY, TUSD, UAH, USDC, USDP, USDS, USDT, UST, VAI, XRP, ZAR`
 User.findOne({ email: process.env.ADMIN_EMAIL_ADDRESS }, function (err, admin) {
   if (!(!err && admin)) {
     try {
@@ -45,17 +44,6 @@ User.findOne({ email: process.env.ADMIN_EMAIL_ADDRESS }, function (err, admin) {
   } else {
     console.log('Admin user already exists')
   }
-})
-
-
-User.find({}, function (err, users) {
-  if (err) return console.log(err)
-  console.log(users)
-})
-
-Task.find({}, function (err, tasks) {
-  if (err) return console.log(err)
-  console.log(tasks)
 })
 
 app.use(morgan('combined'))
