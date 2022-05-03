@@ -67,11 +67,13 @@ function Dashboard({ logout }) {
                     })
                     trades = trades.concat(_trades)
                 }
+                
                 trades = trades.sort(function (a, b) {
                     return new Date(b.open_date) - new Date(a.open_date);
                 })
                 
                 let closedTrades = (trades.filter((val) => {return !(val['close_date'] == undefined)}))
+                
                 let totalTrades = closedTrades.reduce( (accumulator, val ) => {
                    return accumulator + Number(val['profit_amount'])
                 }, 0);
