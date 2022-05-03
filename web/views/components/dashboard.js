@@ -67,7 +67,7 @@ function Dashboard({ logout }) {
                     })
                     trades = trades.concat(_trades)
                 }
-                
+
                 trades = trades.sort(function (a, b) {
                     return new Date(b.open_date) - new Date(a.open_date);
                 })
@@ -233,7 +233,7 @@ function Dashboard({ logout }) {
                                     <div class="flex items-center space-x-2">
                                         <a class="rounded-full focus:outline-none focus:ring-2  focus:bg-indigo-50 focus:ring-indigo-800" href=" javascript:void(0)">
                                             <div class="py-2 px-8 bg-indigo-50 text-indigo-700 rounded-full">
-                                                <p>Total Profits: <span class="text-black mx-1">${totalProfit}</span><span class="text-green-700 mx-1">({totalProfitRatio}%)</span></p>
+                                                <p>Total Profits: <span class="text-black mx-1">${totalProfit.toFixed(2)}</span><span class="text-green-700 mx-1">({(totalProfitRatio * 100).toFixed(2)}%)</span></p>
                                             </div>
                                         </a>
                                         <a class="rounded-full focus:outline-none focus:ring-2 focus:bg-indigo-50 focus:ring-indigo-800" href="javascript:void(0)">
