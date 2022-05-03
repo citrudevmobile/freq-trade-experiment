@@ -339,7 +339,7 @@ function Dashboard({ logout }) {
                                                                         stroke-linejoin="round"
                                                                     ></path>
                                                                 </svg>
-                                                                <p class="text-sm leading-none text-gray-600 ml-2" ><span class="text-black">N/A</span></p>
+                                                                <p class="text-sm leading-none text-gray-600 ml-2" ><span class="text-black">{val.trades.reduce( (accumulator, val ) => { return accumulator + Number(val) }, 0)}</span></p>
                                                             </div>
                                                         </td>
                                                         <td class="flex justify-center items-center">
