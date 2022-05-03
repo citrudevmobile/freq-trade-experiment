@@ -57,7 +57,7 @@ function Dashboard({ logout }) {
                     headers: { "x-access-token": token }
                 })
                 let allTradeBots = response.data
-               /*
+               
                 let trades = []
                 for (let bot of allTradeBots) {
                     let _trades = bot.trades.map(_trade => {
@@ -74,10 +74,10 @@ function Dashboard({ logout }) {
                 let totalTrades = closedTrades.reduce( (accumulator, val ) => {
                    return accumulator + Number(val['profit_amount'])
                 }, 0);
-                */
+                
 
-                //setTotalProfit(totalTrades)
-                //setTotalTrade(trades)
+                setTotalProfit(totalTrades)
+                setTotalTrade(trades.length)
                 setlistOfBots(allTradeBots)
 
             } catch (error) {
@@ -230,7 +230,7 @@ function Dashboard({ logout }) {
                                         </a>
                                         <a class="rounded-full focus:outline-none focus:ring-2 focus:bg-indigo-50 focus:ring-indigo-800" href="javascript:void(0)">
                                             <div class="py-2 px-8 bg-indigo-50 text-indigo-700 rounded-full">
-                                                <p>Total Trades: <span class="text-black mx-1">${totalTrade}</span></p>
+                                                <p>Total Trades: <span class="text-black mx-1">{totalTrade}</span></p>
                                             </div>
                                         </a>
                                     </div>
