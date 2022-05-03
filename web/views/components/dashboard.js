@@ -79,6 +79,7 @@ function Dashboard({ logout }) {
                 }, 0);
 
                 let totalTradesRatio = closedTrades.reduce( (accumulator, val ) => {
+                    console.log(Number(val['profit_ratio']))
                     return accumulator + Number(val['profit_ratio'])
                  }, 0);
                 
@@ -233,7 +234,7 @@ function Dashboard({ logout }) {
                                     <div class="flex items-center space-x-2">
                                         <a class="rounded-full focus:outline-none focus:ring-2  focus:bg-indigo-50 focus:ring-indigo-800" href=" javascript:void(0)">
                                             <div class="py-2 px-8 bg-indigo-50 text-indigo-700 rounded-full">
-                                                <p>Total Profits: <span class="text-black mx-1">${totalProfit.toFixed(2)}</span><span className={"mx-1 text-gray-700"}>({totalProfitRatio.toFixed(4)}%)</span></p>
+                                                <p>Total Profits: <span class="text-black mx-1">${totalProfit.toFixed(2)}</span><span className={"mx-1 text-gray-300"}>({totalProfitRatio})</span></p>
                                             </div>
                                         </a>
                                         <a class="rounded-full focus:outline-none focus:ring-2 focus:bg-indigo-50 focus:ring-indigo-800" href="javascript:void(0)">
