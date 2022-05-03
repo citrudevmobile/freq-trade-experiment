@@ -124,7 +124,7 @@ function Dashboard({ logout }) {
                                                             PROFIT
                                                         </th>
                                                         <th scope="col" class="px-4 py-3">
-                                                            PROFIT RATIO
+                                                            PROFIT %
                                                         </th>
                                                     </tr>
                                                 </thead>
