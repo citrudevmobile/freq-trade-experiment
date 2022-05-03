@@ -41,12 +41,16 @@ function Dashboard({ logout }) {
     function getLastSellRate (val) {
         let closedTrades = (val.trades.filter((trade) => {return !(trade['close_date'] == undefined)}))
         console.log(closedTrades)
-        let sortedTrades = closedTrades.sort(function (a, b) {
-            return new Date(b.open_date) - new Date(a.open_date);
-        })
-        let latestRate = sortedTrades[0]['open_rate'] || 'N/A'
-        console.log(latestRate)
-        return latestRate
+        if (closedTrades.length > 0) {
+            let sortedTrades = closedTrades.sort(function (a, b) {
+                return new Date(b.open_date) - new Date(a.open_date);
+            })
+            let latestRate = sortedTrades[0]['open_rate'] || 'N/A'
+            console.log(latestRate)
+            return latestRate
+        } else {
+            return 'N/A'
+        }
     }
         
 
