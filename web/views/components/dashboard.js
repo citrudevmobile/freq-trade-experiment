@@ -269,7 +269,7 @@ function Dashboard({ logout }) {
                                                     Time Frame
                                                 </th>
                                                 <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                                    Bot Profit
+                                                    Profit
                                                 </th>
                                                 <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
                                                     Trades
@@ -339,7 +339,7 @@ function Dashboard({ logout }) {
                                                                         stroke-linejoin="round"
                                                                     ></path>
                                                                 </svg>
-                                                                <p class="text-sm leading-none text-gray-600 ml-2" ><span class="text-black">{val.trades.reduce( (accumulator, val ) => { return accumulator + Number(val['profit_amount']) }, 0)}</span></p>
+                                                                <p class="text-sm leading-none text-gray-600 ml-2" ><span class="text-black">{val.trades.reduce( (accumulator, _val ) => { return accumulator + Number(_val['profit_amount']) }, 0)}</span></p>
                                                             </div>
                                                         </td>
                                                         <td class="flex justify-center items-center">
