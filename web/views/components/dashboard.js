@@ -317,9 +317,7 @@ function Dashboard({ logout }) {
                                                         </td>
                                                         <td class="pl-5">
                                                             <div class="flex items-center">
-                                                                <p class="text-sm leading-none text-green-600 ml-2">{(val.trades.filter(function (_trade) { return !(_trade['close_date'] == undefined)}).sort(function (a, b) {
-                                                                        return new Date(b.open_date) - new Date(a.open_date);
-                                                                    }))[0] || 'N/A'}
+                                                                <p class="text-sm leading-none text-green-600 ml-2">{val.trades.filter(function (_trade) { return !(_trade['close_date'] == undefined)})[0]['close_date'] || 'N/A'}
                                                                 </p>
                                                             </div>
                                                         </td>
