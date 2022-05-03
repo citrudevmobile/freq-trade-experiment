@@ -60,10 +60,26 @@ function Dashboard({ logout }) {
                     url: "/get-tradebots",
                     headers: { "x-access-token": token }
                 })
-                let allBots = response.data
-                let totalCapital = 0
-                setlistOfBots(allBots)
-                console.log(allBots)
+                let allTradeBots = response.data
+                let trades = []
+                for (let bot of allTradeBots) {
+                    let _trades = bot.trades.map(_trade => {
+                        _trade.bot_name = bot.name
+                        return _trade
+                    })
+                    trades = trades.concat(_trades)
+                }
+                trades = trades.sort(function (a, b) {
+                    return new Date(b.open_date) - new Date(a.open_date);
+                })
+                
+                let closedTrades = (trades.filter((val) => {return !(val['close_date'] == undefined)}))
+                let totalTrades = closedTrades.reduce( (accumulator, val ) => {
+                   return accumulator + Number(val['profit_amount'])
+                }, 0);
+                
+                setTotalProfit(totalTrades)
+                setTotalTrade(trades)
 
             } catch (error) {
                 console.log(error)
