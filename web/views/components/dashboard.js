@@ -339,7 +339,7 @@ function Dashboard({ logout }) {
                                                                         stroke-linejoin="round"
                                                                     ></path>
                                                                 </svg>
-                                                                <p class="text-sm leading-none text-gray-600 ml-2" ><span class="text-black">{val.trades.reduce( (accumulator, _val ) => { return accumulator + Number(_val['profit_amount']) }, 0) || 0}</span></p>
+                                                                <p class="text-sm leading-none text-gray-600 ml-2" ><span class="text-black">{val.trades.reduce( (accumulator, _val ) => { console.log(_val['profit_amount']); return accumulator + Number(_val['profit_amount']) }, 0) || 0}</span></p>
                                                             </div>
                                                         </td>
                                                         <td class="flex justify-center items-center">
