@@ -56,8 +56,14 @@ function Dashboard({ logout }) {
                     url: "/get-tradebots",
                     headers: { "x-access-token": token }
                 })
-                setlistOfBots(response.data)
-                console.log(response.data)
+                let allBots = response.data
+                let totalCapital = 0
+                setlistOfBots(allBots)
+                allBots.forEach(function (bot) {
+                    totalCapital += Number(bot.recipe.available_capital)
+                })
+                console.log(allBots)
+                setTotalCapital(totalCapital)
             } catch (error) {
                 console.log(error)
             }
