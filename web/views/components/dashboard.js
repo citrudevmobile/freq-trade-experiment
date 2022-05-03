@@ -38,6 +38,18 @@ function Dashboard({ logout }) {
         setModalInfo(val)
     }
 
+    function getLastSellRate (val) {
+        let closedTrades = (val.trades.filter((trade) => {return !(trade['close_date'] == undefined)}))
+        console.log(closedTrades)
+        let sortedTrades = closedTrades.sort(function (a, b) {
+            return new Date(b.open_date) - new Date(a.open_date);
+        })
+        let latestRate = sortedTrades[0]['open_rate'] || 'N/A'
+        console.log(latestRate)
+        return latestRate
+    }
+        
+
     function afterOpenModal() {
         // references are now sync'd and can be accessed.
         subtitle.style.color = '#f00';
@@ -317,8 +329,8 @@ function Dashboard({ logout }) {
                                                         </td>
                                                         <td class="pl-5">
                                                             <div class="flex items-center">
-                                                                <p class="text-sm leading-none text-green-600 ml-2">{val.trades.filter(function (_trade) { return !(_trade['close_date'] == undefined)})[0]['close_date'] || 'N/A'}
-                                                                </p>
+                                                                <p class="text-sm leading-none text-green-600 ml-2">{getLastSellRate(val)}</p>
+                                                                
                                                             </div>
                                                         </td>
                                                         <td class="pl-5">
