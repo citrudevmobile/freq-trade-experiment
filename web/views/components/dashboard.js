@@ -25,6 +25,8 @@ function Dashboard({ logout }) {
     const [sidebarOpen, setSidebarOpen] = useState(true);
     const [listOfBots, setlistOfBots] = useState([]);
     const [modalInfo, setModalInfo] = useState({})
+    const [totalCapital, setTotalCapital] = useState(0)
+    const [totalProfit, setTotalProfit] = useState(0)
     let navigate = useNavigate()
 
     let subtitle;
@@ -200,12 +202,12 @@ function Dashboard({ logout }) {
                                     <div class="flex items-center space-x-2">
                                         <a class="rounded-full focus:outline-none focus:ring-2  focus:bg-indigo-50 focus:ring-indigo-800" href=" javascript:void(0)">
                                             <div class="py-2 px-8 bg-indigo-50 text-indigo-700 rounded-full">
-                                                <p>Total Bot Profits: <span class="text-black mx-1">$100</span><span class="text-green-700 mx-1">(+6.16%)</span></p>
+                                                <p>Total Bot Profits: <span class="text-black mx-1">${totalProfit}</span><span class="text-green-700 mx-1">(+6.16%)</span></p>
                                             </div>
                                         </a>
                                         <a class="rounded-full focus:outline-none focus:ring-2 focus:bg-indigo-50 focus:ring-indigo-800" href="javascript:void(0)">
                                             <div class="py-2 px-8 bg-indigo-50 text-indigo-700 rounded-full">
-                                                <p>Total Value: <span class="text-black mx-1">$1000</span></p>
+                                                <p>Total Capital: <span class="text-black mx-1">${totalCapital}</span></p>
                                             </div>
                                         </a>
                                     </div>
