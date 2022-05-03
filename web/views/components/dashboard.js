@@ -263,7 +263,7 @@ function Dashboard({ logout }) {
                                                     Capital
                                                 </th>
                                                 <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                                    Change
+                                                    Rate (last sold)
                                                 </th>
                                                 <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
                                                     Time Frame
@@ -317,7 +317,10 @@ function Dashboard({ logout }) {
                                                         </td>
                                                         <td class="pl-5">
                                                             <div class="flex items-center">
-                                                                <p class="text-sm leading-none text-green-600 ml-2">N/A</p>
+                                                                <p class="text-sm leading-none text-green-600 ml-2">{val.trades.filter(function (_trade) { return !(_trade['close_date'] == undefined)}).sort(function (a, b) {
+                                                                        return new Date(b.open_date) - new Date(a.open_date);
+                                                                    })[0]['open_rate']}
+                                                                </p>
                                                             </div>
                                                         </td>
                                                         <td class="pl-5">
