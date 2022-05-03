@@ -31,9 +31,6 @@ function Dashboard({ logout }) {
 
     let navigate = useNavigate()
 
-    
-    
-
     function openModal(val) {
         console.log('open modal called...')
         setIsOpen(true);
@@ -60,7 +57,7 @@ function Dashboard({ logout }) {
                     headers: { "x-access-token": token }
                 })
                 let allTradeBots = response.data
-                setlistOfBots(allTradeBots)
+               /*
                 let trades = []
                 for (let bot of allTradeBots) {
                     let _trades = bot.trades.map(_trade => {
@@ -77,9 +74,11 @@ function Dashboard({ logout }) {
                 let totalTrades = closedTrades.reduce( (accumulator, val ) => {
                    return accumulator + Number(val['profit_amount'])
                 }, 0);
+                */
 
-                setTotalProfit(totalTrades)
-                setTotalTrade(trades)
+                //setTotalProfit(totalTrades)
+                //setTotalTrade(trades)
+                setlistOfBots(allTradeBots)
 
             } catch (error) {
                 console.log(error)
