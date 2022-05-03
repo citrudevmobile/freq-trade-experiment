@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import { NavLink, Navigate, useNavigate } from "react-router-dom";
 import Sidebar from './dashboard/Sidebar'
 import Header from './dashboard/Header';
-import WelcomeBanner from './dashboard/WelcomeBanner';
-import DashboardCard05 from './dashboard/Dashboard05';
 import swap from '../images/swap.svg';
 import clock from '../images/clock1.svg';
 import axios from 'axios';
@@ -21,6 +19,7 @@ const customStyles = {
 }
 
 function Dashboard({ logout }) {
+
     let subtitle;
 
     const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -61,6 +60,7 @@ function Dashboard({ logout }) {
                     headers: { "x-access-token": token }
                 })
                 let allTradeBots = response.data
+                setlistOfBots(allTradeBots)
                 let trades = []
                 for (let bot of allTradeBots) {
                     let _trades = bot.trades.map(_trade => {
@@ -77,7 +77,7 @@ function Dashboard({ logout }) {
                 let totalTrades = closedTrades.reduce( (accumulator, val ) => {
                    return accumulator + Number(val['profit_amount'])
                 }, 0);
-                
+
                 setTotalProfit(totalTrades)
                 setTotalTrade(trades)
 
@@ -192,7 +192,7 @@ function Dashboard({ logout }) {
                                         closeModal()
                                     }, 3000)
                                 }} data-modal-toggle="defaultModal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Delete Bot</button>
-                                <button onClick={closeModal} data-modal-toggle="defaultModal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Decline</button>
+                                <button onClick={closeModal} data-modal-toggle="defaultModal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Close</button>
                             </div>
                         </div>
                     </div>
