@@ -2,10 +2,6 @@ import React, { useState, useEffect } from "react";
 import { NavLink, Navigate, useNavigate } from "react-router-dom";
 import Sidebar from './dashboard/Sidebar'
 import Header from './dashboard/Header';
-import WelcomeBanner from './dashboard/WelcomeBanner';
-import DashboardCard05 from './dashboard/Dashboard05';
-import swap from '../images/swap.svg';
-import clock from '../images/clock1.svg';
 import axios from 'axios';
 
 

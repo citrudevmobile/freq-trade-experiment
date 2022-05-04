@@ -156,7 +156,7 @@ function Dashboard({ logout }) {
 
                                             </footer>
                                             <h4 class="text-xl font-bold text-gray-900 dark:text-white">ETH/BTC</h4>
-                                            <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">Maintained by @dousou</p>
+                                            <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">Maintained by @doisou</p>
                                         </div>
                                         <p class="bg-blue-700 text-white text-sm font-semibold inline-flex items-center p-1.5 rounded">Paper Trade</p>
                                     </div>

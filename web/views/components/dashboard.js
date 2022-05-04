@@ -51,7 +51,6 @@ function Dashboard({ logout }) {
         }
     }
         
-
     function afterOpenModal() {
         // references are now sync'd and can be accessed.
         subtitle.style.color = '#f00';
@@ -109,7 +108,6 @@ function Dashboard({ logout }) {
         } else {
             navigate('/')
         }
-        
     }
 
     let deleteTradeBot = async function (taskId) {
@@ -300,7 +298,6 @@ function Dashboard({ logout }) {
                                             </tr>
                                         </thead>
                                         <tbody>
-
                                             {listOfBots.map((val, index) => {
                                                 return (
                                                     <tr key={index} tabindex="0" class="mb-3 focus:outline-none h-16 border border-gray-100 rounded">
